@@ -16,13 +16,27 @@
           <i class="fas fa-star"></i>
           JesusCorner - Recomendaciones Amazon
         </h1>
-        <p class="header-subtitle">Las mejores ofertas y reviews de tecnología</p>
+        <p class="header-subtitle">Recomendaciones honestas de tecnología</p>
       </div>
     </div>
   </header>
 
   <main class="main">
     <div class="container">
+      <!-- Barra de búsqueda -->
+      <div class="search-container">
+        <div class="search-box">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="searchInput" class="search-input" placeholder="Buscar productos...">
+          <button class="search-clear" id="searchClear" style="display: none;">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="search-results-count" id="searchResultsCount" style="display: none;">
+          <span id="resultsText"></span>
+        </div>
+      </div>
+
       <div class="filters">
         <button class="filter-btn active" data-category="all">
           <i class="fas fa-th"></i> Todos
