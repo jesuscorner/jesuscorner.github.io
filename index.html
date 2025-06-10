@@ -3,21 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mis recomendaciones Amazon</title>
+  <title>Mis recomendaciones Amazon - JesusCorner</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1>Bienvenido a mis Reviews y Ofertas en Amazon</h1>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="header-title">
+          <i class="fas fa-star"></i>
+          JesusCorner - Recomendaciones Amazon
+        </h1>
+        <p class="header-subtitle">Las mejores ofertas y reviews de tecnología</p>
+      </div>
+    </div>
   </header>
-  <section>
-    <p>Como asociado de Amazon, gano comisiones por compras realizadas a través de mis enlaces.</p>
-    <ul>
-      <li><a href="TU_ENLACE_AFILIADO_1" target="_blank">Periférico A – Opinión y Review</a></li>
-      <li><a href="TU_ENLACE_AFILIADO_2" target="_blank">Servidor NAS – Análisis completo</a></li>
-    </ul>
-  </section>
-  <footer>
-    <p>© 2025 Jesús – Ingeniero Informático y Asociado Amazon</p>
+
+  <main class="main">
+    <div class="container">
+      <div class="filters">
+        <button class="filter-btn active" data-category="all">
+          <i class="fas fa-th"></i> Todos
+        </button>
+        <button class="filter-btn" data-category="tech">
+          <i class="fas fa-laptop"></i> Tecnología
+        </button>
+        <button class="filter-btn" data-category="peripherals">
+          <i class="fas fa-keyboard"></i> Periféricos
+        </button>
+        <button class="filter-btn" data-category="storage">
+          <i class="fas fa-hdd"></i> Almacenamiento
+        </button>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <!-- Los productos se cargarán dinámicamente con JavaScript -->
+      </div>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Cargando productos...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <h3>JesusCorner</h3>
+          <p>Ingeniero Informático especializado en tecnología</p>
+        </div>
+        <div class="footer-links">
+          <a href="affiliate.html" class="footer-link">
+            <i class="fas fa-info-circle"></i>
+            Política de Afiliados
+          </a>
+          <a href="mailto:j.martinezmarin.m@gmail.com" class="footer-link">
+            <i class="fas fa-envelope"></i>
+            Contacto
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 JesusCorner. Como Asociado de Amazon, gano comisiones por compras que califican.</p>
+      </div>
+    </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
