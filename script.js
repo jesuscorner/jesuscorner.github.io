@@ -16,34 +16,24 @@
 // Configuración de productos - Necesitas: título, enlace de Amazon y categoría
 const simpleProductsConfig = [
   {
-    title: "Teclado Mecánico Gaming RGB",
-    amazonUrl: "https://amzn.eu/d/40wgx5g",
-    category: "peripherals"
-  },
-  {
-    title: "Monitor 4K 27 Pulgadas IPS",
-    amazonUrl: "https://amzn.eu/d/example2", 
+    title: "Producto Amazon 1",
+    amazonUrl: "https://amzn.eu/d/e2dsva2",
     category: "tech"
   },
   {
-    title: "SSD NVMe 1TB Samsung 980 PRO",
-    amazonUrl: "https://amzn.eu/d/example3",
-    category: "storage"
-  },
-  {
-    title: "Ratón Gaming Inalámbrico Logitech",
-    amazonUrl: "https://amzn.eu/d/example4",
+    title: "Producto Amazon 2",
+    amazonUrl: "https://amzn.eu/d/2p8o1AC", 
     category: "peripherals"
   },
   {
-    title: "Servidor NAS Synology DS220+",
-    amazonUrl: "https://amzn.eu/d/example5",
+    title: "Producto Amazon 3",
+    amazonUrl: "https://amzn.eu/d/1ebvVnb",
     category: "storage"
   },
   {
-    title: "Auriculares Gaming SteelSeries",
-    amazonUrl: "https://amzn.eu/d/example6",
-    category: "peripherals"
+    title: "Producto Amazon 4",
+    amazonUrl: "https://amzn.eu/d/aElx9R0",
+    category: "tech"
   }
 ];
 
