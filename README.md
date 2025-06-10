@@ -1,2 +1,3 @@
 # jesuscorner.github.io
-This page hosts my recommended products
+
+This page hosts my recommended products.
