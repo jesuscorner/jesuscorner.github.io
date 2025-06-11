@@ -38,12 +38,12 @@
   
 </head>
 <body>
-  <header class="header">
+  <header class="header" role="banner">
   <div class="container">
     <div class="header-content">
       <div class="logo">
-        <a href="/">
-          <img src="/logo.png" alt="JesusCorner Logo" class="logo-image">
+        <a href="/" aria-label="JesusCorner - Inicio">
+          <img src="/logo.png" alt="JesusCorner Logo" class="logo-image" loading="eager">
           <div class="logo-text">
             <h1>JesusCorner</h1>
             <span>Recomendaciones Tech</span>
@@ -51,40 +51,45 @@
         </a>
       </div>
       
-      <nav class="nav">
+      <nav class="nav" role="navigation" aria-label="Navegación principal">
         <a href="/" >
-          <i class="fas fa-home"></i>
-          Inicio
+          <i class="fas fa-home" aria-hidden="true"></i>
+          <span>Inicio</span>
         </a>
         <a href="/reviews" >
-          <i class="fas fa-star"></i>
-          Reviews
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <span>Reviews</span>
         </a>
-        <a href="/blog" class="active">
-          <i class="fas fa-newspaper"></i>
-          Blog
+        <a href="/blog" class="active" aria-current="page">
+          <i class="fas fa-newspaper" aria-hidden="true"></i>
+          <span>Blog</span>
         </a>
         <a href="/recommendations" >
-          <i class="fas fa-thumbs-up"></i>
-          Recomendaciones
+          <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+          <span>Recomendaciones</span>
         </a>
       </nav>
       
       <div class="header-actions">
-        <button class="search-toggle" onclick="toggleSearch()">
-          <i class="fas fa-search"></i>
+        <button class="search-toggle" onclick="toggleSearch()" aria-label="Abrir búsqueda" aria-expanded="false">
+          <i class="fas fa-search" aria-hidden="true"></i>
         </button>
-        <button class="menu-toggle" onclick="toggleMobileMenu()">
-          <i class="fas fa-bars"></i>
+        <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú de navegación" aria-expanded="false">
+          <span class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
         </button>
       </div>
     </div>
     
-    <div class="search-bar" id="searchBar">
+    <div class="search-bar" id="searchBar" role="search">
       <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar productos, reviews, guías...">
-        <button onclick="performSearch()">
-          <i class="fas fa-search"></i>
+        <label for="searchInput" class="sr-only">Buscar en el sitio</label>
+        <input type="text" id="searchInput" placeholder="Buscar productos, reviews, guías..." autocomplete="off">
+        <button onclick="performSearch()" aria-label="Buscar">
+          <i class="fas fa-search" aria-hidden="true"></i>
         </button>
       </div>
     </div>
@@ -92,14 +97,28 @@
 </header>
 
 <style>
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .header {
   position: sticky;
   top: 0;
-  height: 65px;
+  height: 60px;
   background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
   z-index: 1000;
-  transition: box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .header-content {
@@ -107,79 +126,128 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+  z-index: 10;
 }
 
 .logo a {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   text-decoration: none;
   color: inherit;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline-offset: 4px;
+}
+
+.logo a:hover,
+.logo a:focus {
+  transform: scale(1.02);
+}
+
+.logo a:focus {
+  outline: 2px solid #FF8C00;
+  border-radius: 8px;
 }
 
 .logo-image {
-  height: 40px;
+  height: 50px;
   width: auto;
+  border-radius: 8px;
+}
+
+.logo a:hover .logo-image {
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.3);
 }
 
 .logo-text h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
+  font-weight: 800;
   color: #FF8C00;
   margin: 0;
   line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.logo-text .highlight {
+  color: #FFD700;
 }
 
 .logo-text span {
-  font-size: 0.8rem;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
   color: #666;
   display: block;
-  margin-top: -0.15rem;
+  margin-top: 4px;
   line-height: 1;
+  font-weight: 500;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 2rem;
   margin-left: auto;
+  margin-right: 2rem;
 }
 
 .nav a {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.75rem;
   text-decoration: none;
-  color: #333;
+  color: #444;
   font-weight: 500;
-  font-size: 0.95rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  transition: all 0.25s ease;
   line-height: 1;
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav a span {
+  transition: transform 0.2s ease;
 }
 
 .nav a i {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .nav a:hover,
+.nav a:focus,
 .nav a.active {
   color: #FF8C00;
   background: rgba(255, 140, 0, 0.1);
 }
 
+.nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25px;
+  height: 3px;
+  background: linear-gradient(90deg, #FF8C00, #FFD700);
+  border-radius: 2px;
+}
+
 .header-actions {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.75rem;
   align-items: center;
-  margin-left: 1rem;
+  flex-shrink: 0;
 }
 
 .search-toggle,
@@ -189,16 +257,43 @@
   font-size: 1.1rem;
   color: #666;
   cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 6px;
+  padding: 0.75rem;
+  border-radius: 8px;
   transition: all 0.2s ease;
-  line-height: 1;
 }
 
 .search-toggle:hover,
 .menu-toggle:hover {
   background: rgba(255, 140, 0, 0.1);
   color: #FF8C00;
+}
+
+/* Hamburger menu animation */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 20px;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-toggle.active .hamburger span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active .hamburger span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
 }
 
 .menu-toggle {
@@ -228,10 +323,17 @@
 
 .search-container input {
   flex: 1;
-  padding: 0.75rem 1.25rem;
+  padding: 1rem 1.5rem;
   border: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
   outline: none;
+  background: transparent;
+  color: #333;
+  font-family: inherit;
+}
+
+.search-container input::placeholder {
+  color: #999;
 }
 
 .search-container button {
@@ -247,17 +349,30 @@
   background: #e6790e;
 }
 
+/* Responsive improvements */
+@media (max-width: 1024px) {
+  .nav {
+    gap: 1rem;
+  }
+  
+  .nav a {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    gap: 0.6rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .header {
+    height: 70px;
+  }
+  
   .header-content {
     padding: 0 1rem;
   }
   
-  .logo-text h1 {
-    font-size: 1.25rem;
-  }
-  
-  .logo-text span {
-    font-size: 0.75rem;
+  .logo-image {
+    height: 40px;
   }
   
   .nav {
@@ -290,6 +405,24 @@
   
   .search-container {
     margin: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    padding: 0 0.75rem;
+  }
+  
+  .logo-image {
+    height: 32px;
+  }
+  
+  .logo-text h1 {
+    font-size: 1.1rem;
+  }
+  
+  .logo-text span {
+    font-size: 0.7rem;
   }
 }
 </style>
@@ -328,11 +461,18 @@ document.getElementById('searchInput')?.addEventListener('keypress', function(e)
 
   
   <main class="main-content">
-    <div class="container">
-  <h1>Blog de Tecnología</h1>
-  <p>Guías detalladas, comparativas y artículos sobre las últimas tendencias en tecnología.</p>
-  
-  <div class="posts-list">
+    <section class="blog-hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">Blog de <span class="highlight">Tecnología</span></h1>
+      <p class="hero-subtitle">Guías detalladas, comparativas y artículos sobre las últimas tendencias en tecnología.</p>
+    </div>
+  </div>
+</section>
+
+<section class="blog-content">
+  <div class="container">
+    <div class="posts-list">
     
       <article class="post-preview">
         <div class="post-meta">
@@ -400,10 +540,67 @@ document.getElementById('searchInput')?.addEventListener('keypress', function(e)
         </a>
       </article>
     
+    </div>
   </div>
-</div>
+</section>
 
 <style>
+/* Blog Hero Section */
+.blog-hero {
+  background: linear-gradient(135deg, #4A90E2 0%, #FF8C00 100%);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.blog-hero .hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.blog-hero .hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.blog-hero .highlight {
+  color: #FFD700;
+}
+
+.blog-hero .hero-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Content Section */
+.blog-content {
+  padding: 4rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.container h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #FF8C00;
+  margin-bottom: 1rem;
+}
+
+.container > p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
 .posts-list {
   max-width: 800px;
   margin: 2rem auto;
@@ -411,25 +608,29 @@ document.getElementById('searchInput')?.addEventListener('keypress', function(e)
 
 .post-preview {
   background: white;
-  border-radius: 12px;
-  padding: 2rem;
+  border-radius: 1rem;
+  padding: 2.5rem;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .post-preview:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 }
 
 .post-meta {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-meta time {
+  color: #999;
   font-size: 0.9rem;
-  color: #6b7280;
+  font-weight: 500;
 }
 
 .post-categories {
@@ -438,46 +639,101 @@ document.getElementById('searchInput')?.addEventListener('keypress', function(e)
 }
 
 .category {
-  background: #e5e7eb;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  background: rgba(255, 140, 0, 0.1);
+  color: #FF8C00;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
   font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: lowercase;
 }
 
 .post-preview h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  line-height: 1.4;
 }
 
 .post-preview h2 a {
   text-decoration: none;
-  color: #111827;
-  transition: color 0.3s ease;
+  color: #333;
+  transition: color 0.2s ease;
 }
 
 .post-preview h2 a:hover {
-  color: #3b82f6;
+  color: #FF8C00;
 }
 
 .post-excerpt {
-  color: #6b7280;
-  line-height: 1.6;
+  color: #666;
+  line-height: 1.7;
   margin-bottom: 1.5rem;
+  font-size: 1.05rem;
 }
 
 .read-more {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #3b82f6;
+  color: #FF8C00;
   text-decoration: none;
-  font-weight: 500;
-  transition: gap 0.3s ease;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
 }
 
 .read-more:hover {
   gap: 0.75rem;
+  color: #e6790e;
+}
+
+.read-more i {
+  transition: transform 0.2s ease;
+}
+
+.read-more:hover i {
+  transform: translateX(2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .blog-hero {
+    padding: 3rem 0;
+  }
+  
+  .blog-hero .hero-title {
+    font-size: 2rem;
+  }
+  
+  .blog-hero .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .blog-content {
+    padding: 3rem 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-hero .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .blog-hero .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .post-preview {
+    padding: 1.5rem;
+  }
+  
+  .post-preview h2 {
+    font-size: 1.3rem;
+  }
 }
 </style>
 

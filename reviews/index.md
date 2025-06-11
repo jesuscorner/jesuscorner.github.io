@@ -4,11 +4,18 @@ title: "Todas las Reviews"
 description: "Todas nuestras reviews detalladas de productos tecnológicos"
 ---
 
-<div class="container">
-  <h1>Todas las Reviews</h1>
-  <p>Reviews detalladas y honestas de productos tecnológicos probados personalmente.</p>
-  
-  <div class="reviews-grid">
+<section class="reviews-hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">Todas las <span class="highlight">Reviews</span></h1>
+      <p class="hero-subtitle">Reviews detalladas y honestas de productos tecnológicos probados personalmente.</p>
+    </div>
+  </div>
+</section>
+
+<section class="reviews-content">
+  <div class="container">
+    <div class="reviews-grid">
     {% for review in site.reviews %}
       <article class="review-card">
         <a href="{{ review.url | relative_url }}" class="review-link">
@@ -38,28 +45,85 @@ description: "Todas nuestras reviews detalladas de productos tecnológicos"
         </a>
       </article>
     {% endfor %}
+    </div>
   </div>
-</div>
+</section>
 
 <style>
+/* Reviews Hero Section */
+.reviews-hero {
+  background: linear-gradient(135deg, #4A90E2 0%, #FF8C00 100%);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.reviews-hero .hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.reviews-hero .hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.reviews-hero .highlight {
+  color: #FFD700;
+}
+
+.reviews-hero .hero-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Content Section */
+.reviews-content {
+  padding: 4rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.container h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #FF8C00;
+  margin-bottom: 1rem;
+}
+
+.container > p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
 .reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
 
 .review-card {
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .review-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 }
 
 .review-link {
@@ -71,12 +135,17 @@ description: "Todas nuestras reviews detalladas de productos tecnológicos"
 .review-image {
   height: 200px;
   overflow: hidden;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .review-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .review-content {
@@ -84,31 +153,34 @@ description: "Todas nuestras reviews detalladas de productos tecnológicos"
 }
 
 .review-content h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  color: #333;
 }
 
 .rating {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
 .rating i {
-  color: #fbbf24;
+  color: #FFD700;
+  font-size: 1rem;
 }
 
 .rating-number {
-  margin-left: 0.5rem;
-  font-weight: 500;
-  color: #374151;
+  font-weight: 600;
+  color: #666;
+  font-size: 0.9rem;
 }
 
 .review-excerpt {
-  color: #6b7280;
-  line-height: 1.5;
+  color: #666;
+  line-height: 1.6;
   margin-bottom: 1rem;
 }
 
@@ -116,12 +188,72 @@ description: "Todas nuestras reviews detalladas de productos tecnológicos"
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.9rem;
-  color: #9ca3af;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
 }
 
 .price {
-  font-weight: 600;
-  color: #059669;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #FF8C00;
+}
+
+.date {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .reviews-hero {
+    padding: 3rem 0;
+  }
+  
+  .reviews-hero .hero-title {
+    font-size: 2rem;
+  }
+  
+  .reviews-hero .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .reviews-content {
+    padding: 3rem 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .reviews-hero .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .reviews-hero .hero-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+  
+  .container h1 {
+    font-size: 2rem;
+  }
+  
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .review-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
 }
 </style>

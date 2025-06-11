@@ -1,7 +1,14 @@
 ---
 layout: default
 title: "JesusCorner - Recomendaciones Tech"
-description: "Recomendaciones honestas de tecnología con las mejores ofertas y reviews detalladas"
+description: "Recomendaciones honestas de tecnología con las mejores ofertas y .hero {
+  background: linear-gradient(135deg, #4A90E2 0%, #FF8C00 100%);
+  color: white;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+}detalladas"
 ---
 
 <section class="hero">
@@ -144,7 +151,7 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 .hero {
   background: linear-gradient(135deg, #4A90E2 0%, #FF8C00 100%);
   color: white;
-  min-height: calc(100vh - 65px);
+  min-height: calc(100vh - 70px);
   display: flex;
   align-items: center;
   padding: 4rem 0;
@@ -408,7 +415,7 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 
 @media (max-width: 768px) {
   .hero {
-    min-height: calc(100vh - 65px);
+    min-height: calc(100vh - 70px);
     padding: 2rem 0;
   }
   
