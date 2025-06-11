@@ -1,0 +1,55 @@
+# Configuración Jekyll para JesusCorner
+title: "JesusCorner - Recomendaciones Tech"
+description: "Recomendaciones honestas de tecnología con las mejores ofertas"
+url: "https://jesuscorner.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections para organizar contenido
+collections:
+  reviews:
+    output: true
+    permalink: /:collection/:name/
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+  products:
+    output: false
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "reviews"
+    values:
+      layout: "review"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Site settings
+author: "JesusCorner"
+email: "contact@jesuscorner.com"
+twitter_username: jesuscorner
+github_username: jesuscorner
+
+# Amazon settings
+amazon_associate_id: "jesuscorner-21"
+
+# Exclusions
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - script-backup.js
+  - debug-utils.js
+  - maintenance-utils.js

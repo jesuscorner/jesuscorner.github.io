@@ -1,0 +1,57 @@
+{
+  "products": [
+    {
+      "id": "e2dsva2",
+      "title": "Logitech M705 Marathon - Ratón inalámbrico",
+      "price": "69.99",
+      "originalPrice": "89.99",
+      "image": "https://via.placeholder.com/300x200/f8f9fa/495057?text=Logitech+M705",
+      "rating": "4.3",
+      "reviewCount": "2847",
+      "category": "tech",
+      "amazonUrl": "https://amzn.eu/d/e2dsva2",
+      "lastUpdated": "2025-06-11"
+    },
+    {
+      "id": "2p8o1AC",
+      "title": "Philips 273V7QDSB - Monitor 27\" Full HD IPS",
+      "price": "149.99",
+      "originalPrice": "199.99",
+      "image": "https://via.placeholder.com/300x200/f8f9fa/495057?text=Monitor+Philips",
+      "rating": "4.4",
+      "reviewCount": "1203",
+      "category": "peripherals",
+      "amazonUrl": "https://amzn.eu/d/2p8o1AC",
+      "lastUpdated": "2025-06-11"
+    },
+    {
+      "id": "1ebvVnb",
+      "title": "Logitech K120 - Teclado USB con diseño español",
+      "price": "16.99",
+      "originalPrice": "24.99",
+      "image": "https://via.placeholder.com/300x200/f8f9fa/495057?text=Teclado+K120",
+      "rating": "4.2",
+      "reviewCount": "5632",
+      "category": "storage",
+      "amazonUrl": "https://amzn.eu/d/1ebvVnb",
+      "lastUpdated": "2025-06-11"
+    },
+    {
+      "id": "aElx9R0",
+      "title": "Lenovo LOQ 15IAX9 Gaming - Intel Core i5-12450HX, RTX 4060 8GB",
+      "price": "799.00",
+      "originalPrice": "949.00",
+      "image": "https://via.placeholder.com/300x200/f8f9fa/495057?text=Lenovo+Gaming",
+      "rating": "4.3",
+      "reviewCount": "432",
+      "category": "tech",
+      "amazonUrl": "https://amzn.eu/d/aElx9R0",
+      "lastUpdated": "2025-06-11"
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "lastUpdate": "2025-06-11T15:05:00Z",
+    "totalProducts": 4
+  }
+}

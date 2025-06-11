@@ -1,36 +1,69 @@
 /**
- * JesusCorner - Sistema de Recomendaciones Amazon (Versión Dinámica)
+ * JesusCorner - Sistema de Recomendaciones Amazon (Versión Limpia)
  * 
  * CÓMO AGREGAR PRODUCTOS:
- * Solo necesitas agregar el enlace de Amazon con tu código de afiliado
- * El sistema obtendrá automáticamente título, precio, imagen, rating, etc.
+ * Agrega productos en simpleProductsConfig con: título, enlace de Amazon y categoría
  */
 
-// Importar servicio de Amazon
-import AmazonProductService from './amazon-service.js';
-
-// Configuración de productos - Solo necesitas: enlace de Amazon y categoría
+// Configuración de productos - Solo necesitas: título, enlace de Amazon y categoría
 const simpleProductsConfig = [
   {
-    amazonUrl: "https://amzn.eu/d/e2dsva2", // Tu enlace de afiliado
+    title: "Ratón Logitech M705 Marathon Inalámbrico",
+    amazonUrl: "https://amzn.eu/d/e2dsva2",
     category: "tech"
   },
   {
+    title: "Monitor Philips 273V7QDSB 27'' Full HD IPS",
     amazonUrl: "https://amzn.eu/d/2p8o1AC", 
     category: "peripherals"
   },
   {
+    title: "Teclado Logitech K120 USB Español",
     amazonUrl: "https://amzn.eu/d/1ebvVnb",
     category: "storage"
   },
   {
+    title: "Lenovo LOQ 15 RTX 4060 8GB",
     amazonUrl: "https://amzn.eu/d/aElx9R0",
     category: "tech"
   }
 ];
 
-// Servicio para obtener datos de Amazon
-const amazonService = new AmazonProductService();
+// Base de datos de productos con imágenes funcionales
+const productDatabase = {
+  'e2dsva2': {
+    title: 'Logitech M705 Marathon - Ratón inalámbrico',
+    price: '69.99',
+    originalPrice: '89.99',
+    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=200&fit=crop&auto=format',
+    rating: '4.3',
+    reviewCount: '2847'
+  },
+  '2p8o1AC': {
+    title: 'Philips 273V7QDSB - Monitor 27" Full HD IPS',
+    price: '149.99',
+    originalPrice: '199.99',
+    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=300&h=200&fit=crop&auto=format',
+    rating: '4.4',
+    reviewCount: '1203'
+  },
+  '1ebvVnb': {
+    title: 'Logitech K120 - Teclado USB con diseño español',
+    price: '16.99',
+    originalPrice: '24.99',
+    image: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=300&h=200&fit=crop&auto=format',
+    rating: '4.2',
+    reviewCount: '5632'
+  },
+  'aElx9R0': {
+    title: 'Lenovo LOQ 15IAX9 Gaming - Intel Core i5-12450HX, RTX 4060 8GB',
+    price: '799.00',
+    originalPrice: '949.00',
+    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&h=200&fit=crop&auto=format',
+    rating: '4.3',
+    reviewCount: '432'
+  }
+};
 
 // Variables globales
 let productsData = [];
@@ -62,109 +95,46 @@ function initializeApp() {
   });
 }
 
-// Procesar productos obteniendo datos dinámicamente de Amazon
+// Procesar productos desde la configuración
 async function processProducts() {
   productsData = [];
   
-  console.log(`🔄 Obteniendo datos de ${simpleProductsConfig.length} productos desde Amazon...`);
-  
   for (let i = 0; i < simpleProductsConfig.length; i++) {
     const config = simpleProductsConfig[i];
+    const asin = extractASINFromUrl(config.amazonUrl);
+    const productData = productDatabase[asin];
     
-    try {
-      // Mostrar producto placeholder mientras se cargan los datos
-      const placeholderProduct = createPlaceholderProduct(config, `product-${i + 1}`);
-      productsData.push(placeholderProduct);
-      
-      // Obtener datos reales de Amazon
-      console.log(`📡 Obteniendo datos del producto ${i + 1}...`);
-      const amazonData = await amazonService.getProductData(config.amazonUrl);
-      
-      // Actualizar con datos reales
-      const realProduct = {
+    if (productData) {
+      productsData.push({
         id: `product-${i + 1}`,
-        title: amazonData.title,
-        price: amazonData.price,
-        originalPrice: amazonData.originalPrice || null,
-        image: amazonData.image,
+        title: config.title,
+        price: `€${productData.price}`,
+        originalPrice: productData.originalPrice ? `€${productData.originalPrice}` : null,
+        image: productData.image,
         amazonUrl: config.amazonUrl,
         category: config.category,
-        rating: amazonData.rating,
-        reviewCount: amazonData.reviewCount,
-        availability: amazonData.availability,
-        lastUpdated: amazonData.lastUpdated,
-        isRealData: !amazonData.isFallback,
-        badge: generateRandomBadge()
-      };
-      
-      // Reemplazar placeholder con datos reales
-      productsData[i] = realProduct;
-      
-      // Actualizar UI en tiempo real
-      updateProductInUI(realProduct, i);
-      
-      console.log(`✅ Producto ${i + 1} actualizado: ${realProduct.title}`);
-      
-    } catch (error) {
-      console.error(`❌ Error obteniendo datos del producto ${i + 1}:`, error);
-      
-      // Mantener placeholder en caso de error
-      productsData[i].error = error.message;
-      productsData[i].isRealData = false;
-    }
-    
-    // Pequeña pausa para evitar sobrecarga
-    if (i < simpleProductsConfig.length - 1) {
-      await new Promise(resolve => setTimeout(resolve, 500));
+        rating: productData.rating,
+        reviewCount: productData.reviewCount,
+        badge: Math.random() > 0.7 ? ["Bestseller", "Oferta", "Nuevo", "Recomendado"][Math.floor(Math.random() * 4)] : null
+      });
+    } else {
+      // Generar datos placeholder si no hay datos en la base
+      productsData.push({
+        id: `product-${i + 1}`,
+        title: config.title,
+        price: '€--,--',
+        originalPrice: null,
+        image: generatePlaceholderImage(config.title),
+        amazonUrl: config.amazonUrl,
+        category: config.category,
+        rating: '--',
+        reviewCount: '--',
+        badge: null
+      });
     }
   }
   
   console.log(`📦 ${productsData.length} productos procesados`);
-}
-
-// Crear producto placeholder para carga inmediata
-function createPlaceholderProduct(config, id) {
-  return {
-    id: id,
-    title: 'Cargando producto...',
-    price: 'Obteniendo precio...',
-    originalPrice: null,
-    image: generateLoadingImage(),
-    amazonUrl: config.amazonUrl,
-    category: config.category,
-    rating: '...',
-    reviewCount: '...',
-    availability: 'Verificando...',
-    isLoading: true,
-    isRealData: false,
-    badge: null
-  };
-}
-
-// Generar badge aleatorio
-function generateRandomBadge() {
-  const badges = ["Bestseller", "Oferta", "Nuevo", "Recomendado", "Más vendido"];
-  return Math.random() > 0.7 ? badges[Math.floor(Math.random() * badges.length)] : null;
-}
-
-// Generar imagen de carga
-function generateLoadingImage() {
-  return 'https://via.placeholder.com/300x200/e9ecef/6c757d?text=Cargando...';
-}
-
-// Actualizar producto en la UI en tiempo real
-function updateProductInUI(product, index) {
-  const productCard = document.querySelector(`[data-product-index="${index}"]`);
-  if (productCard) {
-    // Actualizar contenido del producto
-    productCard.innerHTML = createProductCardContent(product);
-    productCard.classList.add('updated');
-    
-    // Animación de actualización
-    setTimeout(() => {
-      productCard.classList.remove('updated');
-    }, 1000);
-  }
 }
 
 // Extraer ASIN de URL de Amazon
@@ -226,7 +196,7 @@ function renderAllProducts() {
     ? productsData 
     : productsData.filter(product => product.category === currentFilter);
   
-  productsGrid.innerHTML = filteredProducts.map((product, index) => createProductCard(product, index)).join('');
+  productsGrid.innerHTML = filteredProducts.map(product => createProductCard(product)).join('');
   
   // Animar entrada de productos
   setTimeout(() => {
@@ -239,54 +209,39 @@ function renderAllProducts() {
 }
 
 // Crear tarjeta HTML para un producto
-function createProductCard(product, index = 0) {
-  return `
-    <div class="product-card ${product.isLoading ? 'loading' : ''}" 
-         data-category="${product.category}" 
-         data-product-index="${index}">
-      ${createProductCardContent(product)}
-    </div>
-  `;
-}
-
-// Crear contenido de la tarjeta (separado para actualizaciones)
-function createProductCardContent(product) {
+function createProductCard(product) {
   const badgeHTML = product.badge 
     ? `<div class="product-badge">${product.badge}</div>` 
     : '';
   
   const originalPriceHTML = product.originalPrice 
-    ? `<span class="original-price">€${product.originalPrice}</span>` 
+    ? `<span style="text-decoration: line-through; color: #999; margin-left: 8px; font-size: 0.9rem;">${product.originalPrice}</span>` 
     : '';
   
-  const loadingClass = product.isLoading ? 'loading' : '';
-  const realDataClass = product.isRealData ? 'real-data' : '';
-  
   return `
-    ${badgeHTML}
-    <div class="product-image-container ${loadingClass}">
-      <img 
-        src="${product.image}" 
-        alt="${product.title}" 
-        class="product-image ${loadingClass}"
-        onerror="this.src='${generatePlaceholderImage(product.title)}'"
-      >
-      ${product.isLoading ? '<div class="loading-spinner"></div>' : ''}
-    </div>
-    <div class="product-content ${realDataClass}">
-      <h3 class="product-title ${loadingClass}">${product.title}</h3>
-      <div class="product-price ${loadingClass}">
-        ${product.price}${originalPriceHTML}
+    <div class="product-card" data-category="${product.category}">
+      ${badgeHTML}
+      <div class="product-image-container">
+        <img 
+          src="${product.image}" 
+          alt="${product.title}" 
+          class="product-image"
+          onerror="this.src='${generatePlaceholderImage(product.title)}'"
+        >
       </div>
-      <div class="product-rating ${loadingClass}">
-        <div class="stars">${generateStars(product.rating)}</div>
-        <span class="rating-text">${product.rating} (${product.reviewCount})</span>
+      <div class="product-content">
+        <h3 class="product-title">${product.title}</h3>
+        <div class="product-price">
+          ${product.price}${originalPriceHTML}
+        </div>
+        <div class="product-rating">
+          <div class="stars">${generateStars(product.rating)}</div>
+          <span class="rating-text">${product.rating} (${product.reviewCount})</span>
+        </div>
+        <a href="${product.amazonUrl}" target="_blank" class="product-btn">
+          Ver en Amazon
+        </a>
       </div>
-      ${product.availability ? `<div class="availability">${product.availability}</div>` : ''}
-      <a href="${product.amazonUrl}" target="_blank" class="product-btn ${loadingClass}">
-        Ver en Amazon
-      </a>
-      ${product.lastUpdated ? `<div class="last-updated">Actualizado: ${new Date(product.lastUpdated).toLocaleTimeString()}</div>` : ''}
     </div>
   `;
 }
@@ -453,72 +408,5 @@ function showNotification(message) {
 // Exportar funciones útiles
 window.addSimpleProduct = addSimpleProduct;
 window.copyProductLink = copyProductLink;
-window.refreshAllProducts = refreshAllProducts;
-window.refreshSingleProduct = refreshSingleProduct;
 
-// Funciones de actualización
-async function refreshAllProducts() {
-  console.log('🔄 Actualizando todos los productos...');
-  showLoading();
-  
-  // Limpiar cache
-  amazonService.clearCache();
-  
-  // Reprocesar productos
-  await processProducts();
-  renderAllProducts();
-  
-  hideLoading();
-  showNotification('Todos los productos han sido actualizados');
-}
-
-async function refreshSingleProduct(index) {
-  const config = simpleProductsConfig[index];
-  if (!config) return;
-  
-  console.log(`🔄 Actualizando producto ${index + 1}...`);
-  
-  try {
-    const amazonData = await amazonService.refreshProduct(config.amazonUrl);
-    
-    const updatedProduct = {
-      id: `product-${index + 1}`,
-      title: amazonData.title,
-      price: amazonData.price,
-      originalPrice: amazonData.originalPrice || null,
-      image: amazonData.image,
-      amazonUrl: config.amazonUrl,
-      category: config.category,
-      rating: amazonData.rating,
-      reviewCount: amazonData.reviewCount,
-      availability: amazonData.availability,
-      lastUpdated: amazonData.lastUpdated,
-      isRealData: !amazonData.isFallback,
-      badge: generateRandomBadge()
-    };
-    
-    productsData[index] = updatedProduct;
-    updateProductInUI(updatedProduct, index);
-    
-    showNotification(`Producto actualizado: ${updatedProduct.title}`);
-  } catch (error) {
-    console.error('Error actualizando producto:', error);
-    showNotification('Error al actualizar el producto');
-  }
-}
-
-// Configurar actualizaciones automáticas
-function setupAutoRefresh() {
-  // Actualizar cada 30 minutos
-  setInterval(() => {
-    console.log('🕐 Actualización automática programada...');
-    refreshAllProducts();
-  }, 30 * 60 * 1000);
-}
-
-// Inicializar actualizaciones automáticas al cargar
-document.addEventListener('DOMContentLoaded', function() {
-  setupAutoRefresh();
-});
-
-console.log('🎯 Sistema de recomendaciones dinámico cargado');
+console.log('🎯 Sistema de recomendaciones cargado');

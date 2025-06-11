@@ -80,6 +80,16 @@
         </button>
       </div>
 
+      <!-- Controles de actualización -->
+      <div class="update-controls">
+        <button class="update-all-btn" onclick="refreshAllProducts()">
+          <i class="fas fa-sync-alt"></i> Actualizar Todos los Productos
+        </button>
+        <div class="last-update-info" id="lastUpdateInfo">
+          Los productos se actualizan automáticamente cada 30 minutos
+        </div>
+      </div>
+
       <div class="products-grid" id="productsGrid">
         <!-- Los productos se cargarán dinámicamente con JavaScript -->
       </div>
@@ -115,6 +125,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>

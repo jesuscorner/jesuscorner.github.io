@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  
+  <!-- SEO Meta Tags -->
+  {% seo %}
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ '/favicon/favicon.svg' | relative_url }}">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Schema.org for reviews -->
+  {% if page.layout == 'review' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "itemReviewed": {
+      "@type": "Product",
+      "name": "{{ page.product_name }}",
+      "description": "{{ page.description }}"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "{{ site.author }}"
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "{{ page.rating }}",
+      "bestRating": "5"
+    },
+    "datePublished": "{{ page.date | date_to_xmlschema }}"
+  }
+  </script>
+  {% endif %}
+</head>
+<body>
+  {% include header.html %}
+  
+  <main class="main-content">
+    {{ content }}
+  </main>
+  
+  {% include footer.html %}
+  
+  <!-- Scripts -->
+  <script src="{{ '/script.js' | relative_url }}"></script>
+  
+  <!-- Analytics (añadir cuando tengas Google Analytics) -->
+  <!-- Google tag (gtag.js) -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+  -->
+</body>
+</html>

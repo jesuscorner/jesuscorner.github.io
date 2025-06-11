@@ -686,28 +686,154 @@ body {
   z-index: 1;
 }
 
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
+/* =============================================================================
+   ESTADOS DE CARGA Y ACTUALIZACIÓN DINÁMICA
+   ============================================================================= */
+
+/* Producto en estado de carga */
+.product-card.loading {
+  opacity: 0.7;
+  position: relative;
 }
 
-/* Mejorar indicadores de lazy loading */
-.lazy-loading-indicator {
+.product-card.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 1.5s infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Spinner de carga */
+.loading-spinner {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.9);
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 2;
 }
 
-.lazy-loading-indicator i {
-  color: var(--primary-color);
-  font-size: 18px;
+/* Elementos en estado de carga */
+.loading {
+  background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+  background-size: 200% 100%;
+  animation: loading-pulse 1.5s infinite;
+  border-radius: 4px;
 }
+
+@keyframes loading-pulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Producto actualizado */
+.product-card.updated {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+  border: 2px solid #4caf50;
+  transition: all 0.3s ease;
+}
+
+/* Datos reales vs placeholder */
+.product-content.real-data {
+  border-left: 3px solid #4caf50;
+  padding-left: 12px;
+}
+
+/* Precio original tachado */
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-left: 8px;
+  font-size: 0.9rem;
+}
+
+/* Disponibilidad */
+.availability {
+  font-size: 0.85rem;
+  color: #4caf50;
+  font-weight: 500;
+  margin: 4px 0;
+}
+
+/* Última actualización */
+.last-updated {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* Botón de actualización */
+.refresh-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--primary-color);
+  opacity: 0;
+}
+
+.product-card:hover .refresh-btn {
+  opacity: 1;
+}
+
+.refresh-btn:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: rotate(180deg);
+}
+
+/* Control manual de actualización */
+.update-controls {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.update-all-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-right: 10px;
+}
+
+.update-all-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.last-update-info {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* =============================================================================
+   FIN ESTADOS DE CARGA Y ACTUALIZACIÓN
+   ============================================================================= */
