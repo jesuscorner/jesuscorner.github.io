@@ -602,19 +602,93 @@ body {
   opacity: 0.6;
 }
 
+/* ==========================================
+   ESTILOS PARA ACTUALIZACIONES DINÁMICAS
+   ========================================== */
+
+/* Animación para actualización de precios */
+@keyframes priceUpdate {
+  0% {
+    background-color: rgba(40, 167, 69, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    background-color: rgba(40, 167, 69, 0.4);
+    transform: scale(1.02);
+  }
+  100% {
+    background-color: transparent;
+    transform: scale(1);
+  }
+}
+
+.price-updating {
+  animation: priceUpdate 0.8s ease-in-out;
+}
+
+/* Badge de datos reales - DESHABILITADO */
+.real-data-badge {
+  display: none;
+}
+
+/* Indicador visual de producto con datos reales - DESHABILITADO */
+/* .product-card.real-data {
+  border-left: 3px solid #28a745;
+} */
+
+/* .product-card.real-data .product-price {
+  position: relative;
+} */
+
+.product-card.real-data .product-price::after {
+  display: none;
+}
+
+/* Animación de carga para productos que se están actualizando */
+.product-card.updating {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card.updating::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 149, 0, 0.1),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Mejorar indicadores de lazy loading */
 .lazy-loading-indicator {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: var(--primary-color);
-  font-size: 1.5rem;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lazy-loading-indicator i {
+  color: var(--primary-color);
+  font-size: 18px;
 }
