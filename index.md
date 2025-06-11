@@ -14,16 +14,6 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
         Reviews detalladas, guías de compra y las mejores ofertas en tecnología. 
         Todo probado personalmente para ayudarte a tomar la mejor decisión.
       </p>
-      <div class="hero-buttons">
-        <a href="{{ '/reviews/' | relative_url }}" class="btn btn-primary btn-large">
-          <i class="fas fa-star"></i>
-          Ver Reviews
-        </a>
-        <a href="{{ '/blog/' | relative_url }}" class="btn btn-secondary btn-large">
-          <i class="fas fa-book"></i>
-          Guías de Compra
-        </a>
-      </div>
     </div>
     <div class="hero-image">
       <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop&auto=format" alt="Tecnología" loading="lazy">
@@ -44,7 +34,7 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
     </div>
     
     <div class="section-footer">
-      <a href="{{ '/recommendations.html' | relative_url }}" class="btn btn-outline">
+      <a href="{{ '/recommendations' | relative_url }}" class="btn btn-outline">
         Ver Todas las Recomendaciones
         <i class="fas fa-arrow-right"></i>
       </a>
@@ -72,8 +62,6 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
             {% for i in (1..5) %}
               {% if i <= rating %}
                 <i class="fas fa-star"></i>
-              {% elsif i == rating | plus: 1 and rating contains '.' %}
-                <i class="fas fa-star-half-alt"></i>
               {% else %}
                 <i class="far fa-star"></i>
               {% endif %}
@@ -92,7 +80,7 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
     </div>
     
     <div class="section-footer">
-      <a href="{{ '/reviews/' | relative_url }}" class="btn btn-outline">
+      <a href="{{ '/reviews' | relative_url }}" class="btn btn-outline">
         Ver Todas las Reviews
         <i class="fas fa-arrow-right"></i>
       </a>
@@ -132,7 +120,7 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
     </div>
     
     <div class="section-footer">
-      <a href="{{ '/blog/' | relative_url }}" class="btn btn-outline">
+      <a href="{{ '/blog' | relative_url }}" class="btn btn-outline">
         Ver Todas las Guías
         <i class="fas fa-arrow-right"></i>
       </a>

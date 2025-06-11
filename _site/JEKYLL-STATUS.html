@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎉 Jekyll Activation Checklist - JesusCorner - JesusCorner - Recomendaciones Tech</title>
+  <meta name="description" content="Recomendaciones honestas de tecnología con las mejores ofertas">
+  
+  <!-- SEO Meta Tags -->
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🎉 Jekyll Activation Checklist - JesusCorner | JesusCorner - Recomendaciones Tech</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="🎉 Jekyll Activation Checklist - JesusCorner" />
+<meta name="author" content="JesusCorner" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Recomendaciones honestas de tecnología con las mejores ofertas" />
+<meta property="og:description" content="Recomendaciones honestas de tecnología con las mejores ofertas" />
+<link rel="canonical" href="http://0.0.0.0:4000/JEKYLL-STATUS.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/JEKYLL-STATUS.html" />
+<meta property="og:site_name" content="JesusCorner - Recomendaciones Tech" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🎉 Jekyll Activation Checklist - JesusCorner" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"JesusCorner"},"description":"Recomendaciones honestas de tecnología con las mejores ofertas","headline":"🎉 Jekyll Activation Checklist - JesusCorner","url":"http://0.0.0.0:4000/JEKYLL-STATUS.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Schema.org for reviews -->
+  
+</head>
+<body>
+  <header class="header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/">
+          <h1>JesusCorner</h1>
+          <span>Recomendaciones Tech</span>
+        </a>
+      </div>
+      
+      <nav class="nav">
+        <a href="/" >
+          <i class="fas fa-home"></i>
+          Inicio
+        </a>
+        <a href="/reviews" >
+          <i class="fas fa-star"></i>
+          Reviews
+        </a>
+        <a href="/blog" >
+          <i class="fas fa-newspaper"></i>
+          Blog
+        </a>
+        <a href="/recommendations" >
+          <i class="fas fa-thumbs-up"></i>
+          Recomendaciones
+        </a>
+      </nav>
+      
+      <div class="header-actions">
+        <button class="search-toggle" onclick="toggleSearch()">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="menu-toggle" onclick="toggleMobileMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="search-bar" id="searchBar">
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar productos, reviews, guías...">
+        <button onclick="performSearch()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+.header {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.logo span {
+  font-size: 0.9rem;
+  color: #666;
+  display: block;
+  margin-top: -0.25rem;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: var(--transition);
+}
+
+.nav a:hover,
+.nav a.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.search-toggle,
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #666;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: var(--transition);
+}
+
+.search-toggle:hover,
+.menu-toggle:hover {
+  background: #f8f9fa;
+  color: var(--primary-color);
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.search-bar {
+  background: #f8f9fa;
+  padding: 1rem 0;
+  border-top: 1px solid #eee;
+  display: none;
+}
+
+.search-bar.active {
+  display: block;
+}
+
+.search-container {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.search-container input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-container button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.search-container button:hover {
+  background: var(--primary-dark);
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid #eee;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .nav.active {
+    display: flex;
+  }
+  
+  .nav a {
+    padding: 1rem;
+    border-radius: 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  .logo h1 {
+    font-size: 1.5rem;
+  }
+  
+  .search-container {
+    margin: 0 1rem;
+  }
+}
+</style>
+
+<script>
+function toggleSearch() {
+  const searchBar = document.getElementById('searchBar');
+  searchBar.classList.toggle('active');
+  if (searchBar.classList.contains('active')) {
+    document.getElementById('searchInput').focus();
+  }
+}
+
+function toggleMobileMenu() {
+  const nav = document.querySelector('.nav');
+  nav.classList.toggle('active');
+}
+
+function performSearch() {
+  const query = document.getElementById('searchInput').value;
+  if (query.trim()) {
+    // Implementar búsqueda aquí
+    console.log('Buscando:', query);
+    // Por ahora, redirigir a página de búsqueda
+    window.location.href = `/search?q=${encodeURIComponent(query)}`;
+  }
+}
+
+// Enter key en search
+document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    performSearch();
+  }
+});
+</script>
+
+  
+  <main class="main-content">
+    <h1 id="-jekyll-activation-checklist---jesuscorner">🎉 Jekyll Activation Checklist - JesusCorner</h1>
+
+<h2 id="-completado">✅ COMPLETADO</h2>
+
+<h3 id="️-estructura-jekyll">🏗️ Estructura Jekyll</h3>
+<ul>
+  <li>✅ <code class="language-plaintext highlighter-rouge">_config.yml</code> - Configuración principal</li>
+  <li>✅ <code class="language-plaintext highlighter-rouge">Gemfile</code> - Dependencias Ruby/Jekyll</li>
+  <li>✅ <code class="language-plaintext highlighter-rouge">_layouts/</code> - Plantillas (default, review, post)</li>
+  <li>✅ <code class="language-plaintext highlighter-rouge">_includes/</code> - Componentes (header, footer)</li>
+  <li>✅ <code class="language-plaintext highlighter-rouge">_reviews/</code> - Colección de reviews (3 productos)</li>
+  <li>✅ <code class="language-plaintext highlighter-rouge">_posts/</code> - Blog posts (2 artículos autoridad)</li>
+  <li>✅ <code class="language-plaintext highlighter-rouge">index.md</code> - Homepage Jekyll-compatible</li>
+</ul>
+
+<h3 id="-páginas-funcionales">📱 Páginas Funcionales</h3>
+<ul>
+  <li>✅ <code class="language-plaintext highlighter-rouge">reviews.md</code> - Listado de todas las reviews</li>
+  <li>✅ <code class="language-plaintext highlighter-rouge">blog.md</code> - Listado de posts del blog</li>
+  <li>✅ <code class="language-plaintext highlighter-rouge">index-old.html</code> - Backup del HTML original</li>
+  <li>✅ Navegación actualizada para Jekyll</li>
+</ul>
+
+<h3 id="-deployment">🚀 Deployment</h3>
+<ul>
+  <li>✅ GitHub Actions workflow configurado</li>
+  <li>✅ Archivos commiteados y pusheados</li>
+  <li>✅ Jekyll activado automáticamente en GitHub Pages</li>
+</ul>
+
+<h3 id="-contenido-profesional">📝 Contenido Profesional</h3>
+<ul>
+  <li>✅ <strong>3 Reviews detalladas:</strong>
+    <ul>
+      <li>Logitech M705 Marathon (4.3/5)</li>
+      <li>Philips 273V7QDSB Monitor (4.4/5)</li>
+      <li>Lenovo LOQ 15IAX9 Gaming (4.3/5)</li>
+    </ul>
+  </li>
+  <li>✅ <strong>2 Blog posts de autoridad:</strong>
+    <ul>
+      <li>“Mejores Ratones Gaming 2025”</li>
+      <li>“RTX 4060 vs RTX 4070 Laptops”</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="-optimizaciones">🔧 Optimizaciones</h3>
+<ul>
+  <li>✅ SEO metatags con jekyll-seo-tag</li>
+  <li>✅ Schema.org markup para reviews</li>
+  <li>✅ Sitemap automático</li>
+  <li>✅ RSS feed automático</li>
+  <li>✅ Responsive design mantenido</li>
+</ul>
+
+<h2 id="-urls-activas">🌐 URLs Activas</h2>
+
+<p>Tu sitio ahora funciona con Jekyll en:</p>
+<ul>
+  <li><strong>Homepage:</strong> https://jesuscorner.github.io/</li>
+  <li><strong>Reviews:</strong> https://jesuscorner.github.io/reviews.html</li>
+  <li><strong>Blog:</strong> https://jesuscorner.github.io/blog.html</li>
+  <li><strong>Review individual:</strong> https://jesuscorner.github.io/reviews/[nombre-review]/</li>
+  <li><strong>Post individual:</strong> https://jesuscorner.github.io/blog/[año]/[mes]/[día]/[titulo]/</li>
+</ul>
+
+<h2 id="-próximos-pasos">🎯 Próximos Pasos</h2>
+
+<h3 id="inmediatos-0-2-días">Inmediatos (0-2 días)</h3>
+<ol>
+  <li><strong>Verificar deployment:</strong> Visitar https://jesuscorner.github.io para confirmar</li>
+  <li><strong>Probar navegación:</strong> Verificar que todos los enlaces funcionen</li>
+  <li><strong>Comprobar responsive:</strong> Probar en móvil y desktop</li>
+</ol>
+
+<h3 id="corto-plazo-1-2-semanas">Corto plazo (1-2 semanas)</h3>
+<ol>
+  <li><strong>Solicitar Amazon API:</strong> Usar el contenido profesional creado</li>
+  <li><strong>Google Analytics:</strong> Configurar tracking</li>
+  <li><strong>Search Console:</strong> Enviar sitemap</li>
+</ol>
+
+<h3 id="mediano-plazo-1-mes">Mediano plazo (1 mes)</h3>
+<ol>
+  <li><strong>Más contenido:</strong> Agregar 2-3 reviews adicionales</li>
+  <li><strong>Optimización SEO:</strong> Mejorar títulos y descripciones</li>
+  <li><strong>Amazon afiliados:</strong> Implementar cuando API sea aprobada</li>
+</ol>
+
+<h2 id="-mantenimiento">🔄 Mantenimiento</h2>
+
+<h3 id="añadir-nueva-review">Añadir nueva review:</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Crear archivo en _reviews/</span>
+nano _reviews/nuevo-producto-review.md
+
+<span class="c"># Commit y push</span>
+git add <span class="nb">.</span> <span class="o">&amp;&amp;</span> git commit <span class="nt">-m</span> <span class="s2">"Add new review"</span> <span class="o">&amp;&amp;</span> git push
+</code></pre></div></div>
+
+<h3 id="añadir-nuevo-post">Añadir nuevo post:</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Crear archivo en _posts/</span>
+nano _posts/2025-06-12-nuevo-post.md
+
+<span class="c"># Commit y push</span>
+git add <span class="nb">.</span> <span class="o">&amp;&amp;</span> git commit <span class="nt">-m</span> <span class="s2">"Add new post"</span> <span class="o">&amp;&amp;</span> git push
+</code></pre></div></div>
+
+<h2 id="-ventajas-jekyll-vs-html-estático">📊 Ventajas Jekyll vs HTML estático</h2>
+
+<p>✅ <strong>Mantienes:</strong> Velocidad, hosting gratuito, SSL automático
+✅ <strong>Añades:</strong> CMS, SEO automático, plantillas, colecciones
+✅ <strong>Reduces:</strong> Código duplicado, mantenimiento manual</p>
+
+<hr />
+
+<p><strong>¡Jekyll está ACTIVO y funcionando! 🚀</strong></p>
+
+<p>El sitio ahora tiene capacidades de CMS profesional manteniendo todos los beneficios de GitHub Pages.</p>
+
+  </main>
+  
+  <footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>JesusCorner</h3>
+        <p>Recomendaciones honestas de tecnología. Reviews detalladas y guías de compra para ayudarte a tomar las mejores decisiones.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contenido</h4>
+        <ul>
+          <li><a href="/reviews/">Reviews</a></li>
+          <li><a href="/blog/">Guías de Compra</a></li>
+          <li><a href="/recommendations.html">Recomendaciones</a></li>
+          <li><a href="/categories/">Categorías</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Información</h4>
+        <ul>
+          <li><a href="/about/">Acerca de</a></li>
+          <li><a href="/contact/">Contacto</a></li>
+          <li><a href="/privacy/">Privacidad</a></li>
+          <li><a href="/affiliate-disclosure/">Enlaces de Afiliado</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Newsletter</h4>
+        <p>Recibe las mejores ofertas y reviews directamente en tu email.</p>
+        <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+          <input type="email" placeholder="tu@email.com" required>
+          <button type="submit">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <p>&copy; 2025 JesusCorner. Todos los derechos reservados.</p>
+        <p class="affiliate-notice">
+          <i class="fas fa-info-circle"></i>
+          Este sitio contiene enlaces de afiliado. Podemos recibir una comisión por compras realizadas a través de estos enlaces, sin costo adicional para ti.
+        </p>
+      </div>
+      <div class="footer-badges">
+        <img src="https://via.placeholder.com/80x40/4285f4/ffffff?text=Amazon" alt="Amazon Associate" style="opacity: 0.7;">
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background: #2c3e50;
+  color: #ecf0f1;
+  margin-top: auto;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  padding: 3rem 0;
+}
+
+.footer-section h3 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.footer-section h4 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-section p {
+  line-height: 1.6;
+  color: #bdc3c7;
+  margin-bottom: 1rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+  color: #bdc3c7;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-section ul li a:hover {
+  color: white;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #34495e;
+  color: #bdc3c7;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.social-links a:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #34495e;
+  color: white;
+  outline: none;
+}
+
+.newsletter-form input::placeholder {
+  color: #95a5a6;
+}
+
+.newsletter-form button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.newsletter-form button:hover {
+  background: var(--primary-dark);
+}
+
+.footer-bottom {
+  border-top: 1px solid #34495e;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-legal p {
+  margin: 0;
+  color: #95a5a6;
+  font-size: 0.9rem;
+}
+
+.affiliate-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem !important;
+  font-size: 0.8rem !important;
+}
+
+.footer-badges {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
+</style>
+
+<script>
+function subscribeNewsletter(event) {
+  event.preventDefault();
+  const email = event.target.querySelector('input[type="email"]').value;
+  
+  // Aquí implementarías la suscripción real
+  alert('¡Gracias por suscribirte! Te mantendremos informado de las mejores ofertas.');
+  event.target.reset();
+}
+</script>
+
+  
+  <!-- Scripts -->
+  <script src="/script.js"></script>
+  
+  <!-- Analytics (añadir cuando tengas Google Analytics) -->
+  <!-- Google tag (gtag.js) -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+  -->
+</body>
+</html>

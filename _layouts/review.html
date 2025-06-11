@@ -20,8 +20,6 @@ layout: default
             {% for i in (1..5) %}
               {% if i <= rating %}
                 <i class="fas fa-star"></i>
-              {% elsif i == rating | plus: 1 and rating contains '.' %}
-                <i class="fas fa-star-half-alt"></i>
               {% else %}
                 <i class="far fa-star"></i>
               {% endif %}
@@ -103,8 +101,6 @@ layout: default
               {% for i in (1..5) %}
                 {% if i <= rating %}
                   <i class="fas fa-star"></i>
-                {% elsif i == rating | plus: 1 and rating contains '.' %}
-                  <i class="fas fa-star-half-alt"></i>
                 {% else %}
                   <i class="far fa-star"></i>
                 {% endif %}
