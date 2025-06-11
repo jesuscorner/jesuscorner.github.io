@@ -47,11 +47,35 @@
       "category": "tech",
       "amazonUrl": "https://amzn.eu/d/aElx9R0",
       "lastUpdated": "2025-06-11"
+    },
+    {
+      "id": "4e841NG",
+      "title": "Apple AirPods Pro (2.ª generación) - Auriculares inalámbricos",
+      "price": "229.00",
+      "originalPrice": "279.00",
+      "image": "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=300&h=200&fit=crop&auto=format",
+      "rating": "4.6",
+      "reviewCount": "8945",
+      "category": "audio",
+      "amazonUrl": "https://amzn.to/4e841NG",
+      "lastUpdated": "2025-06-11"
+    },
+    {
+      "id": "3ZP7V8j", 
+      "title": "Samsung Galaxy Watch6 Classic - Smartwatch Android",
+      "price": "319.00",
+      "originalPrice": "399.00",
+      "image": "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop&auto=format",
+      "rating": "4.4",
+      "reviewCount": "2756",
+      "category": "wearables",
+      "amazonUrl": "https://amzn.to/3ZP7V8j",
+      "lastUpdated": "2025-06-11"
     }
   ],
   "metadata": {
-    "version": "1.0",
-    "lastUpdate": "2025-06-11T15:05:00Z",
-    "totalProducts": 4
+    "version": "1.1",
+    "lastUpdate": "2025-06-11T18:30:00Z",
+    "totalProducts": 6
   }
 }
