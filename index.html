@@ -3,28 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⭐ Recomendaciones - JesusCorner</title>
-  
-  <!-- Favicon SVG para máxima nitidez -->
+  <title>Inicio - JesusCorner</title>
   <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg?v=3" sizes="any">
-  
-  <!-- Favicons tradicionales como fallback -->
-  <link rel="shortcut icon" type="image/x-icon" href="favicon/favicon.ico?v=3">
-  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico?v=3">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png?v=3">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png?v=3">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png?v=3">
-  <link rel="manifest" href="favicon/site.webmanifest?v=3">
-  
-  <!-- Android Chrome Icons -->
-  <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png?v=3">
-  <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png?v=3">
-  
-  <!-- Meta tags adicionales para mejor compatibilidad -->
-  <meta name="msapplication-TileImage" content="favicon/android-chrome-192x192.png">
-  <meta name="msapplication-TileColor" content="#2c3e50">
-  <meta name="theme-color" content="#2c3e50">
-  
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -33,58 +13,24 @@
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <h1 class="header-title">
-          <i class="fas fa-star"></i>
-          Recomendaciones
-          <i class="fas fa-star"></i>
-        </h1>
-        <p class="header-subtitle">Recomendaciones honestas de tecnología.</p>
+        <h1 class="header-title">JesusCorner</h1>
+        <nav class="nav">
+          <a href="index.html">Inicio</a>
+          <a href="news.html">Noticias</a>
+          <a href="reviews.html">Reviews</a>
+          <a href="recommendations.html">Recomendaciones</a>
+        </nav>
       </div>
     </div>
   </header>
-
   <main class="main">
     <div class="container">
-      <!-- Barra de búsqueda -->
-      <div class="search-container">
-        <div class="search-box">
-          <i class="fas fa-search search-icon"></i>
-          <input type="text" id="searchInput" class="search-input" placeholder="Buscar productos...">
-          <button class="search-clear" id="searchClear" style="display: none;">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <div class="search-results-count" id="searchResultsCount" style="display: none;">
-          <span id="resultsText"></span>
-        </div>
-      </div>
-
-      <div class="filters">
-        <button class="filter-btn active" data-category="all">
-          <i class="fas fa-th"></i> Todos
-        </button>
-        <button class="filter-btn" data-category="tech">
-          <i class="fas fa-laptop"></i> Tecnología
-        </button>
-        <button class="filter-btn" data-category="peripherals">
-          <i class="fas fa-keyboard"></i> Periféricos
-        </button>
-        <button class="filter-btn" data-category="storage">
-          <i class="fas fa-hdd"></i> Almacenamiento
-        </button>
-      </div>
-
-      <div class="products-grid" id="productsGrid">
-        <!-- Los productos se cargarán dinámicamente con JavaScript -->
-      </div>
-
-      <div class="loading" id="loading">
-        <div class="spinner"></div>
-        <p>Cargando productos...</p>
-      </div>
+      <section>
+        <h2>Últimas Noticias y Reviews</h2>
+        <div id="posts"></div>
+      </section>
     </div>
   </main>
-
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
@@ -92,23 +38,12 @@
           <h3>JesusCorner</h3>
           <p>Ingeniero Informático amante de la tecnología.</p>
         </div>
-        <div class="footer-links">
-          <a href="affiliate.html" class="footer-link">
-            <i class="fas fa-info-circle"></i>
-            Política de Afiliados
-          </a>
-          <a href="mailto:j.martinezmarin.m@gmail.com" class="footer-link">
-            <i class="fas fa-envelope"></i>
-            Contacto
-          </a>
-        </div>
       </div>
       <div class="footer-bottom">
         <p>© 2025 JesusCorner</p>
       </div>
     </div>
   </footer>
-
-  <script src="script.js"></script>
+  <script src="home.js"></script>
 </body>
 </html>
