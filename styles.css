@@ -16,7 +16,7 @@
 
 /* Navegación principal */
 .nav {
-  margin-top: 20px;
+  margin-top: 0;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -52,39 +52,8 @@ body {
   padding: 0 20px;
 }
 
-/* Header */
-.header {
-  background: linear-gradient(135deg, var(--secondary-color) 0%, #37475a 100%);
-  color: white;
-  padding: 60px 0;
-  text-align: center;
-}
-
-.header-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.header-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-
-.header-title i {
-  color: var(--primary-color);
-  font-size: 2rem;
-}
-
-.header-subtitle {
-  font-size: 1.2rem;
-  font-weight: 300;
-  opacity: 0.9;
-}
+/* Header - Handled by _includes/header.html */
+/* Old header styles removed to prevent conflicts with the ultra-compact header */
 
 /* Main content */
 .main {

@@ -54,6 +54,9 @@ description: "Todas nuestras reviews detalladas de productos tecnológicos"
 .reviews-hero {
   background: linear-gradient(135deg, #4A90E2 0%, #FF8C00 100%);
   color: white;
+  min-height: calc(100vh - 42px);
+  display: flex;
+  align-items: center;
   padding: 4rem 0;
   text-align: center;
 }
@@ -206,7 +209,8 @@ description: "Todas nuestras reviews detalladas de productos tecnológicos"
 /* Responsive Design */
 @media (max-width: 768px) {
   .reviews-hero {
-    padding: 3rem 0;
+    min-height: calc(100vh - 50px);
+    padding: 2rem 0;
   }
   
   .reviews-hero .hero-title {
