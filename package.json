@@ -4,7 +4,11 @@
   "description": "Blog simple con servidor de posts y comentarios",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "bundle exec jekyll serve --config _config.yml,_config_dev.yml --incremental --livereload --port 4001",
+    "prod": "JEKYLL_ENV=production bundle exec jekyll serve --config _config.yml,_config_prod.yml --incremental --port 4002",
+    "build": "JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config_prod.yml",
+    "build-dev": "bundle exec jekyll build --config _config.yml,_config_dev.yml"
   },
   "dependencies": {
     "express": "^4.18.2",

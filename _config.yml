@@ -1,8 +1,7 @@
-# Configuración Jekyll para JesusCorner
+# Configuración Jekyll para JesusCorner - Base Configuration
 title: "JesusCorner - Recomendaciones Tech"
 description: "Recomendaciones honestas de tecnología con las mejores ofertas"
-url: "https://jesuscorner.github.io"
-baseurl: ""
+# URL and baseurl are set in environment-specific config files
 
 # Build settings
 markdown: kramdown
@@ -45,13 +44,5 @@ github_username: jesuscorner
 # Amazon settings
 amazon_associate_id: "jesuscorner-21"
 
-# Exclusions
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - script-backup.js
-  - debug-utils.js
-  - maintenance-utils.js
-  - vendor
-  - "vendor/bundle"
+# Base exclusions (extended by environment configs)
+# Environment-specific exclusions are defined in _config_dev.yml and _config_prod.yml

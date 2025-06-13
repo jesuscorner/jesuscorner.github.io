@@ -1,0 +1,34 @@
+# _config_prod.yml
+# Production overrides for GitHub Pages compatibility
+# This file extends _config.yml with production-specific settings
+
+# Production URLs (identical to GitHub Pages)
+url: "https://jesuscorner.github.io"
+baseurl: ""
+
+# Production environment marker
+env: production
+
+# GitHub Pages compatible exclusions
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - script-backup.js
+  - debug-utils.js
+  - maintenance-utils.js
+  - vendor
+  - "vendor/bundle"
+  - "*.log"
+  - README.md
+  - package.json
+  - package-lock.json
+  - "*.config.js"
+  - ".github"
+  - ".vscode"
+  - "docs/"
+  - "tests/"
+
+# Production-specific settings
+future: false
+unpublished: false

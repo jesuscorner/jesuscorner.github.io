@@ -1,0 +1,22 @@
+# _config_dev.yml
+# Development overrides for local development
+# This file extends _config.yml with development-specific settings
+
+# Local development URLs
+url: "http://localhost:4001"
+baseurl: ""
+
+# Development environment marker
+env: development
+
+# Less restrictive exclusions for development
+exclude:
+  - vendor
+  - "vendor/bundle"
+  - node_modules
+
+# Development-specific settings
+future: true
+unpublished: true
+incremental: true
+livereload: true
