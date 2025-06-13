@@ -2,7 +2,9 @@
 
 ## 📋 Configuración Implementada
 
-He implementado un sistema de configuración dual que garantiza **entorno idéntico** entre local y GitHub Pages:
+He implementado un sistema de configuración dual que garantiza **entorno idéntico** entre local y GitHub Pages.
+
+> **Nota:** La carpeta `_site/` se genera automáticamente al hacer `npm run build` o al desplegar en GitHub Pages. No edites archivos dentro de esa carpeta; todos los cambios deben realizarse en los archivos Markdown y en las plantillas de `_layouts/` y `_includes/`.
 
 ### 📁 Archivos de Configuración
 
