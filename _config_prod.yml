@@ -9,6 +9,11 @@ baseurl: ""
 # Production environment marker
 env: production
 
+# GitHub Pages specific settings
+safe: true
+source: .
+destination: ./_site
+
 # GitHub Pages compatible exclusions
 exclude:
   - Gemfile

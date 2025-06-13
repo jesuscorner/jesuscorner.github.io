@@ -3,6 +3,9 @@ title: "JesusCorner - Recomendaciones Tech"
 description: "Recomendaciones honestas de tecnología con las mejores ofertas"
 # URL and baseurl are set in environment-specific config files
 
+# Repository information for GitHub Pages
+repository: jesuscorner/jesuscorner.github.io
+
 # Build settings
 markdown: kramdown
 highlighter: rouge
