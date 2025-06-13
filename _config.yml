@@ -53,3 +53,5 @@ exclude:
   - script-backup.js
   - debug-utils.js
   - maintenance-utils.js
+  - vendor
+  - "vendor/bundle"
