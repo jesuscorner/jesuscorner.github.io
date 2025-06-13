@@ -21,6 +21,14 @@ He implementado un **sistema híbrido** que combina lo mejor de GitHub Pages con
 | **Control** | ✅ Total | ❌ Limitado |
 | **Escalabilidad** | ✅ Infinita | ❌ Límites hosting |
 
+## ⚠️ Importante
+
+No modifiques manualmente la carpeta `_site/`. Esa carpeta se genera
+automáticamente con Jekyll al hacer `npm run build` o al publicar en GitHub
+Pages. Todas las ediciones de contenido deben realizarse en los archivos
+Markdown (`_posts/`, `_reviews/`, etc.) y en las plantillas de
+`_layouts/` y `_includes/`.
+
 ## 📁 Nueva Estructura de Archivos
 
 ```
