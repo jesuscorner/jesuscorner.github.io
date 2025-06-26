@@ -35,15 +35,7 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
 </section>
 
 <!-- Scripts específicos para recomendaciones -->
-<script src="{{ '/script.js' | relative_url }}"></script>
-<script>
-// Inicializar la página de recomendaciones
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof loadProducts === 'function') {
-    loadProducts();
-  }
-});
-</script>
+<script src="{{ '/recommendations-script.js' | relative_url }}"></script>
 
 <style>
 /* Screen reader only content */
@@ -309,6 +301,285 @@ document.addEventListener('DOMContentLoaded', function() {
   background: #e6790e;
 }
 
+/* Recommendations Hero Section */
+.recommendations-hero {
+  background: linear-gradient(135deg, #4A90E2 0%, #FF8C00 100%);
+  color: white;
+  min-height: calc(100vh - 42px);
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.recommendations-hero .hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.recommendations-hero .hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.recommendations-hero .highlight {
+  color: #FFD700;
+}
+
+.recommendations-hero .hero-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Content Section */
+.recommendations-content {
+  padding: 4rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.container > p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.loading-indicator {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #FF8C00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+  color: #FF8C00;
+}
+
+.empty-state h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.empty-state p {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* Estilos para las tarjetas de productos */
+.product-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  border: 1px solid #e5e7eb;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  z-index: 2;
+  color: white;
+}
+
+.product-badge.bestseller {
+  background: #FF6B6B;
+}
+
+.product-badge.recomendado {
+  background: #4ECDC4;
+}
+
+.product-badge.mejor-precio {
+  background: #45B7D1;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #FF8C00;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.product-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.product-info {
+  padding: 1.5rem;
+}
+
+.product-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-description {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.stars i {
+  color: #FFD700;
+  font-size: 0.9rem;
+}
+
+.rating-text {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.review-count {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.product-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.current-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FF8C00;
+}
+
+.original-price {
+  font-size: 1rem;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.buy-button {
+  width: 100%;
+  background: #FF8C00;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.buy-button:hover {
+  background: #e6790e;
+  transform: translateY(-1px);
+}
+
+.buy-button:active {
+  transform: translateY(0);
+}
+
+.buy-button i {
+  font-size: 1.1rem;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .nav {
@@ -426,144 +697,35 @@ document.addEventListener('DOMContentLoaded', function() {
     justify-self: center !important;
   }
 }
-</style>
 
-<style>
-/* Recommendations Hero Section */
-.recommendations-hero {
-  background: linear-gradient(135deg, #4A90E2 0%, #FF8C00 100%);
-  color: white;
-  min-height: calc(100vh - 42px);
-  display: flex;
-  align-items: center;
-  padding: 4rem 0;
-  text-align: center;
-}
-
-.recommendations-hero .hero-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.recommendations-hero .hero-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-
-.recommendations-hero .highlight {
-  color: #FFD700;
-}
-
-.recommendations-hero .hero-subtitle {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  opacity: 0.9;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* Content Section */
-.recommendations-content {
-  padding: 4rem 0;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.container > p {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 3rem;
-  max-width: 600px;
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.loading-indicator {
-  text-align: center;
-  padding: 3rem;
-  color: #666;
-}
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #e5e7eb;
-  border-top: 4px solid #FF8C00;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 1rem;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.empty-state {
-  text-align: center;
-  padding: 3rem;
-  color: #666;
-}
-
-.empty-state i {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  opacity: 0.5;
-  color: #FF8C00;
-}
-
-.empty-state h3 {
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-size: 1.5rem;
-}
-
-.empty-state p {
-  color: #666;
-  font-size: 1rem;
-}
-
-/* Responsive Design */
+/* Responsive para las tarjetas */
 @media (max-width: 768px) {
-  .recommendations-hero {
-    min-height: calc(100vh - 50px);
-    padding: 2rem 0;
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
   }
   
-  .recommendations-hero .hero-title {
-    font-size: 2rem;
+  .product-info {
+    padding: 1rem;
   }
   
-  .recommendations-hero .hero-subtitle {
-    font-size: 1.1rem;
+  .product-title {
+    font-size: 1rem;
   }
   
-  .recommendations-content {
-    padding: 3rem 0;
-  }
-  
-  .container {
-    padding: 0 1rem;
+  .current-price {
+    font-size: 1.3rem;
   }
 }
 
 @media (max-width: 480px) {
-  .recommendations-hero .hero-title {
-    font-size: 1.8rem;
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
-  .recommendations-hero .hero-subtitle {
-    font-size: 1rem;
+  .product-image {
+    height: 180px;
   }
 }
 </style>
