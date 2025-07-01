@@ -59,19 +59,36 @@ He añadido Google AdSense a tu sitio de forma **compatible con el compliance** 
 
 ### Código Implementado:
 ```html
-<!-- En <head> - Se carga con consentimiento -->
-<script>
-function loadAdSense() {
-  if (window.cookieconsent && window.cookieconsent.hasConsented()) {
-    const adsenseScript = document.createElement('script');
-    adsenseScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5711459217670244';
-    adsenseScript.crossOrigin = 'anonymous';
-    adsenseScript.async = true;
-    document.head.appendChild(adsenseScript);
-  }
-}
-</script>
+<!-- Anuncio header - index.md -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5711459217670244"
+     data-ad-slot="1234567890"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+
+<!-- Anuncio entre secciones - index.md -->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5711459217670244"
+     data-ad-slot="0987654321"></ins>
+
+<!-- Anuncio en reviews - review.html layout -->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5711459217670244"
+     data-ad-slot="1111111111"></ins>
 ```
+
+### Ubicaciones de Anuncios:
+- ✅ **Header del index** - Banner superior responsivo
+- ✅ **Entre secciones del index** - Entre productos y reviews
+- ✅ **Medio de reviews** - Entre contenido y veredicto
+- ✅ **Estilos CSS** completos para todos los formatos
 
 ### Sistema de Consentimiento:
 - ✅ Mensaje actualizado menciona cookies publicitarias
@@ -90,7 +107,10 @@ function loadAdSense() {
 
 ### Configuración AdSense:
 1. **Añadir sitio** en panel AdSense
-2. **Configurar unidades** publicitarias
+2. **Configurar unidades** publicitarias (actualizar data-ad-slot):
+   - `1234567890` - Header banner responsivo
+   - `0987654321` - Entre secciones index  
+   - `1111111111` - Medio de reviews
 3. **Establecer filtros** (evitar competidores Amazon)
 4. **Activar** solo tras verificación compliance
 

@@ -33,6 +33,21 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
   </div>
 </section>
 
+<!-- Anuncio superior responsivo -->
+<section class="ad-section">
+  <div class="container">
+    <div class="ad-container ad-header">
+      <div class="ad-label">Publicidad</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5711459217670244"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+</section>
+
 <!-- Sección de productos destacados -->
 <section class="featured-products">
   <div class="container">
@@ -69,6 +84,21 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
         Ver Todas las Recomendaciones
         <i class="fas fa-arrow-right"></i>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- Anuncio entre secciones -->
+<section class="ad-section">
+  <div class="container">
+    <div class="ad-container ad-middle">
+      <div class="ad-label">Publicidad</div>
+      <ins class="adsbygoogle"
+           style="display:block; text-align:center;"
+           data-ad-layout="in-article"
+           data-ad-format="fluid"
+           data-ad-client="ca-pub-5711459217670244"
+           data-ad-slot="0987654321"></ins>
     </div>
   </div>
 </section>

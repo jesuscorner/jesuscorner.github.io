@@ -72,6 +72,9 @@
   <!-- Affiliate Compliance Script -->
   <script src="{{ '/affiliate-compliance.js' | relative_url }}"></script>
   
+  <!-- AdSense Verification Script (solo en desarrollo) -->
+  <script src="{{ '/adsense-verification.js' | relative_url }}"></script>
+  
   <!-- Cookie Consent Script -->
   <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
   <script>
@@ -109,10 +112,32 @@
     // Cargar Google AdSense también
     loadAdSense();
     
+    // Inicializar anuncios AdSense después de cargar el script
+    setTimeout(() => {
+      initializeAds();
+    }, 1000);
+    
     // Ejemplo: Si tienes widgets de Amazon que requieren scripts específicos
     // var amazonScript = document.createElement("script");
     // amazonScript.src = "https://ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=ES";
     // document.head.appendChild(amazonScript);
+  }
+  
+  function initializeAds() {
+    try {
+      if (typeof(adsbygoogle) !== 'undefined') {
+        // Inicializar todos los anuncios en la página
+        const ads = document.querySelectorAll('.adsbygoogle');
+        ads.forEach(ad => {
+          if (!ad.dataset.adsbygoogleStatus) {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            console.log('📺 Anuncio AdSense inicializado');
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('⚠️ Error inicializando AdSense:', e);
+    }
   }
   </script>
   
