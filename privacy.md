@@ -18,7 +18,24 @@ description: "Política de privacidad y protección de datos de JesusCorner"
     <div class="content-wrapper">
       
       <div class="last-updated">
-        <strong>Última actualización:</strong> {{ 'now' | date: "%d de %B de %Y" }}
+        {% assign day = 'now' | date: "%d" %}
+        {% assign year = 'now' | date: "%Y" %}
+        {% assign m = 'now' | date: "%-m" %}
+        {% case m %}
+          {% when '1' %}{% assign month = 'enero' %}
+          {% when '2' %}{% assign month = 'febrero' %}
+          {% when '3' %}{% assign month = 'marzo' %}
+          {% when '4' %}{% assign month = 'abril' %}
+          {% when '5' %}{% assign month = 'mayo' %}
+          {% when '6' %}{% assign month = 'junio' %}
+          {% when '7' %}{% assign month = 'julio' %}
+          {% when '8' %}{% assign month = 'agosto' %}
+          {% when '9' %}{% assign month = 'septiembre' %}
+          {% when '10' %}{% assign month = 'octubre' %}
+          {% when '11' %}{% assign month = 'noviembre' %}
+          {% when '12' %}{% assign month = 'diciembre' %}
+        {% endcase %}
+        <strong>Última actualización:</strong> {{ day }} de {{ month }} de {{ year }}
       </div>
 
       <h2>📝 Información que Recopilamos</h2>
@@ -180,7 +197,7 @@ description: "Política de privacidad y protección de datos de JesusCorner"
         <div class="contact-methods">
           <div class="contact-method">
             <i class="fas fa-envelope"></i>
-            <strong>Email:</strong> privacy@jesuscorner.es
+            <strong>Email:</strong> jesuscorner@gmail.com
           </div>
           <div class="contact-method">
             <i class="fas fa-clock"></i>
