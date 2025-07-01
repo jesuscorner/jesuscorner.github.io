@@ -15,6 +15,12 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
 
 <section class="content-section" style="background: white; padding: 4rem 0;">
   <div class="container">
+    
+    <div class="affiliate-notice-top">
+      <h4><i class="fas fa-info-circle"></i> Aviso de Transparencia</h4>
+      <p><strong>Los enlaces marcados con 🔗 son enlaces de afiliado.</strong> Si compras a través de ellos, recibo una pequeña comisión sin coste adicional para ti. Solo recomiendo productos que he probado personalmente o investigado exhaustivamente. <a href="/affiliate/">Más información sobre nuestra política de afiliados</a>.</p>
+    </div>
+    
     <!-- Sección de buscador y filtros -->
     <div class="search-filter-container">
       <div class="search-filter-row">

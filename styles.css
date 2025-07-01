@@ -1621,3 +1621,116 @@ body {
     padding: 0.5rem 1rem !important;
   }
 }
+
+/* Affiliate Disclosure */
+.affiliate-disclosure {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.affiliate-disclosure i {
+  color: #856404;
+  margin-right: 0.5rem;
+}
+
+.affiliate-disclosure strong {
+  color: #856404;
+}
+
+.affiliate-disclosure a {
+  color: #856404;
+  text-decoration: underline;
+}
+
+.affiliate-disclosure a:hover {
+  color: #533d02;
+}
+
+/* Affiliate Link Styling */
+.affiliate-link {
+  position: relative;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.affiliate-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.2rem;
+}
+
+/* Inline affiliate badge for text links */
+.inline-affiliate-badge {
+  background: #FF8C00;
+  color: white;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-left: 0.3rem;
+  vertical-align: middle;
+}
+
+/* Affiliate notice at top of content */
+.affiliate-notice-top {
+  background: #e8f4fd;
+  border-left: 4px solid #3498db;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.affiliate-notice-top h4 {
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.affiliate-notice-top p {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.affiliate-notice-top a {
+  color: #3498db;
+  text-decoration: underline;
+}
+
+/* Carousel affiliate badge adjustments */
+.carousel-item .affiliate-link {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.6rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.carousel-item .button-main-content {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.carousel-item .affiliate-badge {
+  font-size: 0.6rem;
+  padding: 0.1rem 0.3rem;
+  margin-top: 0;
+  line-height: 1;
+}

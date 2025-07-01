@@ -374,9 +374,10 @@ function createProductCard(product) {
       <div class="product-info">
         <h3 class="product-title">${product.title}</h3>
         
-        <button class="buy-button" data-amazon-url="${product.amazonUrl}">
+        <button class="buy-button affiliate-link" data-amazon-url="${product.amazonUrl}">
           <i class="fab fa-amazon"></i>
           Ver en Amazon
+          <span class="affiliate-badge">🔗 Enlace de afiliado</span>
         </button>
       </div>
     </div>

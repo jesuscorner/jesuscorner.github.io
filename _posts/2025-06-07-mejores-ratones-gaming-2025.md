@@ -6,6 +6,12 @@ date: 2025-06-07
 image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=1200&h=630&fit=crop&auto=format"
 ---
 
+<div class="affiliate-disclosure">
+  <i class="fas fa-info-circle"></i>
+  <strong>Aviso de Transparencia:</strong> Esta guía incluye enlaces de afiliado. Si compras a través de ellos, recibo una pequeña comisión sin coste adicional para ti. Solo recomiendo productos que he probado o investigado exhaustivamente.
+  <a href="/affiliate/">Más información sobre nuestra política de afiliados</a>.
+</div>
+
 # Los Mejores Ratones Gaming de 2025: Tu Guía Definitiva
 
 El ratón gaming es posiblemente el periférico más importante para cualquier gamer serio. En 2025, la tecnología ha evolucionado tanto que incluso los ratones de gama media ofrecen características que antes eran exclusivas de modelos premium.

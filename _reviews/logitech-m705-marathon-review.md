@@ -22,6 +22,12 @@ verdict: "El Logitech M705 Marathon es una inversión sólida para profesionales
 related_products: ["2p8o1AC", "1ebvVnb"]
 ---
 
+<div class="affiliate-disclosure">
+  <i class="fas fa-info-circle"></i>
+  <strong>Aviso de Transparencia:</strong> Esta review está basada en mi experiencia personal tras 6 meses de uso del producto. Algunos enlaces son de afiliado - si compras a través de ellos, recibo una pequeña comisión sin coste adicional para ti. Esto no afecta mi opinión: solo recomiendo productos que uso y en los que creo.
+  <a href="/affiliate/">Más información sobre nuestra política de afiliados</a>.
+</div>
+
 ## Mi Experiencia Personal con el M705
 
 Llevo **6 meses** usando el Logitech M705 Marathon como mi ratón principal para trabajo y algún gaming ocasional. Como alguien que pasa más de 8 horas diarias frente al ordenador, la comodidad no es negociable para mí.

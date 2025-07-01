@@ -23,6 +23,12 @@ verdict: "El Lenovo LOQ 15IAX9 es una excelente opción para gamers con presupue
 related_products: ["e2dsva2", "2p8o1AC"]
 ---
 
+<div class="affiliate-disclosure">
+  <i class="fas fa-info-circle"></i>
+  <strong>Aviso de Transparencia:</strong> Esta review está basada en mi experiencia personal tras 3 meses de uso del producto. Algunos enlaces son de afiliado - si compras a través de ellos, recibo una pequeña comisión sin coste adicional para ti. Esto no afecta mi opinión: solo recomiendo productos que uso y en los que creo.
+  <a href="/affiliate/">Más información sobre nuestra política de afiliados</a>.
+</div>
+
 ## ¿Por Qué Este Laptop Gaming?
 
 Necesitaba reemplazar mi laptop de 5 años que ya no podía manejar games modernos ni trabajo de diseño. Mi criterio de búsqueda era específico:

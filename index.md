@@ -41,6 +41,11 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
       <p>Selección curada de productos probados y recomendados</p>
     </div>
     
+    <div class="affiliate-notice-top">
+      <h4><i class="fas fa-info-circle"></i> Aviso de Transparencia</h4>
+      <p><strong>Los enlaces marcados con 🔗 son enlaces de afiliado.</strong> Si compras a través de ellos, recibo una pequeña comisión sin coste adicional para ti. Solo recomiendo productos que he probado personalmente o investigado exhaustivamente. <a href="/affiliate/">Más información sobre nuestra política de afiliados</a>.</p>
+    </div>
+    
     <!-- Ruleta horizontal infinita de productos -->
     <div class="products-carousel-container">
       <div class="carousel-loading" id="carouselLoading">
@@ -839,9 +844,12 @@ function createCarouselItem(product) {
       </div>
       <div class="product-info">
         <h3 class="product-title">${product.title}</h3>
-        <button class="buy-button" data-amazon-url="${product.amazonUrl}">
-          <i class="fab fa-amazon"></i>
-          Ver en Amazon
+        <button class="buy-button affiliate-link" data-amazon-url="${product.amazonUrl}">
+          <div class="button-main-content">
+            <i class="fab fa-amazon"></i>
+            <span>Ver en Amazon</span>
+          </div>
+          <span class="affiliate-badge">🔗 Enlace de afiliado</span>
         </button>
       </div>
     </div>

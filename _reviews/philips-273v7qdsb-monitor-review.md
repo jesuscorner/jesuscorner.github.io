@@ -22,6 +22,12 @@ verdict: "El Philips 273V7QDSB es la elección perfecta para usuarios que buscan
 related_products: ["e2dsva2", "aElx9R0"]
 ---
 
+<div class="affiliate-disclosure">
+  <i class="fas fa-info-circle"></i>
+  <strong>Aviso de Transparencia:</strong> Esta review está basada en mi experiencia personal tras 4 meses de uso del producto. Algunos enlaces son de afiliado - si compras a través de ellos, recibo una pequeña comisión sin coste adicional para ti. Esto no afecta mi opinión: solo recomiendo productos que uso y en los que creo.
+  <a href="/affiliate/">Más información sobre nuestra política de afiliados</a>.
+</div>
+
 ## ¿Por Qué Elegí Este Monitor?
 
 Después de años trabajando con un monitor de 22" TN, necesitaba urgentemente una **actualización que no rompiese el presupuesto**. Buscaba específicamente:
