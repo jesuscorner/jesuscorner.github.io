@@ -19,9 +19,13 @@ let searchInput, clearSearchBtn, categorySelect, resultsCounter;
 // Inicializar cuando se carga la página
 function initializeRecommendations() {
   console.log('🚀 Iniciando sistema de recomendaciones...');
+  console.log('📍 URL actual:', window.location.href);
+  console.log('📍 Pathname:', window.location.pathname);
   
   // Esperar a que el DOM esté completamente cargado
   setTimeout(() => {
+    console.log('⏰ DOM listo, buscando elementos...');
+    
     // Obtener elementos del DOM
     productsGrid = document.getElementById('productsGrid');
     loadingIndicator = document.getElementById('loadingIndicator');
@@ -43,6 +47,8 @@ function initializeRecommendations() {
     
     if (!productsGrid) {
       console.error('❌ No se encontró el elemento productsGrid');
+      console.log('📋 Elementos disponibles en el DOM:');
+      console.log(document.querySelectorAll('[id]'));
       return;
     }
     
@@ -243,16 +249,43 @@ async function loadProducts() {
   showLoading(true);
   
   try {
-    console.log('🔗 Intentando cargar: products-data.json');
-    const response = await fetch('products-data.json');
-    console.log('📡 Response status:', response.status);
+    // Obtener la ruta base correcta basada en la ubicación actual
+    const baseUrl = window.location.pathname.includes('/recommendations') 
+      ? window.location.origin + '/' 
+      : window.location.origin + '/';
     
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    // Intentar rutas diferentes para asegurar la carga
+    const possiblePaths = [
+      'products-data.json',
+      '/products-data.json', 
+      './products-data.json',
+      baseUrl + 'products-data.json'
+    ];
+    
+    let data = null;
+    let loadedFrom = '';
+    
+    for (const path of possiblePaths) {
+      try {
+        console.log(`🔗 Intentando cargar desde: ${path}`);
+        const response = await fetch(path);
+        console.log(`📡 Response status para ${path}:`, response.status);
+        
+        if (response.ok) {
+          data = await response.json();
+          loadedFrom = path;
+          break;
+        }
+      } catch (err) {
+        console.log(`❌ Error con ruta ${path}:`, err.message);
+      }
     }
     
-    const data = await response.json();
-    console.log('📊 Datos recibidos:', data);
+    if (!data) {
+      throw new Error('No se pudo cargar products-data.json desde ninguna ruta');
+    }
+    
+    console.log(`✅ Datos cargados exitosamente desde: ${loadedFrom}`, data);
     processProductData(data);
     
   } catch (error) {

@@ -87,7 +87,7 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
 </section>
 
 <!-- Scripts específicos para recomendaciones -->
-<script src="{{ '/recommendations-script.js' | relative_url }}"></script>
+<script src="{{ '/recommendations-script.js' | relative_url }}?v={{ 'now' | date: '%s' }}"></script>
 
 <style>
 /* Screen reader only content */
