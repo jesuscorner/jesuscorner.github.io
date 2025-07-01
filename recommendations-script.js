@@ -3,6 +3,8 @@
  * Sistema que carga productos reales desde products-data.json
  */
 
+console.log('🚀 SCRIPT DE RECOMENDACIONES CARGADO');
+
 // Variables globales
 let currentProducts = [];
 let filteredProducts = [];
@@ -12,41 +14,44 @@ let searchTerm = '';
 
 // Elementos del DOM
 let productsGrid, loadingIndicator, noProductsMessage;
-let searchInput, clearSearchBtn, categoryFilters, resultsCounter;
+let searchInput, clearSearchBtn, categorySelect, resultsCounter;
 
 // Inicializar cuando se carga la página
 function initializeRecommendations() {
   console.log('🚀 Iniciando sistema de recomendaciones...');
   
-  // Obtener elementos del DOM
-  productsGrid = document.getElementById('productsGrid');
-  loadingIndicator = document.getElementById('loadingIndicator');
-  noProductsMessage = document.getElementById('noProductsMessage');
-  searchInput = document.getElementById('searchInput');
-  clearSearchBtn = document.getElementById('clearSearch');
-  categoryFilters = document.querySelectorAll('.filter-btn');
-  resultsCounter = document.getElementById('resultsCount');
-  
-  console.log('📋 Elementos encontrados:', {
-    productsGrid: !!productsGrid,
-    loadingIndicator: !!loadingIndicator,
-    noProductsMessage: !!noProductsMessage,
-    searchInput: !!searchInput,
-    clearSearchBtn: !!clearSearchBtn,
-    categoryFilters: categoryFilters.length,
-    resultsCounter: !!resultsCounter
-  });
-  
-  if (!productsGrid) {
-    console.error('❌ No se encontró el elemento productsGrid');
-    return;
-  }
-  
-  // Inicializar event listeners
-  initializeEventListeners();
-  
-  // Cargar productos
-  loadProducts();
+  // Esperar a que el DOM esté completamente cargado
+  setTimeout(() => {
+    // Obtener elementos del DOM
+    productsGrid = document.getElementById('productsGrid');
+    loadingIndicator = document.getElementById('loadingIndicator');
+    noProductsMessage = document.getElementById('noProductsMessage');
+    searchInput = document.getElementById('recommendationsSearchInput');
+    clearSearchBtn = document.getElementById('clearSearch');
+    categorySelect = document.getElementById('categorySelect');
+    resultsCounter = document.getElementById('resultsCount');
+    
+    console.log('📋 Elementos encontrados:', {
+      productsGrid: !!productsGrid,
+      loadingIndicator: !!loadingIndicator,
+      noProductsMessage: !!noProductsMessage,
+      searchInput: !!searchInput,
+      clearSearchBtn: !!clearSearchBtn,
+      categorySelect: !!categorySelect,
+      resultsCounter: !!resultsCounter
+    });
+    
+    if (!productsGrid) {
+      console.error('❌ No se encontró el elemento productsGrid');
+      return;
+    }
+    
+    // Inicializar event listeners
+    initializeEventListeners();
+    
+    // Cargar productos
+    loadProducts();
+  }, 100);
 }
 
 // Inicializar event listeners para buscador y filtros
@@ -56,12 +61,20 @@ function initializeEventListeners() {
   // Buscador
   if (searchInput) {
     console.log('✅ Conectando buscador');
-    searchInput.addEventListener('input', handleSearch);
-    searchInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-      }
+    
+    // Evento simple de input (más confiable)
+    searchInput.addEventListener('input', function(e) {
+      console.log('📝 Input detectado:', e.target.value);
+      handleSearch(e);
     });
+    
+    // Evento de keyup para casos especiales
+    searchInput.addEventListener('keyup', function(e) {
+      console.log('⌨️ Keyup detectado:', e.target.value);
+      handleSearch(e);
+    });
+    
+    console.log('🔗 Event listeners del buscador configurados');
   } else {
     console.error('❌ No se encontró searchInput');
   }
@@ -69,38 +82,41 @@ function initializeEventListeners() {
   // Botón limpiar búsqueda
   if (clearSearchBtn) {
     console.log('✅ Conectando botón limpiar');
-    clearSearchBtn.addEventListener('click', clearSearch);
+    clearSearchBtn.addEventListener('click', function() {
+      console.log('🗑️ Limpiando búsqueda');
+      clearSearch();
+    });
   } else {
     console.error('❌ No se encontró clearSearchBtn');
   }
   
-  // Filtros de categoría
-  if (categoryFilters && categoryFilters.length > 0) {
-    console.log(`✅ Conectando ${categoryFilters.length} filtros de categoría`);
-    categoryFilters.forEach((btn, index) => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const category = this.getAttribute('data-category');
-        console.log(`🔄 Filtro clickeado: ${category}`);
-        setActiveCategory(category);
-      });
+  // Desplegable de categorías
+  if (categorySelect) {
+    console.log('✅ Conectando dropdown de categorías');
+    categorySelect.addEventListener('change', function(e) {
+      const category = e.target.value;
+      console.log(`🔄 Categoría seleccionada: ${category}`);
+      setActiveCategory(category);
     });
   } else {
-    console.error('❌ No se encontraron filtros de categoría');
+    console.error('❌ No se encontró categorySelect');
   }
 }
 
 // Manejar búsqueda
 function handleSearch(e) {
-  searchTerm = e.target.value.trim().toLowerCase();
-  console.log(`🔍 Búsqueda: "${searchTerm}"`);
+  const newSearchTerm = e.target.value.trim().toLowerCase();
+  console.log(`🔍 NUEVA BÚSQUEDA: "${newSearchTerm}" (anterior: "${searchTerm}")`);
+  
+  searchTerm = newSearchTerm;
   
   // Mostrar/ocultar botón de limpiar
   if (clearSearchBtn) {
     clearSearchBtn.style.display = searchTerm ? 'block' : 'none';
   }
   
-  // Aplicar filtros
+  // Aplicar filtros inmediatamente
+  console.log('🔄 APLICANDO FILTROS DESDE BÚSQUEDA...');
   applyFilters();
 }
 
@@ -114,7 +130,9 @@ function clearSearch() {
     clearSearchBtn.style.display = 'none';
   }
   applyFilters();
-  searchInput.focus();
+  if (searchInput) {
+    searchInput.focus();
+  }
 }
 
 // Establecer categoría activa
@@ -122,17 +140,12 @@ function setActiveCategory(category) {
   console.log(`🏷️ Estableciendo categoría activa: ${category}`);
   currentCategory = category;
   
-  // Actualizar botones activos
-  categoryFilters.forEach(btn => {
-    btn.classList.remove('active');
-  });
-  
-  const activeBtn = document.querySelector(`[data-category="${category}"]`);
-  if (activeBtn) {
-    activeBtn.classList.add('active');
-    console.log(`✅ Botón activado: ${category}`);
+  // Actualizar dropdown
+  if (categorySelect) {
+    categorySelect.value = category;
+    console.log(`✅ Dropdown actualizado: ${category}`);
   } else {
-    console.error(`❌ No se encontró botón para categoría: ${category}`);
+    console.error(`❌ No se encontró dropdown para categoría: ${category}`);
   }
   
   // Aplicar filtros
@@ -141,27 +154,35 @@ function setActiveCategory(category) {
 
 // Aplicar filtros combinados (búsqueda + categoría)
 function applyFilters() {
-  if (!currentProducts.length) {
-    console.log('⚠️ No hay productos para filtrar');
+  if (!currentProducts || currentProducts.length === 0) {
+    console.log('⚠️ No hay productos para filtrar - currentProducts:', currentProducts);
     return;
   }
   
   console.log(`🔄 Aplicando filtros - Categoría: "${currentCategory}", Búsqueda: "${searchTerm}"`);
+  console.log(`📦 Productos disponibles:`, currentProducts.length);
   
   filteredProducts = currentProducts.filter(product => {
     // Filtro por categoría
     const categoryMatch = currentCategory === 'all' || product.category === currentCategory;
     
-    // Filtro por búsqueda
+    // Filtro por búsqueda (más amplio)
     const searchMatch = !searchTerm || 
       product.title.toLowerCase().includes(searchTerm) ||
       product.category.toLowerCase().includes(searchTerm) ||
       getBadgeFromCategory(product.category).toLowerCase().includes(searchTerm);
     
-    return categoryMatch && searchMatch;
+    const result = categoryMatch && searchMatch;
+    
+    // Debug más detallado solo cuando hay filtros activos
+    if ((searchTerm && searchTerm.length > 0) || currentCategory !== 'all') {
+      console.log(`🔍 "${product.title}": cat(${product.category})=${categoryMatch}, search="${searchTerm}"=${searchMatch} → ${result}`);
+    }
+    
+    return result;
   });
   
-  console.log(`📊 Productos filtrados: ${filteredProducts.length} de ${currentProducts.length}`);
+  console.log(`📊 Resultado: ${filteredProducts.length} productos de ${currentProducts.length}`);
   
   // Renderizar productos filtrados
   renderFilteredProducts();
@@ -222,30 +243,17 @@ async function loadProducts() {
   showLoading(true);
   
   try {
-    const response = await fetch('/products-data.json');
+    console.log('🔗 Intentando cargar: products-data.json');
+    const response = await fetch('products-data.json');
+    console.log('📡 Response status:', response.status);
+    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     
     const data = await response.json();
-    
-    // Convertir datos del JSON (formato simplificado)
-    currentProducts = data.products.map(product => ({
-      id: product.id,
-      title: product.title,
-      image: product.image,
-      amazonUrl: product.amazonUrl,
-      category: product.category,
-      badge: getBadgeFromCategory(product.category)
-    }));
-    
-    // Inicializar productos filtrados con todos los productos
-    filteredProducts = [...currentProducts];
-    
-    renderFilteredProducts();
-    updateResultsCounter();
-    showLoading(false);
-    console.log('✅ Productos cargados:', currentProducts.length);
+    console.log('📊 Datos recibidos:', data);
+    processProductData(data);
     
   } catch (error) {
     console.error('❌ Error cargando productos:', error);
@@ -254,7 +262,26 @@ async function loadProducts() {
   }
 }
 
-// Calcular descuento - ELIMINADO (no necesario para versión estática)
+// Procesar datos de productos
+function processProductData(data) {
+  // Convertir datos del JSON (formato simplificado)
+  currentProducts = data.products.map(product => ({
+    id: product.id,
+    title: product.title,
+    image: product.image,
+    amazonUrl: product.amazonUrl,
+    category: product.category,
+    badge: getBadgeFromCategory(product.category)
+  }));
+  
+  // Inicializar productos filtrados con todos los productos
+  filteredProducts = [...currentProducts];
+  
+  renderFilteredProducts();
+  updateResultsCounter();
+  showLoading(false);
+  console.log('✅ Productos cargados:', currentProducts.length);
+}
 
 // Obtener badge basado en categoría
 function getBadgeFromCategory(category) {
@@ -374,7 +401,17 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       console.log('ℹ️ No es la página de recomendaciones');
     }
-  }, 100);
+  }, 500); // Aumentamos el timeout para asegurar carga completa
+});
+
+// Fallback adicional para asegurar inicialización
+window.addEventListener('load', function() {
+  setTimeout(() => {
+    if (document.getElementById('productsGrid') && currentProducts.length === 0) {
+      console.log('🔄 Fallback: reinicializando...');
+      initializeRecommendations();
+    }
+  }, 200);
 });
 
 console.log('✅ Script de recomendaciones cargado (versión estática)');

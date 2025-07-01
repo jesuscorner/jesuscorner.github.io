@@ -17,50 +17,42 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
 <section class="search-filters">
   <div class="container">
     <div class="search-filter-container">
-      <!-- Buscador -->
-      <div class="search-box">
-        <div class="search-input-wrapper">
-          <i class="fas fa-search search-icon"></i>
-          <input 
-            type="text" 
-            id="searchInput" 
-            placeholder="Buscar productos..." 
-            class="search-input"
-            autocomplete="off"
-          >
-          <button id="clearSearch" class="clear-search" style="display: none;">
-            <i class="fas fa-times"></i>
-          </button>
+      <!-- Buscador y filtro en línea -->
+      <div class="search-filter-row">
+        <!-- Buscador -->
+        <div class="search-box">
+          <div class="search-input-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input 
+              type="text" 
+              id="recommendationsSearchInput" 
+              placeholder="Buscar productos..." 
+              class="search-input"
+              autocomplete="off"
+            >
+            <button id="clearSearch" class="clear-search" style="display: none;">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- Filtros por categoría -->
-      <div class="category-filters">
-        <button class="filter-btn active" data-category="all">
-          <i class="fas fa-th-large"></i>
-          Todos
-        </button>
-        <button class="filter-btn" data-category="tech">
-          <i class="fas fa-laptop"></i>
-          Tech
-        </button>
-        <button class="filter-btn" data-category="peripherals">
-          <i class="fas fa-keyboard"></i>
-          Periféricos
-        </button>
-        <button class="filter-btn" data-category="audio">
-          <i class="fas fa-headphones"></i>
-          Audio
-        </button>
-        <button class="filter-btn" data-category="wearables">
-          <i class="fas fa-watch"></i>
-          Wearables
-        </button>
-      </div>
-
-      <!-- Contador de resultados -->
-      <div class="results-counter">
-        <span id="resultsCount">Cargando productos...</span>
+        <!-- Filtro desplegable -->
+        <div class="category-dropdown">
+          <div class="select-wrapper">
+            <select id="categorySelect" class="category-select">
+              <option value="all">Todas las categorías</option>
+              <option value="tech">💻 Tech</option>
+              <option value="peripherals">⌨️ Periféricos</option>
+              <option value="audio">🎧 Audio</option>
+              <option value="wearables">⌚ Wearables</option>
+            </select>
+            <div class="select-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -68,6 +60,13 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
 
 <section class="recommendations-content">
   <div class="container">
+    <!-- Contador de resultados movido aquí -->
+    <div class="results-section">
+      <div class="results-counter">
+        <span id="resultsCount">Cargando productos...</span>
+      </div>
+    </div>
+
     <div class="products-grid" id="productsGrid">
       <!-- Los productos se cargarán dinámicamente -->
     </div>
@@ -390,13 +389,19 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
 
 /* Content Section */
 .recommendations-content {
-  padding: 4rem 0;
+  padding: 2rem 0 4rem 0;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .container > p {
@@ -478,26 +483,22 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
   position: absolute;
   top: 12px;
   left: 12px;
-  padding: 4px 8px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   z-index: 2;
   color: white;
+  background: #FF8C00;
+  white-space: nowrap;
+  width: auto !important;
+  display: inline-block !important;
+  max-width: fit-content !important;
+  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.3);
 }
 
-.product-badge.bestseller {
-  background: #FF6B6B;
-}
-
-.product-badge.recomendado {
-  background: #4ECDC4;
-}
-
-.product-badge.mejor-precio {
-  background: #45B7D1;
-}
+/* Eliminamos estilos específicos conflictivos */
 
 .discount-badge {
   position: absolute;
@@ -635,28 +636,57 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
 
 /* Estilos para buscador y filtros */
 .search-filters {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  padding: 2rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  background: transparent !important;
+  padding: 1rem 0 0 0 !important;
+  border: none !important;
+  margin: 0 !important;
+  box-shadow: none !important;
 }
 
 .search-filter-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0;
   align-items: center;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.search-filter-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  justify-content: center;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* Buscador */
 .search-box {
-  width: 100%;
+  flex: 1;
   max-width: 500px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .search-input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .search-input {
@@ -665,9 +695,17 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
   border: 2px solid rgba(255, 140, 0, 0.2);
   border-radius: 50px;
   font-size: 1rem;
-  background: white;
+  background: white !important;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  outline: none;
+  font-family: inherit;
+  color: #333;
+}
+
+.search-input::placeholder {
+  color: #999;
+  font-weight: 400;
 }
 
 .search-input:focus {
@@ -702,58 +740,89 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
   color: #FF8C00;
 }
 
-/* Filtros por categoría */
-.category-filters {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  justify-content: center;
+/* Desplegable de categorías */
+.category-dropdown {
+  flex-shrink: 0;
+  position: relative;
 }
 
-.filter-btn {
-  background: white;
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.category-select {
+  padding: 1rem 3rem 1rem 1.5rem;
   border: 2px solid rgba(255, 140, 0, 0.2);
-  color: #666;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
+  border-radius: 50px;
+  background: white;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  min-width: 100px;
-  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  min-width: 200px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
-.filter-btn:hover {
-  background: rgba(255, 140, 0, 0.1);
-  border-color: rgba(255, 140, 0, 0.4);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
-}
-
-.filter-btn.active {
-  background: linear-gradient(135deg, #FF8C00, #FF6B00);
-  color: white;
+.category-select:focus,
+.category-select:hover {
   border-color: #FF8C00;
-  box-shadow: 0 4px 16px rgba(255, 140, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.2);
+  transform: translateY(-2px);
 }
 
-.filter-btn.active:hover {
-  background: linear-gradient(135deg, #e6790e, #e65a00);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+/* Flecha personalizada */
+.select-arrow {
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #FF8C00;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.select-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.select-wrapper:hover .select-arrow,
+.category-select:focus + .select-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.category-select option {
+  padding: 0.5rem 1rem;
+  background: white;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Sección de resultados */
+.results-section {
+  margin: 1.5rem 0 1rem 0;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* Contador de resultados */
 .results-counter {
   color: #666;
   font-size: 0.95rem;
-  text-align: center;
-  margin-top: 0.5rem;
+  text-align: left;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  background: transparent !important;
+  margin: 0 !important;
 }
 
 .results-counter strong {
@@ -837,6 +906,21 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
   .search-container {
     margin: 0 0.5rem;
   }
+  
+  /* Responsive para el nuevo diseño */
+  .search-filter-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .search-box {
+    max-width: none;
+  }
+  
+  .category-select {
+    width: 100%;
+    min-width: auto;
+  }
 }
 
 @media (max-width: 480px) {
@@ -865,6 +949,18 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
     padding: 0.3rem;
     min-width: 28px;
     min-height: 28px;
+  }
+  
+  .search-filters {
+    padding: 1rem 0;
+  }
+  
+  .search-input {
+    padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+  }
+  
+  .category-select {
+    padding: 0.8rem 1rem;
   }
 }
 
