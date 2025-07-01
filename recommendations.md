@@ -5,9 +5,11 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
 ---
 
 <section class="hero">
-  <div class="hero-content">
-    <h1 class="hero-title">Recomendaciones <span class="highlight">TOP</span></h1>
-    <p class="hero-subtitle">Las mejores ofertas que he encontrado y probado personalmente</p>
+  <div class="container">
+    <div class="hero-content-single">
+      <h1 class="hero-title">Recomendaciones <span class="highlight">TOP</span></h1>
+      <p class="hero-subtitle">Las mejores ofertas que he encontrado y probado personalmente</p>
+    </div>
   </div>
 </section>
 

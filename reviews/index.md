@@ -1,60 +1,52 @@
 ---
 layout: default
-title: "Todas las Reviews"
-description: "Todas nuestras reviews detalladas de productos tecnológicos"
+title: "Reviews - JesusCorner"
+description: "Reviews detalladas y honestas de productos tecnológicos probados personalmente"
 ---
 
 <section class="hero">
-  <div class="hero-content">
-    <h1 class="hero-title">Todas las <span class="highlight">Reviews</span></h1>
-    <p class="hero-subtitle">Reviews detalladas y honestas de productos tecnológicos probados personalmente.</p>
+  <div class="container">
+    <div class="hero-content-single">
+      <h1 class="hero-title">Todas las <span class="highlight">Reviews</span></h1>
+      <p class="hero-subtitle">Reviews detalladas y honestas de productos tecnológicos probados personalmente.</p>
+    </div>
   </div>
 </section>
 
-<section class="content-section" style="background: white; padding: 4rem 0;">
+<section class="content-section">
   <div class="container">
-    <div class="posts-list">
-    {% for review in site.reviews %}
-      <article class="post-preview review-preview">
-        <div class="review-image-container">
-          <img src="{{ review.product_image | default: '/favicon/android-chrome-512x512.png' }}" 
-               alt="{{ review.product_name }}" 
-               class="review-product-image"
-               loading="lazy">
-        </div>
-        
-        <div class="review-content">
-          <div class="post-meta">
-            <time datetime="{{ review.date | date_to_xmlschema }}">{{ review.date | date: "%d de %B, %Y" }}</time>
-            {% if review.rating %}
-            <div class="review-rating">
-              {% assign rating = review.rating | plus: 0 %}
-              {% for i in (1..5) %}
-                {% if i <= rating %}
-                  <i class="fas fa-star"></i>
-                {% else %}
-                  <i class="far fa-star"></i>
-                {% endif %}
-              {% endfor %}
-              <span class="rating-value">{{ review.rating }}/5</span>
-            </div>
-            {% endif %}
+    <div class="posts-grid">
+      {% for review in site.reviews %}
+      <a href="{{ review.url | relative_url }}" class="post-card-link">
+        <article class="post-card">
+          {% if review.product_image %}
+          <div class="post-image">
+            <img src="{{ review.product_image }}" alt="{{ review.product_name }}" loading="lazy">
           </div>
-          
-          <h2>
-            <a href="{{ review.url | relative_url }}">{{ review.title }}</a>
-          </h2>
-          
-          <p class="post-excerpt">
-            {{ review.description | strip_html | truncate: 150 }}
-          </p>
-          
-          <a href="{{ review.url | relative_url }}" class="read-more">
-            Leer review completa <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </article>
-    {% endfor %}
+          {% endif %}
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="post-date">{{ review.date | date: "%d de %B de %Y" | replace: "January", "enero" | replace: "February", "febrero" | replace: "March", "marzo" | replace: "April", "abril" | replace: "May", "mayo" | replace: "June", "junio" | replace: "July", "julio" | replace: "August", "agosto" | replace: "September", "septiembre" | replace: "October", "octubre" | replace: "November", "noviembre" | replace: "December", "diciembre" }}</span>
+              {% if review.rating %}
+              <div class="review-rating">
+                {% assign rating = review.rating | plus: 0 %}
+                {% for i in (1..5) %}
+                  {% if i <= rating %}
+                    <i class="fas fa-star"></i>
+                  {% else %}
+                    <i class="far fa-star"></i>
+                  {% endif %}
+                {% endfor %}
+                <span class="rating-value">{{ review.rating }}/5</span>
+              </div>
+              {% endif %}
+            </div>
+            <h3>{{ review.product_name }}</h3>
+            <p>{{ review.description | truncate: 150 }}</p>
+          </div>
+        </article>
+      </a>
+      {% endfor %}
     </div>
   </div>
 </section>

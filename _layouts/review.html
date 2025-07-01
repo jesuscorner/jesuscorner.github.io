@@ -30,7 +30,7 @@ layout: default
         
         <span class="review-date">
           <i class="far fa-calendar"></i>
-          {{ page.date | date: "%d de %B, %Y" }}
+          {{ page.date | date: "%d de %B de %Y" | replace: "January", "enero" | replace: "February", "febrero" | replace: "March", "marzo" | replace: "April", "abril" | replace: "May", "mayo" | replace: "June", "junio" | replace: "July", "julio" | replace: "August", "agosto" | replace: "September", "septiembre" | replace: "October", "octubre" | replace: "November", "noviembre" | replace: "December", "diciembre" }}
         </span>
       </div>
     </header>

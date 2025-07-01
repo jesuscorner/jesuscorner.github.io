@@ -249,43 +249,31 @@ async function loadProducts() {
   showLoading(true);
   
   try {
-    // Obtener la ruta base correcta basada en la ubicación actual
-    const baseUrl = window.location.pathname.includes('/recommendations') 
-      ? window.location.origin + '/' 
-      : window.location.origin + '/';
+    // Pequeño delay para evitar conflictos de carga
+    await new Promise(resolve => setTimeout(resolve, 100));
     
-    // Intentar rutas diferentes para asegurar la carga
-    const possiblePaths = [
-      'products-data.json',
-      '/products-data.json', 
-      './products-data.json',
-      baseUrl + 'products-data.json'
-    ];
+    // Usar ruta absoluta simple para evitar problemas
+    const url = '/products-data.json';
+    console.log('🔗 Intentando cargar desde:', url);
     
-    let data = null;
-    let loadedFrom = '';
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      cache: 'no-cache'
+    });
     
-    for (const path of possiblePaths) {
-      try {
-        console.log(`🔗 Intentando cargar desde: ${path}`);
-        const response = await fetch(path);
-        console.log(`📡 Response status para ${path}:`, response.status);
-        
-        if (response.ok) {
-          data = await response.json();
-          loadedFrom = path;
-          break;
-        }
-      } catch (err) {
-        console.log(`❌ Error con ruta ${path}:`, err.message);
-      }
+    console.log('📡 Response status:', response.status);
+    console.log('📡 Response URL:', response.url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
     }
     
-    if (!data) {
-      throw new Error('No se pudo cargar products-data.json desde ninguna ruta');
-    }
-    
-    console.log(`✅ Datos cargados exitosamente desde: ${loadedFrom}`, data);
+    const data = await response.json();
+    console.log('✅ Datos cargados exitosamente:', data);
     processProductData(data);
     
   } catch (error) {

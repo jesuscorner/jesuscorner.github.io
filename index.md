@@ -5,23 +5,30 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 ---
 
 <section class="hero">
-  <div class="hero-content">
-    <h1 class="hero-title">
-      Recomendaciones <span class="highlight">Honestas</span> de Tecnología
-    </h1>
-    <p class="hero-subtitle">
-      Reviews detalladas, guías de compra y las mejores ofertas en tecnología. 
-      Todo probado personalmente para ayudarte a tomar la mejor decisión.
-    </p>
-    <div class="hero-buttons">
-      <a href="{{ '/reviews' | relative_url }}" class="btn-primary">
-        <i class="fas fa-star"></i>
-        Ver Reviews
-      </a>
-      <a href="{{ '/blog' | relative_url }}" class="btn-secondary">
-        <i class="fas fa-newspaper"></i>
-        Leer Blog
-      </a>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          Recomendaciones <span class="highlight">Honestas</span> de Tecnología
+        </h1>
+        <p class="hero-subtitle">
+          Reviews detalladas, guías de compra y las mejores ofertas en tecnología. 
+          Todo probado personalmente para ayudarte a tomar la mejor decisión.
+        </p>
+        <div class="hero-buttons">
+          <a href="{{ '/reviews' | relative_url }}" class="btn-primary">
+            <i class="fas fa-star"></i>
+            Ver Reviews
+          </a>
+          <a href="{{ '/blog' | relative_url }}" class="btn-secondary">
+            <i class="fas fa-newspaper"></i>
+            Leer Blog
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop&auto=format" alt="Espacio de trabajo tech moderno" class="hero-main-image">
+      </div>
     </div>
   </div>
 </section>
@@ -71,18 +78,17 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
     
     <div class="reviews-grid">
       {% for review in site.reviews limit: 3 %}
-      <article class="review-card" data-rating="{{ review.rating }}">
-        <div class="review-image">
-          <img src="{{ review.product_image }}" alt="{{ review.product_name }}" loading="lazy">
-        </div>
-        <div class="review-content">
-          <h3>{{ review.product_name }}</h3>
-          <p>{{ review.description | truncate: 120 }}</p>
-          <div class="review-meta">
-            <a href="{{ review.url | relative_url }}" class="btn btn-small">Leer Review</a>
+      <a href="{{ review.url | relative_url }}" class="review-card-link">
+        <article class="review-card" data-rating="{{ review.rating }}">
+          <div class="review-image">
+            <img src="{{ review.product_image }}" alt="{{ review.product_name }}" loading="lazy">
           </div>
-        </div>
-      </article>
+          <div class="review-content">
+            <h3>{{ review.product_name }}</h3>
+            <p>{{ review.description | truncate: 120 }}</p>
+          </div>
+        </article>
+      </a>
       {% endfor %}
     </div>
     
@@ -105,21 +111,22 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
     
     <div class="posts-grid">
       {% for post in site.posts limit: 2 %}
-      <article class="post-card">
-        {% if post.image %}
-        <div class="post-image">
-          <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy">
-        </div>
-        {% endif %}
-        <div class="post-content">
-          <div class="post-meta">
-            <span class="post-date">{{ post.date | date: "%d %b %Y" }}</span>
+      <a href="{{ post.url | relative_url }}" class="post-card-link">
+        <article class="post-card">
+          {% if post.image %}
+          <div class="post-image">
+            <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy">
           </div>
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.description | truncate: 150 }}</p>
-          <a href="{{ post.url | relative_url }}" class="btn btn-small">Leer Más</a>
-        </div>
-      </article>
+          {% endif %}
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="post-date">{{ post.date | date: "%d de %B de %Y" | replace: "January", "enero" | replace: "February", "febrero" | replace: "March", "marzo" | replace: "April", "abril" | replace: "May", "mayo" | replace: "June", "junio" | replace: "July", "julio" | replace: "August", "agosto" | replace: "September", "septiembre" | replace: "October", "octubre" | replace: "November", "noviembre" | replace: "December", "diciembre" }}</span>
+            </div>
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.description | truncate: 150 }}</p>
+          </div>
+        </article>
+      </a>
       {% endfor %}
     </div>
     
