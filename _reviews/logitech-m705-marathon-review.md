@@ -2,11 +2,9 @@
 layout: review
 title: "Logitech M705 Marathon Review: ¿Vale la pena este ratón inalámbrico en 2025?"
 product_name: "Logitech M705 Marathon"
-description: "Review completa del Logitech M705 Marathon después de 6 meses de uso intensivo. Análisis de ergonomía, duración de batería, precision y relación calidad-precio."
+description: "Review completa del Logitech M705 Marathon después de 6 meses de uso intensivo. Análisis de ergonomía, duración de batería, precision y relación calidad-valor."
 date: 2025-06-10
 rating: 4.3
-current_price: 69.99
-original_price: 89.99
 product_image: "https://m.media-amazon.com/images/I/61eX7GCwAZL._AC_UL232_SR232,232_.jpg"
 amazon_url: "https://amzn.eu/d/e2dsva2"
 pros:
@@ -16,11 +14,11 @@ pros:
   - "Precisión impecable para trabajo y diseño básico"
   - "Construcción sólida, sin partes que crujan"
 cons:
-  - "Precio algo elevado comparado con alternativas"
+  - "Costo algo elevado comparado con alternativas"
   - "El receptor unifying es un poco grande"
   - "No tiene iluminación RGB (algunos la echan de menos)"
   - "El diseño es algo conservador"
-verdict: "El Logitech M705 Marathon es una inversión sólida para profesionales que buscan comodidad y fiabilidad. Su duración de batería excepcional y ergonomía superior justifican el precio premium."
+verdict: "El Logitech M705 Marathon es una inversión sólida para profesionales que buscan comodidad y fiabilidad. Su duración de batería excepcional y ergonomía superior justifican el costo premium."
 related_products: ["2p8o1AC", "1ebvVnb"]
 ---
 
@@ -134,14 +132,14 @@ La función de **monitoreo de batería** es muy útil:
 - Sensor láser vs óptico moderno
 - Sin polling rate ajustable
 
-## 💰 Relación Calidad-Precio
+## 💰 Relación Calidad-Valor
 
-**A €69.99 en oferta** (precio original €89.99), el M705 se encuentra en un punto interesante:
+**En oferta** (con descuentos habituales), el M705 se encuentra en un punto interesante:
 
 ### Competencia Directa
-- **Logitech MX Master 3**: €100+ (más features, más caro)
-- **Razer Basilisk X**: €60 (gaming focus, menos batería)
-- **Microsoft Surface Precision**: €80 (similar concepto)
+- **Logitech MX Master 3**: Más premium (más features, más caro)
+- **Razer Basilisk X**: Gaming focus, menos batería
+- **Microsoft Surface Precision**: Similar concepto
 
 ### ¿Vale la pena?
 
@@ -153,7 +151,7 @@ La función de **monitoreo de batería** es muy útil:
 **NO**, si buscas:
 - El último sensor gaming
 - Diseño moderno/RGB
-- Precio mínimo
+- Presupuesto mínimo
 
 ## 🔧 Mantenimiento y Durabilidad
 
@@ -188,19 +186,19 @@ Los materiales han envejecido bien:
 ## 🏆 Alternativas a Considerar
 
 ### Si tienes más presupuesto
-**Logitech MX Master 3 (€100-120)**
+**Logitech MX Master 3**
 - Más features profesionales
 - Mejor sensor
 - Carga USB-C
 
 ### Si buscas gaming
-**Logitech G502 Lightspeed (€120-140)**
+**Logitech G502 Lightspeed**
 - Sensor gaming de alta gama
 - Más personalización
 - Mayor peso ajustable
 
 ### Si quieres gastar menos
-**Logitech M220 (€25-30)**
+**Logitech M220**
 - Básico pero fiable
 - Menor duración de batería
 - Sin features avanzadas
@@ -220,10 +218,10 @@ El **Logitech M705 Marathon** es un ratón que hace bien una cosa: **ser un comp
 - **Duración batería**: 10/10
 - **Software**: 7/10
 - **Calidad construcción**: 9/10
-- **Relación calidad-precio**: 8/10
+- **Relación calidad-valor**: 8/10
 
 **Media general: 8.5/10**
 
 ---
 
-*Esta review se basa en 6 meses de uso real. He comprado el producto con mi dinero y no he recibido compensación de Logitech por esta opinión.*
+*Esta review se basa en 6 meses de uso real. He adquirido el producto personalmente y no he recibido compensación de Logitech por esta opinión.*

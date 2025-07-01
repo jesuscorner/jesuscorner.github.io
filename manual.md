@@ -170,12 +170,12 @@ category: "Gaming/Tech/Audio"
 rating: 4.5
 pros:
   - "Excelente rendimiento"
-  - "Buena relación calidad-precio"
+  - "Buena relación calidad-valor"
 cons:
   - "Un poco ruidoso"
   - "Cable corto"
 amazon_url: "https://amzn.to/codigo-afiliado"
-price_range: "50-100€"
+price_range: "Rango medio"
 ---
 
 # Review Completa
@@ -376,8 +376,6 @@ product_name: "Nombre Exacto del Producto"
 description: "Descripción SEO de la review"
 date: 2025-06-26
 rating: 4.5
-current_price: 149.99
-original_price: 199.99
 product_image: "URL_imagen"
 amazon_url: "https://amzn.to/tu-enlace"
 pros:
@@ -448,7 +446,7 @@ npm run build
 - ✅ Divulgación legal en footer
 - ✅ Página de política de afiliados
 - ✅ Enlaces correctamente formateados
-- ✅ Sin precios para evitar problemas legales
+- ✅ Sin información de costos para evitar problemas legales
 
 ### **✅ SEO y Performance**
 - ✅ Jekyll SEO Tag plugin

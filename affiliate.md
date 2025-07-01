@@ -20,7 +20,7 @@ description: "Transparencia en nuestras recomendaciones y enlaces de afiliados"
       <p>En JesusCorner creemos en la transparencia total. Cuando recomendamos un producto, es porque genuinamente creemos que puede ser útil para ti, no porque recibamos una comisión mayor.</p>
 
       <h2>💰 ¿Cómo Funcionan los Enlaces de Afiliados?</h2>
-      <p>Algunos enlaces en nuestro sitio son <strong>enlaces de afiliados</strong>. Esto significa que si compras un producto a través de nuestro enlace, recibimos una pequeña comisión sin costo adicional para ti.</p>
+      <p>Algunos enlaces en nuestro sitio son <strong>enlaces de afiliados</strong>. Esto significa que si adquieres un producto a través de nuestro enlace, recibimos una pequeña comisión sin costo adicional para ti.</p>
       
       <div class="highlight-box">
         <p><strong>Importante:</strong> Jamás recomendamos productos solo por la comisión. Todos los productos que aparecen en nuestras reviews han sido probados personalmente o investigados exhaustivamente.</p>
@@ -28,7 +28,7 @@ description: "Transparencia en nuestras recomendaciones y enlaces de afiliados"
 
       <h2>🔍 Proceso de Review</h2>
       <ol>
-        <li><strong>Compra personal:</strong> Compramos los productos con nuestro propio dinero</li>
+        <li><strong>Compra personal:</strong> Adquirimos los productos personalmente</li>
         <li><strong>Uso real:</strong> Los utilizamos durante semanas o meses</li>
         <li><strong>Review honesta:</strong> Escribimos sobre pros y contras reales</li>
         <li><strong>Comparativa:</strong> Los comparamos con alternativas</li>
@@ -38,7 +38,7 @@ description: "Transparencia en nuestras recomendaciones y enlaces de afiliados"
       <ul>
         <li><strong>Enlaces de afiliados:</strong> Claramente marcados con <span class="affiliate-badge">🔗 Enlace de afiliado</span></li>
         <li><strong>Enlaces directos:</strong> Enlaces normales sin comisión</li>
-        <li><strong>Enlaces de comparación:</strong> Para que puedas comparar precios</li>
+        <li><strong>Enlaces de comparación:</strong> Para que puedas comparar opciones</li>
       </ul>
 
       <h2>💡 ¿Por Qué Usamos Afiliados?</h2>

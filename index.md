@@ -316,7 +316,8 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 .post-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f8f9fa;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px 12px 0 0;
   filter: brightness(0.95) contrast(1.1);
