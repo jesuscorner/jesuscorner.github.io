@@ -5,10 +5,14 @@
 
 // Variables globales
 let currentProducts = [];
+let filteredProducts = [];
 let isLoading = false;
+let currentCategory = 'all';
+let searchTerm = '';
 
 // Elementos del DOM
 let productsGrid, loadingIndicator, noProductsMessage;
+let searchInput, clearSearchBtn, categoryFilters, resultsCounter;
 
 // Inicializar cuando se carga la página
 function initializeRecommendations() {
@@ -18,11 +22,19 @@ function initializeRecommendations() {
   productsGrid = document.getElementById('productsGrid');
   loadingIndicator = document.getElementById('loadingIndicator');
   noProductsMessage = document.getElementById('noProductsMessage');
+  searchInput = document.getElementById('searchInput');
+  clearSearchBtn = document.getElementById('clearSearch');
+  categoryFilters = document.querySelectorAll('.filter-btn');
+  resultsCounter = document.getElementById('resultsCount');
   
   console.log('📋 Elementos encontrados:', {
     productsGrid: !!productsGrid,
     loadingIndicator: !!loadingIndicator,
-    noProductsMessage: !!noProductsMessage
+    noProductsMessage: !!noProductsMessage,
+    searchInput: !!searchInput,
+    clearSearchBtn: !!clearSearchBtn,
+    categoryFilters: categoryFilters.length,
+    resultsCounter: !!resultsCounter
   });
   
   if (!productsGrid) {
@@ -30,8 +42,178 @@ function initializeRecommendations() {
     return;
   }
   
+  // Inicializar event listeners
+  initializeEventListeners();
+  
   // Cargar productos
   loadProducts();
+}
+
+// Inicializar event listeners para buscador y filtros
+function initializeEventListeners() {
+  console.log('🔗 Inicializando event listeners...');
+  
+  // Buscador
+  if (searchInput) {
+    console.log('✅ Conectando buscador');
+    searchInput.addEventListener('input', handleSearch);
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+      }
+    });
+  } else {
+    console.error('❌ No se encontró searchInput');
+  }
+  
+  // Botón limpiar búsqueda
+  if (clearSearchBtn) {
+    console.log('✅ Conectando botón limpiar');
+    clearSearchBtn.addEventListener('click', clearSearch);
+  } else {
+    console.error('❌ No se encontró clearSearchBtn');
+  }
+  
+  // Filtros de categoría
+  if (categoryFilters && categoryFilters.length > 0) {
+    console.log(`✅ Conectando ${categoryFilters.length} filtros de categoría`);
+    categoryFilters.forEach((btn, index) => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const category = this.getAttribute('data-category');
+        console.log(`🔄 Filtro clickeado: ${category}`);
+        setActiveCategory(category);
+      });
+    });
+  } else {
+    console.error('❌ No se encontraron filtros de categoría');
+  }
+}
+
+// Manejar búsqueda
+function handleSearch(e) {
+  searchTerm = e.target.value.trim().toLowerCase();
+  console.log(`🔍 Búsqueda: "${searchTerm}"`);
+  
+  // Mostrar/ocultar botón de limpiar
+  if (clearSearchBtn) {
+    clearSearchBtn.style.display = searchTerm ? 'block' : 'none';
+  }
+  
+  // Aplicar filtros
+  applyFilters();
+}
+
+// Limpiar búsqueda
+function clearSearch() {
+  if (searchInput) {
+    searchInput.value = '';
+    searchTerm = '';
+  }
+  if (clearSearchBtn) {
+    clearSearchBtn.style.display = 'none';
+  }
+  applyFilters();
+  searchInput.focus();
+}
+
+// Establecer categoría activa
+function setActiveCategory(category) {
+  console.log(`🏷️ Estableciendo categoría activa: ${category}`);
+  currentCategory = category;
+  
+  // Actualizar botones activos
+  categoryFilters.forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  const activeBtn = document.querySelector(`[data-category="${category}"]`);
+  if (activeBtn) {
+    activeBtn.classList.add('active');
+    console.log(`✅ Botón activado: ${category}`);
+  } else {
+    console.error(`❌ No se encontró botón para categoría: ${category}`);
+  }
+  
+  // Aplicar filtros
+  applyFilters();
+}
+
+// Aplicar filtros combinados (búsqueda + categoría)
+function applyFilters() {
+  if (!currentProducts.length) {
+    console.log('⚠️ No hay productos para filtrar');
+    return;
+  }
+  
+  console.log(`🔄 Aplicando filtros - Categoría: "${currentCategory}", Búsqueda: "${searchTerm}"`);
+  
+  filteredProducts = currentProducts.filter(product => {
+    // Filtro por categoría
+    const categoryMatch = currentCategory === 'all' || product.category === currentCategory;
+    
+    // Filtro por búsqueda
+    const searchMatch = !searchTerm || 
+      product.title.toLowerCase().includes(searchTerm) ||
+      product.category.toLowerCase().includes(searchTerm) ||
+      getBadgeFromCategory(product.category).toLowerCase().includes(searchTerm);
+    
+    return categoryMatch && searchMatch;
+  });
+  
+  console.log(`📊 Productos filtrados: ${filteredProducts.length} de ${currentProducts.length}`);
+  
+  // Renderizar productos filtrados
+  renderFilteredProducts();
+  updateResultsCounter();
+}
+
+// Renderizar productos filtrados
+function renderFilteredProducts() {
+  if (!productsGrid) return;
+  
+  if (filteredProducts.length === 0) {
+    showNoProducts();
+    return;
+  }
+  
+  // Ocultar mensaje de no productos
+  if (noProductsMessage) {
+    noProductsMessage.style.display = 'none';
+  }
+  
+  // Mostrar grid
+  productsGrid.style.display = 'grid';
+  
+  const productsHTML = filteredProducts.map(product => createProductCard(product)).join('');
+  productsGrid.innerHTML = productsHTML;
+  
+  // Añadir event listeners para los botones de compra
+  addProductEventListeners();
+}
+
+// Actualizar contador de resultados
+function updateResultsCounter() {
+  if (!resultsCounter) return;
+  
+  const total = currentProducts.length;
+  const filtered = filteredProducts.length;
+  
+  let message = '';
+  if (searchTerm || currentCategory !== 'all') {
+    message = `Mostrando <strong>${filtered}</strong> de <strong>${total}</strong> productos`;
+    if (searchTerm) {
+      message += ` para "<strong>${searchTerm}</strong>"`;
+    }
+    if (currentCategory !== 'all') {
+      const categoryName = getBadgeFromCategory(currentCategory);
+      message += ` en <strong>${categoryName}</strong>`;
+    }
+  } else {
+    message = `Mostrando <strong>${total}</strong> productos recomendados`;
+  }
+  
+  resultsCounter.innerHTML = message;
 }
 
 // Cargar productos desde products-data.json
@@ -57,7 +239,11 @@ async function loadProducts() {
       badge: getBadgeFromCategory(product.category)
     }));
     
-    renderProducts();
+    // Inicializar productos filtrados con todos los productos
+    filteredProducts = [...currentProducts];
+    
+    renderFilteredProducts();
+    updateResultsCounter();
     showLoading(false);
     console.log('✅ Productos cargados:', currentProducts.length);
     
@@ -105,20 +291,9 @@ function showLoading(show) {
   }
 }
 
-// Renderizar productos
+// Renderizar productos (función legacy - ahora usa renderFilteredProducts)
 function renderProducts() {
-  if (!productsGrid) return;
-  
-  if (currentProducts.length === 0) {
-    showNoProducts();
-    return;
-  }
-  
-  const productsHTML = currentProducts.map(product => createProductCard(product)).join('');
-  productsGrid.innerHTML = productsHTML;
-  
-  // Añadir event listeners para los botones de compra
-  addProductEventListeners();
+  renderFilteredProducts();
 }
 
 // Mostrar mensaje de no productos
@@ -191,12 +366,15 @@ window.initializeRecommendations = initializeRecommendations;
 document.addEventListener('DOMContentLoaded', function() {
   console.log('🔄 DOM cargado, buscando página de recomendaciones...');
   
-  if (document.getElementById('productsGrid')) {
-    console.log('✅ Página de recomendaciones detectada');
-    initializeRecommendations();
-  } else {
-    console.log('ℹ️ No es la página de recomendaciones');
-  }
+  // Usar setTimeout para asegurar que todos los elementos estén disponibles
+  setTimeout(() => {
+    if (document.getElementById('productsGrid')) {
+      console.log('✅ Página de recomendaciones detectada');
+      initializeRecommendations();
+    } else {
+      console.log('ℹ️ No es la página de recomendaciones');
+    }
+  }, 100);
 });
 
 console.log('✅ Script de recomendaciones cargado (versión estática)');

@@ -41,8 +41,22 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
       <p>Selección curada de productos probados y recomendados</p>
     </div>
     
-    <div class="products-grid" id="productsGrid">
-      <!-- Los productos se cargan dinámicamente -->
+    <!-- Ruleta horizontal infinita de productos -->
+    <div class="products-carousel-container">
+      <div class="carousel-loading" id="carouselLoading">
+        <div class="loading-spinner"></div>
+        <p>Cargando productos recomendados...</p>
+      </div>
+      
+      <div class="infinite-carousel-wrapper" id="carouselWrapper" style="display: none;">
+        <div class="infinite-carousel" id="productsCarousel">
+          <!-- Los productos se duplicarán automáticamente para efecto infinito -->
+        </div>
+      </div>
+      
+      <!-- Overlay gradients para efecto fade -->
+      <div class="carousel-gradient carousel-gradient-left"></div>
+      <div class="carousel-gradient carousel-gradient-right"></div>
     </div>
     
     <div class="section-footer">
@@ -64,26 +78,14 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
     
     <div class="reviews-grid">
       {% for review in site.reviews limit: 3 %}
-      <article class="review-card">
+      <article class="review-card" data-rating="{{ review.rating }}">
         <div class="review-image">
           <img src="{{ review.product_image }}" alt="{{ review.product_name }}" loading="lazy">
         </div>
         <div class="review-content">
-          <div class="review-rating">
-            {% assign rating = review.rating | plus: 0 %}
-            {% for i in (1..5) %}
-              {% if i <= rating %}
-                <i class="fas fa-star"></i>
-              {% else %}
-                <i class="far fa-star"></i>
-              {% endif %}
-            {% endfor %}
-            <span>{{ review.rating }}/5</span>
-          </div>
           <h3>{{ review.product_name }}</h3>
           <p>{{ review.description | truncate: 120 }}</p>
           <div class="review-meta">
-            <span class="price">€{{ review.current_price }}</span>
             <a href="{{ review.url | relative_url }}" class="btn btn-small">Leer Review</a>
           </div>
         </div>
@@ -110,7 +112,7 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
     
     <div class="posts-grid">
       {% for post in site.posts limit: 2 %}
-      <article class="post-card">
+      <article class="post-card" data-category="{{ post.categories.first }}">
         {% if post.image %}
         <div class="post-image">
           <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy">
@@ -124,7 +126,7 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
             {% endif %}
           </div>
           <h3>{{ post.title }}</h3>
-          <p>{{ post.description | truncate: 150 }}</p>
+        <p>{{ post.description | truncate: 150 }}</p>
           <a href="{{ post.url | relative_url }}" class="btn btn-small">Leer Más</a>
         </div>
       </article>
@@ -280,21 +282,37 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 .review-card,
 .post-card {
   background: white;
-  border-radius: 1rem;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  transition: var(--transition);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 140, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  backdrop-filter: blur(10px);
 }
 
 .review-card:hover,
 .post-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  border-color: rgba(255, 140, 0, 0.4);
+}
+
+.post-card:hover::before {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
 }
 
 .review-image,
 .post-image {
-  height: 200px;
+  height: 240px;
   overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px 12px 0 0;
 }
 
 .review-image img,
@@ -302,62 +320,149 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px 12px 0 0;
+  filter: brightness(0.95) contrast(1.1);
+}
+
+.review-card:hover .review-image img,
+.post-card:hover .post-image img {
+  transform: scale(1.08);
+  filter: brightness(1.05) contrast(1.15);
+}
+
+/* Overlay gradient for better text readability */
+.post-image::after,
+.review-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.1) 50%,
+    rgba(0,0,0,0.3) 100%
+  );
+  pointer-events: none;
+  border-radius: 12px 12px 0 0;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.post-card:hover .post-image::after,
+.review-card:hover .review-image::after {
+  opacity: 1;
+}
+
+/* Category badge on image */
+.post-image {
+  position: relative;
+}
+
+.post-card {
+  position: relative;
+}
+
+.post-card::before {
+  content: '#' attr(data-category);
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(255, 140, 0, 0.95);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Rating badge for reviews */
+.review-card::before {
+  content: '★ ' attr(data-rating) '/5';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 193, 7, 0.95);
+  color: #1a1a1a;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.review-card:hover::before {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(255, 193, 7, 0.5);
 }
 
 .review-content,
 .post-content {
-  padding: 1.5rem;
-}
-
-.review-rating {
-  color: #ffc107;
-  margin-bottom: 1rem;
+  padding: 2rem;
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.review-rating span {
-  color: #333;
-  font-weight: 600;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .review-content h3,
 .post-content h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.4;
 }
 
 .review-content p,
 .post-content p {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 1rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  flex-grow: 1;
 }
 
 .review-meta {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-}
-
-.price {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--primary-color);
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 140, 0, 0.1);
 }
 
 .post-meta {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  color: #666;
+  margin-bottom: 1.2rem;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 500;
 }
 
 .post-category {
-  color: var(--primary-color);
-  font-weight: 500;
+  color: #FF8C00;
+  font-weight: 600;
+  background: rgba(255, 140, 0, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
 }
 
 /* Botones mejorados para las secciones */
@@ -382,19 +487,23 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 }
 
 .btn-small {
-  background: #FF8C00;
+  background: linear-gradient(135deg, #FF8C00, #FF6B00);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.9rem;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .btn-small:hover {
-  background: #e6790e;
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #e6790e, #e65a00);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 140, 0, 0.4);
 }
 
 @media (max-width: 768px) {
@@ -420,6 +529,15 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
   .hero-buttons {
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
   }
   
   .section-header h2 {
@@ -442,13 +560,340 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
     align-items: center;
   }
   
-  .btn-primary,
-  .btn-secondary {
+  .btn {
     width: 100%;
     max-width: 250px;
-    justify-content: center;
+  }
+}
+
+/* Estilos del carrusel infinito de productos */
+.products-carousel-container {
+  position: relative;
+  margin: 3rem 0;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.carousel-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 320px;
+  color: #666;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #FF8C00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.infinite-carousel-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
+}
+
+.infinite-carousel {
+  display: flex;
+  gap: 2rem;
+  animation: infiniteScroll 40s linear infinite;
+  will-change: transform;
+  width: fit-content;
+}
+
+.infinite-carousel:hover {
+  animation-play-state: paused;
+}
+
+@keyframes infiniteScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.carousel-item {
+  flex: 0 0 280px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.carousel-item .product-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+}
+
+.carousel-item .product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.carousel-item:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.carousel-item .product-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: linear-gradient(135deg, #FF8C00, #FF6B00);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.3);
+}
+
+.carousel-item .product-info {
+  padding: 1.25rem;
+}
+
+.carousel-item .product-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.8rem;
+}
+
+.carousel-item .buy-button {
+  width: 100%;
+  background: linear-gradient(135deg, #FF8C00, #FF6B00);
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.carousel-item .buy-button:hover {
+  background: linear-gradient(135deg, #e6790e, #e65a00);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+}
+
+.carousel-item .buy-button i {
+  font-size: 1.1rem;
+}
+
+/* Gradientes para efecto fade en los bordes */
+.carousel-gradient {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.carousel-gradient-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(248, 249, 250, 1), rgba(248, 249, 250, 0));
+}
+
+.carousel-gradient-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(248, 249, 250, 1), rgba(248, 249, 250, 0));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carousel-item {
+    flex: 0 0 240px;
+  }
+  
+  .infinite-carousel {
+    gap: 1.5rem;
+    animation-duration: 30s;
+  }
+  
+  .carousel-gradient {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item {
+    flex: 0 0 200px;
+  }
+  
+  .infinite-carousel {
+    gap: 1rem;
+    animation-duration: 25s;
+  }
+  
+  .carousel-item .product-image {
+    height: 140px;
+  }
+  
+  .carousel-item .product-info {
+    padding: 1rem;
+  }
+  
+  .carousel-item .product-title {
+    font-size: 0.85rem;
+  }
+  
+  .carousel-gradient {
+    width: 40px;
   }
 }
 </style>
 
-<script src="{{ '/script.js' | relative_url }}"></script>
+<!-- Script del carrusel -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  initializeInfiniteCarousel();
+});
+
+async function initializeInfiniteCarousel() {
+  const carousel = document.getElementById('productsCarousel');
+  const carouselWrapper = document.getElementById('carouselWrapper');
+  const loading = document.getElementById('carouselLoading');
+  
+  try {
+    // Cargar productos desde el JSON
+    const response = await fetch('/products-data.json');
+    const data = await response.json();
+    const products = data.products;
+    
+    if (!carousel || !products.length) {
+      if (loading) loading.innerHTML = '<p>No hay productos disponibles</p>';
+      return;
+    }
+    
+    // Crear items del carrusel y duplicarlos para efecto infinito
+    const productItems = products.map(product => createCarouselItem(product)).join('');
+    
+    // Duplicar los productos para scroll infinito suave
+    carousel.innerHTML = productItems + productItems;
+    
+    // Ocultar loading y mostrar carrusel
+    if (loading) loading.style.display = 'none';
+    if (carouselWrapper) {
+      carouselWrapper.style.display = 'block';
+      carouselWrapper.style.opacity = '0';
+    }
+    
+    // Añadir event listeners a los botones de compra
+    setupBuyButtons();
+    
+    // Animación de entrada suave
+    setTimeout(() => {
+      if (carouselWrapper) {
+        carouselWrapper.style.transition = 'opacity 0.5s ease';
+        carouselWrapper.style.opacity = '1';
+      }
+    }, 100);
+    
+  } catch (error) {
+    console.error('Error loading infinite carousel:', error);
+    if (loading) {
+      loading.innerHTML = `
+        <div style="text-align: center;">
+          <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #e74c3c; margin-bottom: 1rem;"></i>
+          <p>Error cargando productos. Inténtalo más tarde.</p>
+        </div>
+      `;
+    }
+  }
+}
+
+function createCarouselItem(product) {
+  const badge = getBadgeFromCategory(product.category);
+  
+  return `
+    <div class="carousel-item" data-product-id="${product.id}">
+      <div class="product-image">
+        <img src="${product.image}" 
+             alt="${product.title}" 
+             loading="lazy" 
+             onerror="this.style.display='none';">
+        <div class="product-badge">${badge}</div>
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">${product.title}</h3>
+        <button class="buy-button" data-amazon-url="${product.amazonUrl}">
+          <i class="fab fa-amazon"></i>
+          Ver en Amazon
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function getBadgeFromCategory(category) {
+  const badges = {
+    'tech': 'TECH',
+    'audio': 'AUDIO',
+    'peripherals': 'PERIFÉRICOS',
+    'wearables': 'WEARABLES'
+  };
+  return badges[category] || 'RECOMENDADO';
+}
+
+function setupBuyButtons() {
+  const buyButtons = document.querySelectorAll('.carousel-item .buy-button');
+  
+  buyButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const amazonUrl = this.getAttribute('data-amazon-url');
+      
+      // Abrir en nueva pestaña
+      window.open(amazonUrl, '_blank', 'noopener,noreferrer');
+      
+      // Analytics opcional
+      console.log('🛒 Click en producto del carrusel:', amazonUrl);
+    });
+  });
+}
+</script>

@@ -1,13 +1,13 @@
 ---
 layout: review
 title: "Philips 273V7QDSB Review: Monitor IPS 27'' que redefine la relación calidad-precio"
-product_name: "Philips 273V7QDSB Monitor 27\" Full HD IPS"
-description: "Análisis completo del monitor Philips 273V7QDSB después de 4 meses de uso. Review de calidad de imagen, ergonomía, conectividad y rendimiento para trabajo y entretenimiento."
+product_name: "Philips 273V7QDSB Monitor 27 Full HD IPS"
+description: "Análisis completo del monitor Philips 273V7QDSB después de 4 meses de uso. Review de calidad de imagen, ergonomía y conectividad."
 date: 2025-06-09
 rating: 4.4
 current_price: 149.99
 original_price: 199.99
-product_image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&h=400&fit=crop&auto=format"
+product_image: "https://m.media-amazon.com/images/I/71IWAkyU9wL._AC_SL1500_.jpg"
 amazon_url: "https://amzn.eu/d/2p8o1AC"
 pros:
   - "Panel IPS con colores vibrantes y ángulos de visión amplios"

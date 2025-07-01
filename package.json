@@ -1,0 +1,11 @@
+{
+  "name": "jesuscorner",
+  "version": "1.0.0",
+  "description": "JesusCorner - Recomendaciones Tech",
+  "scripts": {
+    "dev": "bundle exec jekyll serve --config _config.yml,_config_dev.yml --incremental --livereload --port 4001",
+    "prod": "JEKYLL_ENV=production bundle exec jekyll serve --config _config.yml,_config_prod.yml --incremental --port 4002",
+    "build": "JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config_prod.yml",
+    "build-dev": "bundle exec jekyll build --config _config.yml,_config_dev.yml"
+  }
+}

@@ -6,7 +6,7 @@ date: 2025-06-07
 categories: [guias, gaming, peripherals]
 tags: [ratones, gaming, logitech, razer, steelseries]
 author: "JesusCorner"
-image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=1200&h=630&fit=crop&auto=format"
+image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=1200&h=630&fit=crop&auto=format"
 ---
 
 # Los Mejores Ratones Gaming de 2025: Tu Guía Definitiva

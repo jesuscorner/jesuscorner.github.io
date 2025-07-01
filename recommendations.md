@@ -13,6 +13,59 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
   </div>
 </section>
 
+<!-- Sección de buscador y filtros -->
+<section class="search-filters">
+  <div class="container">
+    <div class="search-filter-container">
+      <!-- Buscador -->
+      <div class="search-box">
+        <div class="search-input-wrapper">
+          <i class="fas fa-search search-icon"></i>
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Buscar productos..." 
+            class="search-input"
+            autocomplete="off"
+          >
+          <button id="clearSearch" class="clear-search" style="display: none;">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filtros por categoría -->
+      <div class="category-filters">
+        <button class="filter-btn active" data-category="all">
+          <i class="fas fa-th-large"></i>
+          Todos
+        </button>
+        <button class="filter-btn" data-category="tech">
+          <i class="fas fa-laptop"></i>
+          Tech
+        </button>
+        <button class="filter-btn" data-category="peripherals">
+          <i class="fas fa-keyboard"></i>
+          Periféricos
+        </button>
+        <button class="filter-btn" data-category="audio">
+          <i class="fas fa-headphones"></i>
+          Audio
+        </button>
+        <button class="filter-btn" data-category="wearables">
+          <i class="fas fa-watch"></i>
+          Wearables
+        </button>
+      </div>
+
+      <!-- Contador de resultados -->
+      <div class="results-counter">
+        <span id="resultsCount">Cargando productos...</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="recommendations-content">
   <div class="container">
     <div class="products-grid" id="productsGrid">
@@ -28,7 +81,7 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
       <div class="empty-state">
         <i class="fas fa-search"></i>
         <h3>No se encontraron productos</h3>
-        <p>Intenta con otro término de búsqueda o revisa más tarde.</p>
+        <p>Intenta con otro término de búsqueda o filtro diferente.</p>
       </div>
     </div>
   </div>
@@ -578,6 +631,134 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
 
 .buy-button i {
   font-size: 1.1rem;
+}
+
+/* Estilos para buscador y filtros */
+.search-filters {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.search-filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Buscador */
+.search-box {
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: 2px solid rgba(255, 140, 0, 0.2);
+  border-radius: 50px;
+  font-size: 1rem;
+  background: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #FF8C00;
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.2rem;
+  color: #FF8C00;
+  font-size: 1.1rem;
+  z-index: 10;
+}
+
+.clear-search {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.clear-search:hover {
+  background: rgba(255, 140, 0, 0.1);
+  color: #FF8C00;
+}
+
+/* Filtros por categoría */
+.category-filters {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  background: white;
+  border: 2px solid rgba(255, 140, 0, 0.2);
+  color: #666;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  min-width: 100px;
+  justify-content: center;
+}
+
+.filter-btn:hover {
+  background: rgba(255, 140, 0, 0.1);
+  border-color: rgba(255, 140, 0, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #FF8C00, #FF6B00);
+  color: white;
+  border-color: #FF8C00;
+  box-shadow: 0 4px 16px rgba(255, 140, 0, 0.3);
+}
+
+.filter-btn.active:hover {
+  background: linear-gradient(135deg, #e6790e, #e65a00);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+}
+
+/* Contador de resultados */
+.results-counter {
+  color: #666;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.results-counter strong {
+  color: #FF8C00;
+  font-weight: 700;
 }
 
 /* Responsive Design */

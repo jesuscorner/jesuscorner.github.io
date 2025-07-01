@@ -7,7 +7,7 @@ date: 2025-06-10
 rating: 4.3
 current_price: 69.99
 original_price: 89.99
-product_image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=400&fit=crop&auto=format"
+product_image: "https://m.media-amazon.com/images/I/61eX7GCwAZL._AC_UL232_SR232,232_.jpg"
 amazon_url: "https://amzn.eu/d/e2dsva2"
 pros:
   - "Batería que dura realmente 3 años como promete"

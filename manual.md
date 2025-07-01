@@ -1,4 +1,3 @@
-
 ### **Archivos de Documentación**
 ```bash
 rm RECOMENDACIONES-SOLUCIONADO.md  # Archivo temporal de documentación
@@ -462,3 +461,51 @@ npm run build
 - ✅ Grid layouts flexibles
 - ✅ Tipografía escalable
 
+---
+
+# 🎠 CARRUSEL DE PRODUCTOS (PÁGINA PRINCIPAL)
+
+## **Nueva Funcionalidad: Ruleta Horizontal**
+
+En la página principal (`index.md`) ahora hay un **carrusel giratorio horizontal** que muestra los productos de `products-data.json` de forma dinámica y atractiva.
+
+### **Características del Carrusel:**
+- ✅ **Carga automática** de productos desde `products-data.json`
+- ✅ **Navegación con botones** (anterior/siguiente)
+- ✅ **Indicadores de posición** (puntos en la parte inferior)
+- ✅ **Responsive design** (adapta productos visibles según pantalla)
+- ✅ **Hover effects** y animaciones suaves
+- ✅ **Touch/swipe support** en móviles
+- ✅ **Enlaces de afiliado** funcionales
+
+### **Responsive Behavior:**
+- **Desktop (>1200px):** 4 productos visibles
+- **Tablet (768-1200px):** 3 productos visibles  
+- **Mobile (480-768px):** 2 productos visibles
+- **Small Mobile (<480px):** 1 producto visible + scroll horizontal
+
+### **Configuración Opcional:**
+En `index.md`, línea ~580, puedes activar **auto-play**:
+```javascript
+// Descomentar para auto-play cada 5 segundos
+setInterval(() => {
+  if (currentSlide < maxSlides) {
+    currentSlide++;
+  } else {
+    currentSlide = 0;
+  }
+  updateCarousel();
+}, 5000);
+```
+
+### **Personalización de Estilos:**
+Los estilos del carrusel están en `index.md` (líneas 300-550):
+- `.products-carousel-container` - Contenedor principal
+- `.carousel-item` - Cards individuales de productos
+- `.carousel-btn` - Botones de navegación
+- `.carousel-indicators` - Indicadores de posición
+
+---
+
+rm -rf _site
+bundle exec jekyll clean

@@ -7,7 +7,7 @@ date: 2025-06-08
 rating: 4.3
 current_price: 799.00
 original_price: 949.00
-product_image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop&auto=format"
+product_image: "https://m.media-amazon.com/images/I/81m5UyLOZ1L._AC_UL232_SR232,232_.jpg"
 amazon_url: "https://amzn.eu/d/aElx9R0"
 pros:
   - "RTX 4060 8GB ejecuta cualquier juego actual en 1080p"
