@@ -201,6 +201,9 @@ DPI: Tu preferencia (test entre 800-1600)
 
 El ratón perfecto no existe, pero el ratón perfecto **para ti** sí. Considera tu grip style, tipo de juegos, y necesidades antes de decidir.
 
+
 ---
+
+<br>
 
 **¿Qué ratón usas actualmente? ¿Estás contento con él?** Comparte tu experiencia en los comentarios.

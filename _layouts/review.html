@@ -77,6 +77,7 @@ layout: default
 
       <div class="review-verdict">
         <h2>Veredicto Final</h2>
+        <br/>
         <div class="verdict-box">
           <div class="verdict-rating">
             <span class="rating-large">{{ page.rating }}</span>
@@ -93,32 +94,14 @@ layout: default
           </div>
           <div class="verdict-text">
             <p>{{ page.verdict }}</p>
+           
             <a href="{{ page.amazon_url }}" class="btn btn-large btn-primary" target="_blank" rel="nofollow noopener">
               <i class="fab fa-amazon"></i>
-              Comprar en Amazon por €{{ page.current_price }}
+              Comprar en Amazon
             </a>
           </div>
         </div>
       </div>
-
-      {% if page.related_products %}
-      <div class="related-products">
-        <h2>Productos Relacionados</h2>
-        <div class="products-grid">
-          {% for product_id in page.related_products %}
-            {% assign product = site.data.products[product_id] %}
-            {% if product %}
-              <div class="product-card">
-                <img src="{{ product.image }}" alt="{{ product.title }}">
-                <h4>{{ product.title }}</h4>
-                <div class="product-price">€{{ product.price }}</div>
-                <a href="{{ product.amazonUrl }}" class="btn btn-small" target="_blank" rel="nofollow">Ver en Amazon</a>
-              </div>
-            {% endif %}
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
     </div>
   </div>
 </article>

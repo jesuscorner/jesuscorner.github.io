@@ -5,41 +5,41 @@
       "title": "Logitech M705 Marathon - Ratón inalámbrico",
       "image": "https://m.media-amazon.com/images/I/61eX7GCwAZL._AC_UL232_SR232,232_.jpg",
       "category": "peripherals",
-      "amazonUrl": "https://amzn.to/4eH7HX3"
+      "amazonUrl": "https://amzn.to/3TgkjdL"
     },
     {
       "id": "2p8o1AC",
       "title": "Philips 273V7QDSB - Monitor 27\" Full HD IPS",
       "image": "https://m.media-amazon.com/images/I/71IWAkyU9wL._AC_SL1500_.jpg",
       "category": "peripherals",
-      "amazonUrl": "https://amzn.to/4ekSMkS"
+      "amazonUrl": "https://amzn.to/3Gvt3ts"
     },
     {
       "id": "1ebvVnb", 
       "title": "Logitech K120 - Teclado USB con diseño español",
       "image": "https://m.media-amazon.com/images/I/61qIsibRybL._AC_SL1200_.jpg",
       "category": "peripherals",
-      "amazonUrl": "https://amzn.to/4ns4Yom"
+      "amazonUrl": "https://amzn.to/4kcfiO9"
     },
     {
       "id": "aElx9R0",
       "title": "Lenovo LOQ 15IAX9 - Portátil Gaming 15.6\" FHD",
       "image": "https://m.media-amazon.com/images/I/81m5UyLOZ1L._AC_UL232_SR232,232_.jpg",
       "category": "tech",
-      "amazonUrl": "https://amzn.to/4449OQX"
+      "amazonUrl": "https://amzn.to/4lhi32k"
     },
     {
       "id": "4e841NG",
       "title": "Apple AirPods Pro 2 - Auriculares inalámbricos",
       "image": "https://m.media-amazon.com/images/I/51R8U4qEfAL._AC_SL1500_.jpg",
       "category": "audio",
-      "amazonUrl": "https://amzn.to/4kcxNSC"
+      "amazonUrl": "https://amzn.to/4lsEZLu"
     }
   ],
   "metadata": {
     "version": "2.1",
     "lastUpdate": "2025-06-26T18:00:00Z",
-    "totalProducts": 10,
+    "totalProducts": 5,
     "displayMode": "static"
   }
 }

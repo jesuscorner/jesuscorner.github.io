@@ -6,7 +6,7 @@ description: "Review completa del Logitech M705 Marathon después de 6 meses de 
 date: 2025-06-10
 rating: 4.3
 product_image: "https://m.media-amazon.com/images/I/61eX7GCwAZL._AC_UL232_SR232,232_.jpg"
-amazon_url: "https://amzn.eu/d/e2dsva2"
+amazon_url: "https://amzn.to/449fpFC"
 pros:
   - "Batería que dura realmente 3 años como promete"
   - "Ergonomía excelente para sesiones largas de trabajo"
