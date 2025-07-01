@@ -214,6 +214,90 @@ body {
   transform: translateX(2px);
 }
 
+/* Review-specific styles for reviews page */
+.review-preview {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid rgba(255, 140, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.review-preview:hover {
+  border-color: rgba(255, 140, 0, 0.3);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.review-image-container {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 1rem 1rem 0 0;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.review-product-image {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.review-preview:hover .review-product-image {
+  transform: scale(1.05);
+}
+
+.review-content {
+  flex: 1;
+  padding: 0 1rem 1rem 1rem;
+  text-align: left;
+}
+
+.review-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #ffa41c;
+  margin-bottom: 0.5rem;
+}
+
+.review-rating .rating-value {
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.review-rating i {
+  font-size: 0.85rem;
+}
+
+.review-preview .post-meta {
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.review-preview h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.review-preview .post-excerpt {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.review-preview .read-more {
+  align-self: center;
+  margin: 0 auto;
+}
+
 /* Header - Handled by _includes/header.html */
 /* Old header styles removed to prevent conflicts with the ultra-compact header */
 
@@ -604,7 +688,7 @@ body {
 .hero, .reviews-hero, .content-section {
   background: linear-gradient(135deg, #4A90E2 0%, #FF8C00 100%);
   color: white;
-  min-height: calc(100vh - 48px);
+  min-height: calc(100vh - 53px);
   display: flex;
   align-items: center;
   padding: 4rem 0;
@@ -660,7 +744,7 @@ body {
 /* Para secciones de contenido sin hero */
 .content-section {
   background: #f8f9fa;
-  min-height: calc(100vh - 48px);
+  min-height: calc(100vh - 53px);
 }
 
 /* Responsive design */
@@ -677,7 +761,7 @@ body {
   
   /* Hero responsivo */
   .hero, .reviews-hero, .content-section {
-    min-height: calc(100vh - 42px);
+    min-height: calc(100vh - 46px);
     padding: 2rem 0;
   }
   
@@ -712,6 +796,25 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+
+  /* Review responsive styles */
+  .review-preview {
+    margin-bottom: 1.5rem;
+  }
+  
+  .review-image-container {
+    height: 180px;
+    margin-bottom: 1rem;
+  }
+  
+  .review-content {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+  }
+
+  .review-preview .post-meta {
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
   .filters {
