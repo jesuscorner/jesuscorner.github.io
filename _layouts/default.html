@@ -20,21 +20,6 @@
   <!-- Cookie Consent CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
   
-  <!-- Google AdSense (se carga solo con consentimiento) -->
-  <script>
-  // Solo cargar AdSense si hay consentimiento de cookies
-  function loadAdSense() {
-    if (window.cookieconsent && window.cookieconsent.hasConsented()) {
-      const adsenseScript = document.createElement('script');
-      adsenseScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5711459217670244';
-      adsenseScript.crossOrigin = 'anonymous';
-      adsenseScript.async = true;
-      document.head.appendChild(adsenseScript);
-      console.log('✅ Google AdSense cargado tras consentimiento');
-    }
-  }
-  </script>
-  
   <!-- Schema.org for reviews -->
   {% if page.layout == 'review' %}
   <script type="application/ld+json">
@@ -83,7 +68,7 @@
       },
       type: "opt-in",
       content: {
-        message: "Este sitio utiliza cookies de afiliados, publicitarias y analíticas para mejorar tu experiencia. ¿Aceptas el uso de estas cookies?",
+        message: "Este sitio utiliza cookies de afiliados y analíticas para mejorar tu experiencia. ¿Aceptas el uso de estas cookies?",
         allow: "Aceptar",
         deny: "Rechazar",
         link: "Más información",
@@ -105,9 +90,6 @@
   function loadAffiliateScripts() {
     // Cargar scripts de afiliados después del consentimiento
     console.log('✅ Cookies aceptadas - Scripts de afiliados cargados');
-    
-    // Cargar Google AdSense también
-    loadAdSense();
     
     // Ejemplo: Si tienes widgets de Amazon que requieren scripts específicos
     // var amazonScript = document.createElement("script");

@@ -36,37 +36,37 @@
       "amazonUrl": "https://amzn.to/4lsEZLu"
     },
     {
-      "id": "f4g7h1I",
+      "id": "f1g2h3",
       "title": "DIGITUS Cable de conexión HDMI de alta velocidad, tipo A",
-      "image": "",
+      "image": "https://m.media-amazon.com/images/I/61RLjEB-gDL._AC_SL1500_.jpg",
       "category": "peripherals",
       "amazonUrl": "https://amzn.to/4lrW1Jy"
     },
     {
-      "id": "k9Lm2nO",
+      "id": "g4h5i6",
       "title": "UGREEN Revodok Pro 1061 10 Gbps Hub USB-C con Ethernet Gigabit",
-      "image": "",
+      "image": "https://m.media-amazon.com/images/I/71GhRADoecL._AC_SL1500_.jpg",
       "category": "peripherals",
       "amazonUrl": "https://amzn.to/4lbdOoQ"
     },
     {
-      "id": "p7Qx3Rs",
-      "title": "Grabadora de Voz PLAUD Note IA con Funda Negra",
-      "image": "",
+      "id": "i7j8k9",
+      "title": "Grabadora de Voz PLAUD Note IA con Funda Negra - Transcriptor",
+      "image": "https://m.media-amazon.com/images/I/61ONUc9jIVL._AC_SL1500_.jpg",
       "category": "audio",
       "amazonUrl": "https://amzn.to/4nt0k9p"
     },
     {
-      "id": "b5Tz8Uv",
-      "title": "Cat7 Cable de Red Ethernet LAN 2 m – Verde – Pack de 5 – S/FTP",
-      "image": "",
+      "id": "k1l2m3",
+      "title": "Cat7 Cable de Red Ethernet LAN 2m - Verde - 5 Piezas - S/FTP",
+      "image": "https://m.media-amazon.com/images/I/61OOmyLllRL._SL1065_.jpg",
       "category": "peripherals",
       "amazonUrl": "https://amzn.to/4l3fl05"
     }
   ],
   "metadata": {
     "version": "2.1",
-    "lastUpdate": "2025-07-02T12:00:00Z",
+    "lastUpdate": "2025-06-26T18:00:00Z",
     "totalProducts": 11,
     "displayMode": "static"
   }

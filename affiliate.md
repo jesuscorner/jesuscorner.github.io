@@ -60,11 +60,6 @@ permalink: /affiliate/
         </div>
         
         <div class="third-party-item">
-          <h4><i class="fab fa-google"></i> Google AdSense</h4>
-          <p>También utilizamos Google AdSense para mostrar anuncios relevantes que nos ayudan a mantener el sitio. Los anuncios están claramente diferenciados del contenido editorial.</p>
-        </div>
-        
-        <div class="third-party-item">
           <h4><i class="fas fa-shopping-cart"></i> Otros Programas</h4>
           <p>Podemos participar en otros programas de afiliación de tiendas tecnológicas reconocidas, siempre con la misma transparencia.</p>
         </div>
