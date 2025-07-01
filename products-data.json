@@ -15,7 +15,7 @@
       "amazonUrl": "https://amzn.to/3Gvt3ts"
     },
     {
-      "id": "1ebvVnb", 
+      "id": "1ebvVnb",
       "title": "Logitech K120 - Teclado USB con diseño español",
       "image": "https://m.media-amazon.com/images/I/61qIsibRybL._AC_SL1200_.jpg",
       "category": "peripherals",
@@ -34,12 +34,40 @@
       "image": "https://m.media-amazon.com/images/I/51R8U4qEfAL._AC_SL1500_.jpg",
       "category": "audio",
       "amazonUrl": "https://amzn.to/4lsEZLu"
+    },
+    {
+      "id": "f4g7h1I",
+      "title": "DIGITUS Cable de conexión HDMI de alta velocidad, tipo A",
+      "image": "",
+      "category": "peripherals",
+      "amazonUrl": "https://amzn.to/4lrW1Jy"
+    },
+    {
+      "id": "k9Lm2nO",
+      "title": "UGREEN Revodok Pro 1061 10 Gbps Hub USB-C con Ethernet Gigabit",
+      "image": "",
+      "category": "peripherals",
+      "amazonUrl": "https://amzn.to/4lbdOoQ"
+    },
+    {
+      "id": "p7Qx3Rs",
+      "title": "Grabadora de Voz PLAUD Note IA con Funda Negra",
+      "image": "",
+      "category": "audio",
+      "amazonUrl": "https://amzn.to/4nt0k9p"
+    },
+    {
+      "id": "b5Tz8Uv",
+      "title": "Cat7 Cable de Red Ethernet LAN 2 m – Verde – Pack de 5 – S/FTP",
+      "image": "",
+      "category": "peripherals",
+      "amazonUrl": "https://amzn.to/4l3fl05"
     }
   ],
   "metadata": {
     "version": "2.1",
-    "lastUpdate": "2025-06-26T18:00:00Z",
-    "totalProducts": 5,
+    "lastUpdate": "2025-07-02T12:00:00Z",
+    "totalProducts": 11,
     "displayMode": "static"
   }
 }
