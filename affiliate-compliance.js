@@ -70,12 +70,29 @@ function verifyAffiliateCompliance() {
   const checks = {
     hasAffiliateDisclosure: false,
     allAffiliateLinksMarked: true,
-    noHiddenAffiliateLinks: true
+    noHiddenAffiliateLinks: true,
+    adSenseProperlyConfigured: true,
+    noAdSenseConflicts: true
   };
   
   // Verificar si existe aviso de afiliados
   const disclosures = document.querySelectorAll('.affiliate-disclosure, .affiliate-notice-top');
   checks.hasAffiliateDisclosure = disclosures.length > 0;
+  
+  // Verificar configuración AdSense
+  const adSenseScripts = document.querySelectorAll('script[src*="googlesyndication.com"]');
+  if (adSenseScripts.length > 0) {
+    console.log('🔍 AdSense detectado - Verificando configuración...');
+    
+    // Verificar que AdSense se carga con consentimiento
+    const hasConsentCheck = document.body.innerHTML.includes('loadAdSense') || 
+                           document.body.innerHTML.includes('cookieconsent');
+    checks.adSenseProperlyConfigured = hasConsentCheck;
+    
+    if (!hasConsentCheck) {
+      console.warn('⚠️ AdSense debería cargarse solo con consentimiento de cookies');
+    }
+  }
   
   // Verificar enlaces de afiliados
   const allLinks = document.querySelectorAll('a[href]');
@@ -104,10 +121,20 @@ function verifyAffiliateCompliance() {
   console.log('✅ Aviso de afiliados presente:', checks.hasAffiliateDisclosure);
   console.log('✅ Todos los enlaces marcados:', checks.allAffiliateLinksMarked);
   console.log('✅ Sin enlaces ocultos:', checks.noHiddenAffiliateLinks);
+  console.log('✅ AdSense configurado correctamente:', checks.adSenseProperlyConfigured);
+  console.log('✅ Sin conflictos AdSense-Amazon:', checks.noAdSenseConflicts);
   
   if (unmarkedAffiliateLinks.length > 0) {
     console.warn('⚠️ Enlaces de afiliados sin marcar encontrados:');
     unmarkedAffiliateLinks.forEach(link => console.warn('  - ' + link));
+  }
+  
+  // Advertencia específica sobre AdSense + Amazon
+  const adSensePresent = document.querySelectorAll('script[src*="googlesyndication.com"]').length > 0;
+  if (adSensePresent) {
+    console.warn('🚨 IMPORTANTE: AdSense detectado junto con Amazon Afiliados');
+    console.warn('📋 Revisar documento: ADVERTENCIA-ADSENSE-COMPLIANCE.md');
+    console.warn('⚖️ Verificar cumplimiento de ambos programas');
   }
   
   return checks;

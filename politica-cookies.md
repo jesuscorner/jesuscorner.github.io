@@ -377,7 +377,22 @@ permalink: /politica-cookies/
         </div>
       </div>
 
-      <h3>💰 Cookies de Afiliación</h3>
+      <h3>� Cookies Publicitarias</h3>
+      <p>Utilizamos servicios publicitarios para mantener el sitio web y ofrecer contenido gratuito:</p>
+      
+      <div class="third-party-list">
+        <div class="third-party-item">
+          <h4><i class="fab fa-google"></i> Google AdSense</h4>
+          <p>Muestra anuncios relevantes y mide su efectividad. <strong>Solo se cargan con tu consentimiento expreso.</strong></p>
+          <ul>
+            <li>Personalización de anuncios basada en intereses</li>
+            <li>Medición de rendimiento publicitario</li>
+            <li>Prevención de fraude publicitario</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>�💰 Cookies de Afiliación</h3>
       <p>Como participante del Programa de Afiliados de Amazon, utilizamos cookies relacionadas con afiliación:</p>
       
       <div class="third-party-list">

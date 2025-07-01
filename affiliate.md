@@ -60,18 +60,24 @@ permalink: /affiliate/
         </div>
         
         <div class="third-party-item">
+          <h4><i class="fab fa-google"></i> Google AdSense</h4>
+          <p>También utilizamos Google AdSense para mostrar anuncios relevantes que nos ayudan a mantener el sitio. Los anuncios están claramente diferenciados del contenido editorial.</p>
+        </div>
+        
+        <div class="third-party-item">
           <h4><i class="fas fa-shopping-cart"></i> Otros Programas</h4>
           <p>Podemos participar en otros programas de afiliación de tiendas tecnológicas reconocidas, siempre con la misma transparencia.</p>
         </div>
       </div>
 
-      <h3>💡 ¿Por Qué Usamos Afiliados?</h3>
-      <p>Los ingresos por afiliados nos permiten:</p>
+      <h3>💡 ¿Por Qué Usamos Monetización?</h3>
+      <p>Los ingresos por afiliados y publicidad nos permiten:</p>
       <ul>
-        <li><strong>Mantener el sitio gratuito:</strong> Sin publicidad molesta ni suscripciones</li>
+        <li><strong>Mantener el sitio gratuito:</strong> Sin suscripciones ni contenido bloqueado</li>
         <li><strong>Comprar más productos:</strong> Para hacer reviews detalladas y honestas</li>
         <li><strong>Dedicar tiempo:</strong> A escribir contenido de calidad</li>
         <li><strong>Mantener independencia:</strong> Editorial sin presiones externas</li>
+        <li><strong>Separación clara:</strong> Anuncios y afiliados están claramente identificados</li>
       </ul>
 
       <h2>🔍 Nuestro Proceso de Review</h2>
