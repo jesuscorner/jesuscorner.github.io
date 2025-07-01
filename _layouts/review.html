@@ -28,16 +28,10 @@ layout: default
           <span class="rating-value">{{ page.rating }}/5</span>
         </div>
         
-        <div class="review-info">
-          <span class="review-date">
-            <i class="far fa-calendar"></i>
-            {{ page.date | date: "%d de %B, %Y" }}
-          </span>
-          <span class="review-author">
-            <i class="far fa-user"></i>
-            Por {{ site.author }}
-          </span>
-        </div>
+        <span class="review-date">
+          <i class="far fa-calendar"></i>
+          {{ page.date | date: "%d de %B, %Y" }}
+        </span>
       </div>
     </header>
 
@@ -164,7 +158,7 @@ layout: default
 
 .review-meta {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 2rem;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
@@ -173,24 +167,36 @@ layout: default
 
 .review-rating {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0.5rem;
 }
 
 .stars {
   color: #ffc107;
+  font-size: 1rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
 }
 
 .rating-value {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  line-height: 1;
 }
 
-.review-info {
-  display: flex;
-  gap: 1rem;
+.review-date {
   color: #666;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.review-date i {
+  color: var(--primary-color);
+  font-size: 1rem;
 }
 
 .product-card.featured {

@@ -4,7 +4,6 @@ title: "Mejores Ratones Gaming 2025: Guía Completa de Compra"
 description: "Descubre los mejores ratones gaming de 2025. Comparativa detallada de características, precios y rendimiento para encontrar tu ratón perfecto."
 date: 2025-06-07
 categories: [guias, gaming, peripherals]
-tags: [ratones, gaming, logitech, razer, steelseries]
 author: "JesusCorner"
 image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=1200&h=630&fit=crop&auto=format"
 ---
