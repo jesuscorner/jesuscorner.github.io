@@ -14,14 +14,14 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
+# Permalink structure for posts
+permalink: /blog/:year/:month/:day/:title/
+
 # Collections para organizar contenido
 collections:
   reviews:
     output: true
     permalink: /:collection/:name/
-  posts:
-    output: true
-    permalink: /blog/:year/:month/:day/:title/
   products:
     output: false
 

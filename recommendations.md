@@ -60,20 +60,22 @@ description: "Las mejores ofertas y productos recomendados en tecnología"
       </div>
     </div>
 
-    <div class="products-grid" id="productsGrid">
-      <!-- Los productos se cargarán dinámicamente -->
-    </div>
+    <div class="products-container">
+      <div class="products-grid" id="productsGrid">
+        <!-- Los productos se cargarán dinámicamente -->
+      </div>
 
-    <div class="loading-indicator" id="loadingIndicator">
-      <div class="spinner"></div>
-      <p>Cargando las mejores ofertas...</p>
-    </div>
+      <div class="loading-indicator" id="loadingIndicator">
+        <div class="spinner"></div>
+        <p>Cargando las mejores ofertas...</p>
+      </div>
 
-    <div class="no-products-message" id="noProductsMessage" style="display: none;">
-      <div class="empty-state">
-        <i class="fas fa-search"></i>
-        <h3>No se encontraron productos</h3>
-        <p>Intenta con otro término de búsqueda o filtro diferente.</p>
+      <div class="no-products-message" id="noProductsMessage" style="display: none;">
+        <div class="empty-state">
+          <i class="fas fa-search"></i>
+          <h3>No se encontraron productos</h3>
+          <p>Intenta con otro término de búsqueda o filtro diferente.</p>
+        </div>
       </div>
     </div>
   </div>

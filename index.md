@@ -20,7 +20,7 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
       </a>
       <a href="{{ '/blog' | relative_url }}" class="btn-secondary">
         <i class="fas fa-newspaper"></i>
-        Leer Guías
+        Leer Blog
       </a>
     </div>
   </div>
@@ -99,13 +99,13 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 <section class="recent-posts">
   <div class="container">
     <div class="section-header">
-      <h2>Últimas Guías</h2>
+      <h2>Últimos artículos</h2>
       <p>Artículos y guías para ayudarte a elegir mejor</p>
     </div>
     
     <div class="posts-grid">
       {% for post in site.posts limit: 2 %}
-      <article class="post-card" data-category="{{ post.categories.first }}">
+      <article class="post-card">
         {% if post.image %}
         <div class="post-image">
           <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy">
@@ -114,12 +114,9 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
         <div class="post-content">
           <div class="post-meta">
             <span class="post-date">{{ post.date | date: "%d %b %Y" }}</span>
-            {% if post.categories %}
-            <span class="post-category">#{{ post.categories.first }}</span>
-            {% endif %}
           </div>
           <h3>{{ post.title }}</h3>
-        <p>{{ post.description | truncate: 150 }}</p>
+          <p>{{ post.description | truncate: 150 }}</p>
           <a href="{{ post.url | relative_url }}" class="btn btn-small">Leer Más</a>
         </div>
       </article>
@@ -128,7 +125,7 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
     
     <div class="section-footer">
       <a href="{{ '/blog' | relative_url }}" class="btn btn-outline">
-        Ver Todas las Guías
+        Ver Todos los Artículos
         <i class="fas fa-arrow-right"></i>
       </a>
     </div>
@@ -357,26 +354,6 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 
 .post-card {
   position: relative;
-}
-
-.post-card::before {
-  content: '#' attr(data-category);
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  background: rgba(255, 140, 0, 0.95);
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  z-index: 10;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
 }
 
 /* Rating badge for reviews */
