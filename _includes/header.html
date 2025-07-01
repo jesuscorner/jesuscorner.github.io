@@ -31,25 +31,12 @@
       </nav>
       
       <div class="header-actions">
-        <button class="search-toggle" onclick="toggleSearch()" aria-label="Abrir búsqueda" aria-expanded="false">
-          <i class="fas fa-search" aria-hidden="true"></i>
-        </button>
         <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú de navegación" aria-expanded="false">
           <span class="hamburger">
             <span></span>
             <span></span>
             <span></span>
           </span>
-        </button>
-      </div>
-    </div>
-    
-    <div class="search-bar" id="searchBar" role="search">
-      <div class="search-container">
-        <label for="searchInput" class="sr-only">Buscar en el sitio</label>
-        <input type="text" id="searchInput" placeholder="Buscar productos, reviews, guías..." autocomplete="off">
-        <button onclick="performSearch()" aria-label="Buscar">
-          <i class="fas fa-search" aria-hidden="true"></i>
         </button>
       </div>
     </div>
@@ -70,16 +57,16 @@
   border: 0;
 }
 
-/* Header - Ultra Compact */
+/* Header - Compacto y Consistente */
 .header {
   position: sticky;
   top: 0;
-  height: 48px;
   background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   z-index: 1000;
-  transition: all 0.3s ease;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid #e5e7eb;
+  height: 48px;
+  padding: 0;
 }
 
 /* Container for consistent layout */
@@ -88,6 +75,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  height: 100%;
 }
 
 /* Grid Layout - 3 columns */
@@ -95,8 +83,9 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  height: 100%;
   gap: 1rem;
+  height: 48px;
+  padding: 0;
 }
 
 /* Logo Section */
@@ -110,57 +99,46 @@
 .logo a {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease;
-  outline-offset: 2px;
+  transition: opacity 0.2s ease;
 }
 
 .logo a:hover,
 .logo a:focus {
-  transform: scale(1.02);
-}
-
-.logo a:focus {
-  outline: 2px solid #FF8C00;
-  border-radius: 6px;
+  opacity: 0.8;
 }
 
 .logo-image {
-  height: 32px;
+  height: 28px;
   width: auto;
-  border-radius: 6px;
+  border-radius: 4px;
   display: block;
 }
 
-.logo a:hover .logo-image {
-  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
-}
-
 .logo-text h1 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #FF8C00;
   margin: 0;
   line-height: 1;
-  letter-spacing: -0.02em;
 }
 
 .logo-text span {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #666;
   display: block;
-  margin-top: 2px;
+  margin-top: 1px;
   line-height: 1;
-  font-weight: 500;
+  font-weight: 400;
 }
 
-/* Navigation - Centered */
+/* Navigation - Centered and improved */
 .nav {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
   justify-self: center;
   margin: 0;
 }
@@ -168,43 +146,34 @@
 .nav a {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   text-decoration: none;
   color: #444;
   font-weight: 500;
-  font-size: 0.9rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 8px;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
   transition: all 0.2s ease;
-  line-height: 1;
-  position: relative;
   white-space: nowrap;
-  border-bottom: 2px solid transparent;
-}
-
-.nav a span {
-  transition: transform 0.2s ease;
 }
 
 .nav a i {
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
+  font-size: 0.8rem;
   flex-shrink: 0;
 }
 
 .nav a:hover,
 .nav a:focus {
   color: #FF8C00;
-  background: rgba(255, 140, 0, 0.08);
+  background: rgba(255, 140, 0, 0.1);
 }
 
 .nav a.active {
   color: #FF8C00;
-  border-bottom-color: #FF8C00;
-  background: rgba(255, 140, 0, 0.08);
+  background: rgba(255, 140, 0, 0.1);
 }
 
-/* Header Actions */
+/* Header Actions - improved */
 .header-actions {
   display: flex;
   gap: 0.5rem;
@@ -213,35 +182,33 @@
   flex-shrink: 0;
 }
 
-.search-toggle,
 .menu-toggle {
   background: none;
   border: none;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #666;
   cursor: pointer;
-  padding: 0.4rem;
-  border-radius: 6px;
+  padding: 0.25rem;
+  border-radius: 4px;
   transition: all 0.2s ease;
-  display: none; /* Changed from flex to none to make elements invisible */
+  display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  min-height: 32px;
+  min-width: 28px;
+  min-height: 28px;
 }
 
-.search-toggle:hover,
 .menu-toggle:hover {
   background: rgba(255, 140, 0, 0.1);
   color: #FF8C00;
 }
 
-/* Hamburger menu animation */
+/* Hamburger menu animation - improved */
 .hamburger {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  width: 16px;
+  width: 14px;
 }
 
 .hamburger span {
@@ -268,137 +235,51 @@
   display: none;
 }
 
-/* Search Bar */
-.search-bar {
-  background: #f8f9fa;
-  padding: 0.75rem 0;
-  border-top: 1px solid #eee;
-  display: none;
+/* Desktop: hide mobile menu toggle */
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none !important;
+  }
+  
+  .nav {
+    justify-self: center !important;
+  }
 }
 
-.search-bar.active {
-  display: block;
+/* Mobile: show mobile menu toggle */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
 }
 
-.search-container {
-  display: flex;
-  max-width: 500px;
-  margin: 0 auto;
-  background: white;
-  border-radius: 1.5rem;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.search-container input {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  border: none;
-  font-size: 0.9rem;
-  outline: none;
-  background: transparent;
-  color: #333;
-  font-family: inherit;
-}
-
-.search-container input::placeholder {
-  color: #999;
-}
-
-.search-container button {
-  background: #FF8C00;
-  color: white;
-  border: none;
-  padding: 0.75rem 1rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.search-container button:hover {
-  background: #e6790e;
-}
-
-/* Responsive Design */
+/* Responsive Design - improved */
 @media (max-width: 1024px) {
   .nav {
-    gap: 1rem;
+    gap: 1.5rem;
   }
   
   .nav a {
-    padding: 0.3rem 0.5rem;
-    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
     gap: 0.4rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
   }
 }
 
 @media (max-width: 768px) {
   .header {
-    height: 50px;
+    height: 42px;
   }
   
   .header-content {
     grid-template-columns: auto auto auto;
     justify-content: space-between;
     gap: 0.5rem;
-  }
-  
-  .logo-image {
-    height: 28px;
-  }
-  
-  .logo-text h1 {
-    font-size: 1.2rem;
-  }
-  
-  .logo-text span {
-    font-size: 0.7rem;
-  }
-  
-  .nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    flex-direction: column;
-    gap: 0;
-    border-top: 1px solid #eee;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    justify-self: stretch;
-    grid-column: 1 / -1;
-    z-index: 100;
-  }
-  
-  .nav.active {
-    display: flex;
-  }
-  
-  .nav a {
-    padding: 1rem;
-    border-radius: 0;
-    border-bottom: 1px solid #f0f0f0;
-    justify-content: flex-start;
-    border-bottom: none;
-  }
-  
-  .nav a.active {
-    background: rgba(255, 140, 0, 0.1);
-    border-left: 3px solid #FF8C00;
-  }
-  
-  .menu-toggle {
-    display: flex;
-  }
-  
-  .search-container {
-    margin: 0 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 0.75rem;
+    height: 42px;
   }
   
   .logo-image {
@@ -413,43 +294,80 @@
     font-size: 0.65rem;
   }
   
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    justify-self: stretch;
+    grid-column: 1 / -1;
+    z-index: 100;
+    padding: 0.5rem 0;
+  }
+  
+  .nav.active {
+    display: flex;
+  }
+  
+  .nav a {
+    padding: 0.75rem 1rem;
+    border-radius: 0;
+    justify-content: flex-start;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .nav a.active {
+    background: rgba(255, 140, 0, 0.1);
+    border-left: 3px solid #FF8C00;
+  }
+  
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .header {
+    height: 42px;
+  }
+  
+  .logo-image {
+    height: 24px;
+  }
+  
+  .logo-text h1 {
+    font-size: 1rem;
+  }
+  
+  .logo-text span {
+    font-size: 0.6rem;
+  }
+  
   .header-actions {
     gap: 0.25rem;
   }
   
-  .search-toggle,
   .menu-toggle {
-    padding: 0.3rem;
+    padding: 0.25rem;
     min-width: 28px;
     min-height: 28px;
-  }
-}
-
-/* Force consistent positioning */
-@media (min-width: 769px) {
-  .menu-toggle {
-    display: none !important;
-  }
-  
-  .nav {
-    justify-self: center !important;
+    font-size: 0.9rem;
   }
 }
 </style>
 
 <script>
-function toggleSearch() {
-  const searchBar = document.getElementById('searchBar');
-  const toggle = document.querySelector('.search-toggle');
-  
-  searchBar.classList.toggle('active');
-  toggle.setAttribute('aria-expanded', searchBar.classList.contains('active'));
-  
-  if (searchBar.classList.contains('active')) {
-    document.getElementById('searchInput').focus();
-  }
-}
-
 function toggleMobileMenu() {
   const nav = document.querySelector('.nav');
   const toggle = document.querySelector('.menu-toggle');
@@ -458,28 +376,6 @@ function toggleMobileMenu() {
   toggle.classList.toggle('active');
   toggle.setAttribute('aria-expanded', nav.classList.contains('active'));
 }
-
-function performSearch() {
-  const query = document.getElementById('searchInput').value;
-  if (query.trim()) {
-    // Implementar búsqueda aquí
-    console.log('Buscando:', query);
-    // Por ahora, redirigir a página de búsqueda
-    window.location.href = `/search?q=${encodeURIComponent(query)}`;
-  }
-}
-
-// Enter key en search
-document.addEventListener('DOMContentLoaded', function() {
-  const searchInput = document.getElementById('searchInput');
-  if (searchInput) {
-    searchInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        performSearch();
-      }
-    });
-  }
-});
 
 // Close mobile menu when clicking outside
 document.addEventListener('click', function(e) {

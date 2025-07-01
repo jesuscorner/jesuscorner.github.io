@@ -34,41 +34,6 @@
       "image": "https://m.media-amazon.com/images/I/51R8U4qEfAL._AC_SL1500_.jpg",
       "category": "audio",
       "amazonUrl": "https://amzn.to/4kcxNSC"
-    },
-    {
-      "id": "watch01",
-      "title": "Apple Watch Series 9 - Smartwatch 45mm",
-      "image": "https://m.media-amazon.com/images/I/71DZzGuUsyL._AC_SL1500_.jpg",
-      "category": "wearables",
-      "amazonUrl": "https://amzn.to/3example"
-    },
-    {
-      "id": "tech02",
-      "title": "MacBook Pro 14\" M3 - Portátil profesional",
-      "image": "https://m.media-amazon.com/images/I/61RJn0ofUsL._AC_SL1500_.jpg",
-      "category": "tech",
-      "amazonUrl": "https://amzn.to/3tech02"
-    },
-    {
-      "id": "audio02",
-      "title": "Sony WH-1000XM5 - Auriculares con cancelación",
-      "image": "https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg",
-      "category": "audio",
-      "amazonUrl": "https://amzn.to/3audio02"
-    },
-    {
-      "id": "periph02",
-      "title": "Razer DeathAdder V3 - Ratón gaming profesional",
-      "image": "https://m.media-amazon.com/images/I/61vFTB4Av3L._AC_SL1500_.jpg",
-      "category": "peripherals",
-      "amazonUrl": "https://amzn.to/3periph02"
-    },
-    {
-      "id": "wearable02",
-      "title": "Samsung Galaxy Watch 6 - Smartwatch deportivo",
-      "image": "https://m.media-amazon.com/images/I/61Q9I1V2hcL._AC_SL1500_.jpg",
-      "category": "wearables",
-      "amazonUrl": "https://amzn.to/3wearable02"
     }
   ],
   "metadata": {

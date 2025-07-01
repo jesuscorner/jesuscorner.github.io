@@ -5,30 +5,23 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 ---
 
 <section class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1 class="hero-title">
-          Recomendaciones <span class="highlight">Honestas</span> de Tecnología
-        </h1>
-        <p class="hero-subtitle">
-          Reviews detalladas, guías de compra y las mejores ofertas en tecnología. 
-          Todo probado personalmente para ayudarte a tomar la mejor decisión.
-        </p>
-        <div class="hero-buttons">
-          <a href="{{ '/reviews' | relative_url }}" class="btn-primary">
-            <i class="fas fa-star"></i>
-            Ver Reviews
-          </a>
-          <a href="{{ '/blog' | relative_url }}" class="btn-secondary">
-            <i class="fas fa-newspaper"></i>
-            Leer Guías
-          </a>
-        </div>
-      </div>
-      <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop&auto=format" alt="Tecnología" loading="lazy">
-      </div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Recomendaciones <span class="highlight">Honestas</span> de Tecnología
+    </h1>
+    <p class="hero-subtitle">
+      Reviews detalladas, guías de compra y las mejores ofertas en tecnología. 
+      Todo probado personalmente para ayudarte a tomar la mejor decisión.
+    </p>
+    <div class="hero-buttons">
+      <a href="{{ '/reviews' | relative_url }}" class="btn-primary">
+        <i class="fas fa-star"></i>
+        Ver Reviews
+      </a>
+      <a href="{{ '/blog' | relative_url }}" class="btn-secondary">
+        <i class="fas fa-newspaper"></i>
+        Leer Guías
+      </a>
     </div>
   </div>
 </section>
@@ -508,7 +501,7 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 
 @media (max-width: 768px) {
   .hero {
-    min-height: calc(100vh - 50px);
+    min-height: calc(100vh - 42px);
     padding: 2rem 0;
   }
   
