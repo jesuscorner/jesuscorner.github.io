@@ -17,6 +17,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
+  <!-- Cookie Consent CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  
   <!-- Schema.org for reviews -->
   {% if page.layout == 'review' %}
   <script type="application/ld+json">
@@ -51,7 +54,48 @@
   
   {% include footer.html %}
   
-  <!-- Analytics (añadir cuando tengas Google Analytics) -->
+  <!-- Cookie Consent Script -->
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+  <script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      palette: {
+        popup: { background: "#2c3e50", text: "#ecf0f1" },
+        button: { background: "#FF8C00", text: "#ffffff" }
+      },
+      type: "opt-in",
+      content: {
+        message: "Este sitio utiliza cookies de afiliados y analíticas para mejorar tu experiencia. ¿Aceptas el uso de estas cookies?",
+        allow: "Aceptar",
+        deny: "Rechazar",
+        link: "Más información",
+        href: "{{ '/politica-cookies/' | relative_url }}"
+      },
+      onInitialise: function(status) {
+        if (status == cookieconsent.status.allow) {
+          loadAffiliateScripts();
+        }
+      },
+      onStatusChange: function(status) {
+        if (status == cookieconsent.status.allow) {
+          loadAffiliateScripts();
+        }
+      }
+    });
+  });
+
+  function loadAffiliateScripts() {
+    // Aquí se cargarían los scripts de afiliados después del consentimiento
+    console.log('Cookies aceptadas - Scripts de afiliados cargados');
+    
+    // Ejemplo: Si tienes widgets de Amazon que requieren scripts específicos
+    // var amazonScript = document.createElement("script");
+    // amazonScript.src = "https://ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=ES";
+    // document.head.appendChild(amazonScript);
+  }
+  </script>
+  
+  <!-- Analytics (se cargarán solo con consentimiento) -->
   <!-- Google tag (gtag.js) -->
   <!--
   <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
