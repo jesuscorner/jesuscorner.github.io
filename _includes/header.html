@@ -11,7 +11,89 @@
         </a>
       </div>
       
-      <nav class="nav" role="navigation" aria-label="Navegación principal">
+  // Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+  const nav = document.querySelector('.nav');
+  const toggle = document.querySelector('.menu-toggle');
+  
+  if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+    nav.classList.remove('active');
+    toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// Simple search functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('siteSearch');
+  const searchResults = document.getElementById('searchResults');
+  const searchBtn = document.querySelector('.search-btn');
+  
+  if (!searchInput) return;
+  
+  let searchData = [];
+  
+  // Cargar datos de búsqueda
+  fetch('/search-data.json')
+    .then(response => response.json())
+    .then(data => {
+      searchData = data;
+    })
+    .catch(() => {
+      // Fallback: datos básicos si no existe el archivo
+      searchData = [
+        { title: 'Reviews', url: '/reviews/', excerpt: 'Todas nuestras reviews de productos tecnológicos' },
+        { title: 'Blog', url: '/blog/', excerpt: 'Artículos y guías sobre tecnología' },
+        { title: 'Quién Soy', url: '/about/', excerpt: 'Conoce más sobre el autor' }
+      ];
+    });
+  
+  function performSearch(query) {
+    if (!query || query.length < 2) {
+      searchResults.style.display = 'none';
+      return;
+    }
+    
+    const results = searchData.filter(item => 
+      item.title.toLowerCase().includes(query.toLowerCase()) ||
+      item.excerpt.toLowerCase().includes(query.toLowerCase())
+    ).slice(0, 5);
+    
+    if (results.length > 0) {
+      searchResults.innerHTML = results.map(item => `
+        <div class="search-item" onclick="window.location.href='${item.url}'">
+          <h4>${item.title}</h4>
+          <p>${item.excerpt}</p>
+        </div>
+      `).join('');
+      searchResults.style.display = 'block';
+    } else {
+      searchResults.innerHTML = '<div class="search-item"><p>No se encontraron resultados</p></div>';
+      searchResults.style.display = 'block';
+    }
+  }
+  
+  searchInput.addEventListener('input', (e) => {
+    performSearch(e.target.value);
+  });
+  
+  searchBtn.addEventListener('click', () => {
+    performSearch(searchInput.value);
+  });
+  
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      performSearch(searchInput.value);
+    }
+  });
+  
+  // Cerrar resultados al hacer click fuera
+  document.addEventListener('click', function(e) {
+    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+      searchResults.style.display = 'none';
+    }
+  });
+});ass="nav" role="navigation" aria-label="Navegación principal">
         <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active" aria-current="page"{% endif %}>
           <i class="fas fa-home" aria-hidden="true"></i>
           <span>Inicio</span>
@@ -24,13 +106,20 @@
           <i class="fas fa-newspaper" aria-hidden="true"></i>
           <span>Blog</span>
         </a>
-        <a href="{{ '/recommendations' | relative_url }}" {% if page.url contains '/recommendations' %}class="active" aria-current="page"{% endif %}>
-          <i class="fas fa-thumbs-up" aria-hidden="true"></i>
-          <span>Recomendaciones</span>
+        <a href="{{ '/about' | relative_url }}" {% if page.url contains '/about' %}class="active" aria-current="page"{% endif %}>
+          <i class="fas fa-user" aria-hidden="true"></i>
+          <span>Quién Soy</span>
         </a>
       </nav>
       
       <div class="header-actions">
+        <div class="search-container">
+          <input type="search" id="siteSearch" placeholder="Buscar..." aria-label="Buscar en el sitio" autocomplete="off">
+          <button type="button" class="search-btn" aria-label="Realizar búsqueda">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="search-results" id="searchResults" style="display: none;"></div>
+        </div>
         <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú de navegación" aria-expanded="false">
           <span class="hamburger">
             <span></span>
@@ -363,6 +452,98 @@
     min-width: 28px;
     min-height: 28px;
     font-size: 0.9rem;
+  }
+}
+
+/* Search Container Styles */
+.search-container {
+  position: relative;
+  margin-right: 0.5rem;
+}
+
+.search-container input {
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  background: #f8f9fa;
+  font-size: 0.9rem;
+  width: 200px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.search-container input:focus {
+  border-color: #FF8C00;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+  width: 250px;
+}
+
+.search-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.search-btn:hover {
+  color: #FF8C00;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  margin-top: 4px;
+}
+
+.search-results .search-item {
+  padding: 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.search-results .search-item:hover {
+  background: #f8f9fa;
+}
+
+.search-results .search-item:last-child {
+  border-bottom: none;
+}
+
+.search-results .search-item h4 {
+  margin: 0 0 0.25rem 0;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.search-results .search-item p {
+  margin: 0;
+  color: #666;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+/* Mobile search adjustments */
+@media (max-width: 768px) {
+  .search-container {
+    display: none;
   }
 }
 </style>

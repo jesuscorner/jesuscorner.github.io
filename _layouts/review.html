@@ -5,13 +5,13 @@ layout: default
 <article class="review-article">
   <div class="container">
     <header class="review-header">
-      <div class="breadcrumbs">
-        <a href="{{ '/' | relative_url }}">Inicio</a> → 
-        <a href="{{ '/reviews/' | relative_url }}">Reviews</a> → 
-        <span>{{ page.product_name }}</span>
-      </div>
-      
-      <h1 class="review-title">{{ page.title }}</h1>
+      <nav class="breadcrumbs" aria-label="Navegación de migas de pan">
+        <a href="{{ '/' | relative_url }}">Inicio</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="{{ '/reviews' | relative_url }}">Reviews</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="current-page">{{ page.product_name }}</span>
+      </nav>      <h1 class="review-title">{{ page.title }}</h1>
       
       <div class="review-meta">
         <div class="review-rating">
@@ -131,11 +131,31 @@ layout: default
   font-size: 0.9rem;
   color: #666;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .breadcrumbs a {
   color: var(--primary-color);
   text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbs a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: #999;
+  user-select: none;
+}
+
+.current-page {
+  color: #333;
+  font-weight: 500;
 }
 
 .review-title {

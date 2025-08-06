@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Reviews",
+    "url": "/reviews/",
+    "excerpt": "Todas nuestras reviews detalladas de productos tecnológicos probados personalmente"
+  },
+  {
+    "title": "Blog",
+    "url": "/blog/",
+    "excerpt": "Artículos y guías sobre tecnología, comparativas y consejos de compra"
+  },
+  {
+    "title": "Quién Soy",
+    "url": "/about/",
+    "excerpt": "Conoce al autor, metodología de testing y por qué confiar en nuestras recomendaciones"
+  },
+  {
+    "title": "Mejores Ratones Gaming 2025",
+    "url": "/2025/06/07/mejores-ratones-gaming-2025.html",
+    "excerpt": "Guía completa de los mejores ratones gaming de 2025 con análisis detallado"
+  },
+  {
+    "title": "RTX 4060 vs 4070 Laptops",
+    "url": "/2025/06/06/rtx-4060-vs-4070-laptops.html",
+    "excerpt": "Comparativa detallada entre laptops gaming con RTX 4060 y RTX 4070"
+  },
+  {
+    "title": "Logitech M705 Marathon Review",
+    "url": "/reviews/logitech-m705-marathon-review.html",
+    "excerpt": "Review completa del ratón inalámbrico Logitech M705 Marathon para productividad"
+  },
+  {
+    "title": "Lenovo LOQ Gaming Review",
+    "url": "/reviews/lenovo-loq-15iax9-gaming-review.html",
+    "excerpt": "Análisis detallado del portátil gaming Lenovo LOQ 15IAX9 con Intel y RTX"
+  },
+  {
+    "title": "Philips Monitor Review",
+    "url": "/reviews/philips-273v7qdsb-monitor-review.html",
+    "excerpt": "Review del monitor Philips 273V7QDSB de 27 pulgadas Full HD"
+  },
+  {
+    "title": "Política de Privacidad",
+    "url": "/privacy/",
+    "excerpt": "Información sobre tratamiento de datos personales y cookies en JesusCorner"
+  },
+  {
+    "title": "Información sobre Afiliados",
+    "url": "/affiliate/",
+    "excerpt": "Transparencia total sobre enlaces de afiliado y modelo de monetización"
+  }
+]

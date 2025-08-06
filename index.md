@@ -27,7 +27,12 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
         </div>
       </div>
       <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop&auto=format" alt="Espacio de trabajo tech moderno" class="hero-main-image">
+        <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop&auto=format" 
+             alt="Espacio de trabajo tech moderno con laptop, monitor y accesorios" 
+             class="hero-main-image" 
+             loading="eager" 
+             width="600" 
+             height="400">
       </div>
     </div>
   </div>
@@ -86,7 +91,11 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
       <a href="{{ review.url | relative_url }}" class="review-card-link">
         <article class="review-card" data-rating="{{ review.rating }}">
           <div class="review-image">
-            <img src="{{ review.product_image }}" alt="{{ review.product_name }}" loading="lazy">
+            <img src="{{ review.product_image }}" 
+                 alt="Review de {{ review.product_name }}" 
+                 loading="lazy" 
+                 width="300" 
+                 height="200">
           </div>
           <div class="review-content">
             <h3>{{ review.product_name }}</h3>
@@ -146,12 +155,29 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 
 <style>
 .hero {
-  background: linear-gradient(135deg, #4A90E2 0%, #FF8C00 100%);
+  background: linear-gradient(135deg, #2C3E50 0%, #3498DB 50%, #FF8C00 100%);
   color: white;
   min-height: calc(100vh - 42px);
   display: flex;
   align-items: center;
   padding: 4rem 0;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
 }
 
 .hero-content {
@@ -174,15 +200,17 @@ description: "Recomendaciones honestas de tecnología con las mejores ofertas y 
 }
 
 .highlight {
-  color: #FFD700;
+  color: #FFE135;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .hero-subtitle {
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 2rem;
-  opacity: 0.9;
-  color: rgba(255, 255, 255, 0.9);
+  opacity: 0.95;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .hero-buttons {

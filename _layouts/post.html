@@ -5,11 +5,30 @@ layout: default
 <article class="post-article">
   <div class="container">
     <header class="post-header">
-      <div class="breadcrumbs">
-        <a href="{{ '/' | relative_url }}">Inicio</a> → 
-        <a href="{{ '/blog/' | relative_url }}">Blog</a> → 
-        <span>{{ page.title }}</span>
-      </div>
+      <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item">
+            <a href="{{ '/' | relative_url }}" aria-label="Ir al inicio">
+              <i class="fas fa-home" aria-hidden="true"></i>
+              <span class="sr-only">Inicio</span>
+            </a>
+          </li>
+          <li class="breadcrumb-separator" aria-hidden="true">→</li>
+          <li class="breadcrumb-item">
+            <a href="{{ '/blog/' | relative_url }}">Blog</a>
+          </li>
+          {% if page.categories %}
+            {% for category in page.categories %}
+              <li class="breadcrumb-separator" aria-hidden="true">→</li>
+              <li class="breadcrumb-item">
+                <a href="{{ '/blog/' | relative_url }}#{{ category | slugify }}">{{ category }}</a>
+              </li>
+            {% endfor %}
+          {% endif %}
+          <li class="breadcrumb-separator" aria-hidden="true">→</li>
+          <li class="breadcrumb-item current-page" aria-current="page">{{ page.title }}</li>
+        </ol>
+      </nav>
       
       <h1 class="post-title">{{ page.title }}</h1>
       
@@ -100,11 +119,72 @@ layout: default
   font-size: 0.9rem;
   color: #666;
   margin-bottom: 1rem;
+  background: #f8f9fa;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border-left: 3px solid var(--primary-color);
 }
 
-.breadcrumbs a {
+.breadcrumb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-item a {
   color: var(--primary-color);
   text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.breadcrumb-item a:hover,
+.breadcrumb-item a:focus {
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+}
+
+.breadcrumb-separator {
+  color: #999;
+  user-select: none;
+  font-weight: normal;
+}
+
+.current-page {
+  color: #333;
+  font-weight: 600;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .post-title {

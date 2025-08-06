@@ -1,0 +1,228 @@
+<!-- Enhanced SEO Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Title -->
+<title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title | default: "JesusCorner" }}</title>
+
+<!-- Description -->
+<meta name="description" content="{% if page.description %}{{ page.description }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description | default: "Reviews detalladas, guías de compra y las mejores ofertas en tecnología. Todo probado personalmente para ayudarte a tomar la mejor decisión." }}{% endif %}">
+
+<!-- Keywords -->
+{% if page.keywords %}
+<meta name="keywords" content="{{ page.keywords | join: ', ' }}">
+{% elsif page.tags %}
+<meta name="keywords" content="{{ page.tags | join: ', ' }}">
+{% endif %}
+
+<!-- Author -->
+<meta name="author" content="{% if page.author %}{{ page.author }}{% else %}JesusCorner{% endif %}">
+
+<!-- OpenGraph Meta Tags -->
+<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta property="og:description" content="{% if page.description %}{{ page.description }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+<meta property="og:type" content="{% if page.layout == 'post' or page.layout == 'review' %}article{% else %}website{% endif %}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:site_name" content="{{ site.title | default: 'JesusCorner' }}">
+<meta property="og:locale" content="es_ES">
+
+<!-- OpenGraph Image -->
+{% if page.image %}
+<meta property="og:image" content="{{ page.image | absolute_url }}">
+<meta property="og:image:alt" content="{{ page.title | default: site.title }}">
+{% elsif page.featured_image %}
+<meta property="og:image" content="{{ page.featured_image | absolute_url }}">
+<meta property="og:image:alt" content="{{ page.title | default: site.title }}">
+{% else %}
+<meta property="og:image" content="{{ '/logo.png' | absolute_url }}">
+<meta property="og:image:alt" content="JesusCorner - Recomendaciones Tech">
+{% endif %}
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="{% if page.image or page.featured_image %}summary_large_image{% else %}summary{% endif %}">
+<meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+{% if page.image %}
+<meta name="twitter:image" content="{{ page.image | absolute_url }}">
+{% elsif page.featured_image %}
+<meta name="twitter:image" content="{{ page.featured_image | absolute_url }}">
+{% else %}
+<meta name="twitter:image" content="{{ '/logo.png' | absolute_url }}">
+{% endif %}
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- Publication Date for Articles -->
+{% if page.date %}
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{% endif %}
+
+{% if page.modified_date %}
+<meta property="article:modified_time" content="{{ page.modified_date | date_to_xmlschema }}">
+{% endif %}
+
+<!-- Categories and Tags for Articles -->
+{% if page.categories %}
+  {% for category in page.categories %}
+<meta property="article:section" content="{{ category }}">
+  {% endfor %}
+{% endif %}
+
+{% if page.tags %}
+  {% for tag in page.tags %}
+<meta property="article:tag" content="{{ tag }}">
+  {% endfor %}
+{% endif %}
+
+<!-- Robots -->
+<meta name="robots" content="{% if page.noindex %}noindex, {% endif %}{% if page.nofollow %}nofollow{% else %}follow{% endif %}, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<!-- Language -->
+<meta http-equiv="content-language" content="es">
+
+<!-- Additional SEO improvements -->
+{% if page.layout == 'review' %}
+<!-- Review specific meta -->
+<meta property="product:price:amount" content="{{ page.price | default: '0' }}">
+<meta property="product:price:currency" content="EUR">
+<meta property="product:availability" content="in stock">
+{% endif %}
+
+<!-- JSON-LD Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{% if page.layout == 'post' %}BlogPosting{% elsif page.layout == 'review' %}Review{% else %}WebPage{% endif %}",
+  "headline": "{{ page.title | default: site.title }}",
+  "description": "{% if page.description %}{{ page.description }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}",
+  "url": "{{ page.url | absolute_url }}",
+  {% if page.image or page.featured_image %}
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ page.image | default: page.featured_image | absolute_url }}",
+    "width": 1200,
+    "height": 630
+  },
+  {% endif %}
+  {% if page.date %}
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  {% endif %}
+  {% if page.modified_date %}
+  "dateModified": "{{ page.modified_date | date_to_xmlschema }}",
+  {% endif %}
+  "author": {
+    "@type": "Person",
+    "name": "{% if page.author %}{{ page.author }}{% else %}JesusCorner{% endif %}",
+    "url": "{{ '/about/' | absolute_url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JesusCorner",
+    "url": "{{ '/' | absolute_url }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ '/logo.png' | absolute_url }}",
+      "width": 200,
+      "height": 200
+    }
+  },
+  {% if page.layout == 'review' %}
+  "itemReviewed": {
+    "@type": "Product",
+    "name": "{{ page.product_name | default: page.title }}",
+    {% if page.product_image %}
+    "image": "{{ page.product_image }}",
+    {% endif %}
+    {% if page.brand %}
+    "brand": {
+      "@type": "Brand",
+      "name": "{{ page.brand }}"
+    },
+    {% endif %}
+    {% if page.model %}
+    "model": "{{ page.model }}",
+    {% endif %}
+    {% if page.sku %}
+    "sku": "{{ page.sku }}",
+    {% endif %}
+    "offers": {
+      "@type": "Offer",
+      "price": "{{ page.price | default: '0' }}",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": "{{ page.affiliate_link | default: page.url | absolute_url }}"
+    }
+  },
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "{{ page.rating | default: 4 }}",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  {% endif %}
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  }
+}
+</script>
+
+<!-- Breadcrumb Schema.org -->
+{% if page.layout == 'post' or page.layout == 'review' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "{{ '/' | absolute_url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{% if page.layout == 'review' %}Reviews{% else %}Blog{% endif %}",
+      "item": "{{ '/reviews/' | absolute_url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ page.title }}",
+      "item": "{{ page.url | absolute_url }}"
+    }
+  ]
+}
+</script>
+{% endif %}
+
+<!-- Website Schema.org for homepage -->
+{% if page.url == '/' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "JesusCorner",
+  "url": "{{ '/' | absolute_url }}",
+  "description": "{{ site.description }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "JesusCorner",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ '/logo.png' | absolute_url }}"
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ '/recommendations/' | absolute_url }}?search={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{% endif %}

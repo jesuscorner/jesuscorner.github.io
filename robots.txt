@@ -1,0 +1,46 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: {{ site.url }}/sitemap.xml
+
+# Disallow admin and development files
+Disallow: /_*
+Disallow: /.*
+Disallow: /Gemfile*
+Disallow: /package.json
+Disallow: /README.md
+Disallow: /*.log
+Disallow: /node_modules/
+
+# Allow important directories
+Allow: /_includes/
+Allow: /_layouts/
+Allow: /assets/
+Allow: /images/
+Allow: /favicon/
+Allow: /styles.css
+Allow: /search-data.json
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Specific rules for different bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Block aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
